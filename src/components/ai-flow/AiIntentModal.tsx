@@ -47,7 +47,7 @@ export const AiIntentModal: React.FC = () => {
             <span className="font-label-bold text-xs ai-gradient-text uppercase tracking-widest font-bold">AI Stylist</span>
           </div>
           <h1 className="font-headline-lg text-2xl md:text-3xl text-on-background font-extrabold mb-1">
-            Build your wishlist
+            Prioritise your wishlist
           </h1>
           <p className="font-body-lg text-secondary text-sm md:text-base">
             What are you shopping for? Tell us what you need right now.

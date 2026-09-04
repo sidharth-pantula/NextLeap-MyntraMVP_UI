@@ -76,7 +76,7 @@ export const WishlistScreen: React.FC = () => {
           className="relative z-10 ai-gradient-bg text-on-primary font-label-bold text-sm px-6 py-3.5 rounded hover:opacity-95 transition-all flex items-center gap-2 whitespace-nowrap shadow-lg shadow-tertiary/20 hover:scale-105 active:scale-95 cursor-pointer"
         >
           <span className="material-symbols-outlined text-[18px]">auto_awesome</span>
-          <span>Build Wishlist</span>
+          <span>Prioritise Wishlist</span>
         </button>
       </div>
 
