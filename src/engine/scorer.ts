@@ -1,173 +1,269 @@
-import { Product, UserIntent, MatchScoreResult } from '../types';
+import { Product, UserPreferences, MatchScoreResult } from '../types';
 import { generateMatchReasons } from './reasonGenerator';
 
+/**
+ * Filter down active candidate items based on hard constraints and high-affinity answers.
+ * Returns sorted subset of viable candidates for entropy calculations and next-question selection.
+ */
+export function getFilteredCandidates(
+  allWishlistProducts: Product[],
+  prefs: UserPreferences
+): Product[] {
+  let candidates = [...allWishlistProducts];
+
+  // 1. Need / Occasion filtering
+  if (prefs.need) {
+    const needFiltered = candidates.filter(p =>
+      p.attributes.occasions.some(occ => occ.toLowerCase() === prefs.need?.toLowerCase())
+    );
+    // If strict match has enough items (>= 3), narrow down; otherwise keep broader
+    if (needFiltered.length >= 2) {
+      candidates = needFiltered;
+    }
+  }
+
+  // 2. Style Look filtering
+  if (prefs.look) {
+    const lookFiltered = candidates.filter(p =>
+      p.attributes.look === prefs.look || p.attributes.styles.includes(prefs.look as any)
+    );
+    if (lookFiltered.length >= 2) {
+      candidates = lookFiltered;
+    }
+  }
+
+  // 3. Product Type filtering
+  if (prefs.productType) {
+    const typeFiltered = candidates.filter(p => p.attributes.productType === prefs.productType);
+    if (typeFiltered.length >= 2) {
+      candidates = typeFiltered;
+    }
+  }
+
+  // 4. Fabric filtering
+  if (prefs.fabric) {
+    const fabricFiltered = candidates.filter(p =>
+      p.attributes.fabric.toLowerCase() === prefs.fabric?.toLowerCase()
+    );
+    if (fabricFiltered.length >= 1) {
+      candidates = fabricFiltered;
+    }
+  }
+
+  // 5. Fit filtering
+  if (prefs.fit) {
+    const fitFiltered = candidates.filter(p => p.attributes.fit === prefs.fit);
+    if (fitFiltered.length >= 2) {
+      candidates = fitFiltered;
+    }
+  }
+
+  // 6. Dynamic Budget filtering
+  if (prefs.budgetMax) {
+    const budgetFiltered = candidates.filter(p => {
+      const min = prefs.budgetMin || 0;
+      return p.price >= min && p.price <= (prefs.budgetMax! * 1.15); // allow small leeway
+    });
+    if (budgetFiltered.length >= 2) {
+      candidates = budgetFiltered;
+    }
+  }
+
+  return candidates;
+}
+
+/**
+ * Scores every wishlist item using the multi-signal model:
+ * Need (25%) + Style/Look (25%) + Preference/Value (15%) + Dynamic Budget (15%) + Implicit Signals (20%)
+ */
 export function calculateWishlistScores(
   products: Product[],
-  intent: UserIntent
+  prefs: UserPreferences
 ): MatchScoreResult[] {
   const scoredItems: MatchScoreResult[] = products.map((product) => {
     let totalScore = 0;
     const highlights = {
-      budgetMatch: false,
-      occasionMatch: false,
+      needMatch: false,
       styleMatch: false,
-      categoryMatch: false,
-      colorMatch: false,
+      preferenceMatch: false,
+      budgetMatch: false,
+      priceDropMatch: false,
+      highEngagementMatch: false,
     };
 
-    // --- Factor 1: Occasion Match (Weight: 35 points) ---
-    const weightOccasion = 35;
-    if (intent.occasion) {
+    // --- Factor 1: NEED / OCCASION MATCH (Max 25 pts) ---
+    const weightNeed = 25;
+    if (prefs.need) {
       const matchExact = product.attributes.occasions.some(
-        (o) => o.toLowerCase() === intent.occasion?.toLowerCase()
+        (o) => o.toLowerCase() === prefs.need?.toLowerCase()
       );
       if (matchExact) {
-        totalScore += weightOccasion;
-        highlights.occasionMatch = true;
+        totalScore += weightNeed;
+        highlights.needMatch = true;
       } else {
-        // Related occasions partial credit
-        const isFestiveWedding = (intent.occasion === 'Wedding' && product.attributes.occasions.includes('Festive')) ||
-                                 (intent.occasion === 'Party' && product.attributes.occasions.includes('Cocktail'));
-        if (isFestiveWedding) {
-          totalScore += weightOccasion * 0.7;
-          highlights.occasionMatch = true;
+        // Partial affinity (e.g. Wedding & Festive, Party & Cocktail)
+        const isRelated = 
+          (prefs.need === 'Wedding' && product.attributes.occasions.includes('Festive')) ||
+          (prefs.need === 'Party' && product.attributes.occasions.includes('Cocktail')) ||
+          (prefs.need === 'Casual' && product.attributes.occasions.includes('Everyday'));
+        if (isRelated) {
+          totalScore += weightNeed * 0.7;
+          highlights.needMatch = true;
         } else {
-          totalScore += weightOccasion * 0.15; // baseline
+          totalScore += weightNeed * 0.2;
         }
       }
     } else {
-      totalScore += weightOccasion * 0.7; // default average if unselected
+      totalScore += weightNeed * 0.7;
     }
 
-    // --- Factor 2: Style & Aesthetics Match (Weight: 25 points) ---
+    // --- Factor 2: STYLE, LOOK & ATTRIBUTES (Max 25 pts) ---
     const weightStyle = 25;
-    if (intent.style) {
-      const matchExactStyle = product.attributes.styles.some(
-        (s) => s.toLowerCase() === intent.style?.toLowerCase()
-      );
-      if (matchExactStyle) {
-        totalScore += weightStyle;
+    let styleScore = 0;
+    let styleChecks = 0;
+
+    if (prefs.look) {
+      styleChecks++;
+      if (product.attributes.look === prefs.look || product.attributes.styles.includes(prefs.look as any)) {
+        styleScore += 10;
         highlights.styleMatch = true;
       } else {
-        // Partial compatibility (e.g. Traditional + Elegant, Minimal + Chic)
-        const isCompatible = (intent.style === 'Elegant' && product.attributes.styles.includes('Traditional')) ||
-                             (intent.style === 'Traditional' && product.attributes.styles.includes('Elegant')) ||
-                             (intent.style === 'Minimal' && product.attributes.styles.includes('Classic'));
-        if (isCompatible) {
-          totalScore += weightStyle * 0.65;
-          highlights.styleMatch = true;
-        } else {
-          totalScore += weightStyle * 0.2;
-        }
+        styleScore += 2;
       }
-    } else {
-      totalScore += weightStyle * 0.7;
     }
 
-    // --- Factor 3: Budget Match (Weight: 20 points) ---
-    const weightBudget = 20;
-    if (intent.budgetMax) {
-      if (product.price <= intent.budgetMax) {
+    if (prefs.productType) {
+      styleChecks++;
+      if (product.attributes.productType === prefs.productType) {
+        styleScore += 6;
+        highlights.styleMatch = true;
+      } else {
+        styleScore += 1;
+      }
+    }
+
+    if (prefs.fabric) {
+      styleChecks++;
+      if (product.attributes.fabric.toLowerCase() === prefs.fabric.toLowerCase()) {
+        styleScore += 5;
+        highlights.styleMatch = true;
+      }
+    }
+
+    if (prefs.fit) {
+      styleChecks++;
+      if (product.attributes.fit === prefs.fit) {
+        styleScore += 4;
+        highlights.styleMatch = true;
+      }
+    }
+
+    if (styleChecks === 0) {
+      totalScore += weightStyle * 0.7;
+    } else {
+      totalScore += Math.min(weightStyle, (styleScore / (styleChecks * 6)) * weightStyle);
+    }
+
+    // --- Factor 3: PREFERENCE & CORE VALUE (Max 15 pts) ---
+    const weightPref = 15;
+    if (prefs.preference) {
+      if (prefs.preference === 'Comfort') {
+        const rating = product.attributes.comfortRating || 4;
+        totalScore += (rating / 5) * weightPref;
+        highlights.preferenceMatch = rating >= 4;
+      } else if (prefs.preference === 'Durability') {
+        const rating = product.attributes.durabilityRating || 4;
+        totalScore += (rating / 5) * weightPref;
+        highlights.preferenceMatch = rating >= 4;
+      } else if (prefs.preference === 'Versatility') {
+        const rating = product.attributes.versatilityRating || 4;
+        totalScore += (rating / 5) * weightPref;
+        highlights.preferenceMatch = rating >= 4;
+      } else if (prefs.preference === 'Quality') {
+        const rating = (product.rating / 5);
+        totalScore += rating * weightPref;
+        highlights.preferenceMatch = product.rating >= 4.5;
+      } else {
+        totalScore += weightPref * 0.75;
+      }
+    } else {
+      totalScore += weightPref * 0.7;
+    }
+
+    // --- Factor 4: DYNAMIC BUDGET MATCH (Max 15 pts) ---
+    const weightBudget = 15;
+    if (prefs.budgetMax) {
+      const min = prefs.budgetMin || 0;
+      if (product.price >= min && product.price <= prefs.budgetMax) {
         totalScore += weightBudget;
         highlights.budgetMatch = true;
+      } else if (product.price <= prefs.budgetMax * 1.2) {
+        totalScore += weightBudget * 0.6;
       } else {
-        const exceedRatio = (product.price - intent.budgetMax) / intent.budgetMax;
-        if (exceedRatio <= 0.2) {
-          totalScore += weightBudget * 0.6; // Slightly over budget
-        } else if (exceedRatio <= 0.5) {
-          totalScore += weightBudget * 0.3;
-        } else {
-          totalScore += weightBudget * 0.05; // Heavy penalty
-        }
+        totalScore += weightBudget * 0.2;
       }
     } else {
-      totalScore += weightBudget * 0.8;
+      totalScore += weightBudget * 0.75;
     }
 
-    // --- Factor 4: Category Fit (Weight: 15 points) ---
-    const weightCategory = 15;
-    if (intent.category && intent.category !== 'All Categories') {
-      const matchCat = product.subCategory.toLowerCase() === intent.category.toLowerCase() ||
-                       product.category.toLowerCase() === intent.category.toLowerCase() ||
-                       (intent.category === 'Ethnic Wear' && (product.subCategory === 'Ethnic Wear' || product.subCategory === 'Kurtas')) ||
-                       (intent.category === 'Western Wear' && (product.subCategory === 'Western Wear' || product.subCategory === 'Dresses'));
-      if (matchCat) {
-        totalScore += weightCategory;
-        highlights.categoryMatch = true;
-      } else {
-        totalScore += weightCategory * 0.1;
-      }
-    } else {
-      totalScore += weightCategory * 0.85;
-      highlights.categoryMatch = true;
+    // --- Factor 5: IMPLICIT BUYING SIGNALS (Max 20 pts) ---
+    // A. Price drop signal (+7 pts)
+    if (product.signals.priceDropAmount && product.signals.priceDropAmount > 0) {
+      totalScore += 7;
+      highlights.priceDropMatch = true;
+    } else if (product.discountPercentage >= 40) {
+      totalScore += 4;
     }
 
-    // --- Factor 5: Color, Fabric & Tone Synergy (Weight: 5 points) ---
-    const weightColor = 5;
-    if (intent.colorPreference) {
-      if (product.attributes.colorFamily.toLowerCase() === intent.colorPreference.toLowerCase()) {
-        totalScore += weightColor;
-        highlights.colorMatch = true;
-      } else {
-        totalScore += weightColor * 0.3;
-      }
-    } else {
-      totalScore += weightColor * 0.7;
+    // B. User activity signal: views, cart, recency (+7 pts)
+    if (product.signals.inCart) {
+      totalScore += 7;
+      highlights.highEngagementMatch = true;
+    } else if (product.signals.viewsCount >= 15) {
+      totalScore += 5;
+      highlights.highEngagementMatch = true;
+    } else if (product.signals.addedDaysAgo <= 2) {
+      totalScore += 4;
     }
 
-    // --- Factor 6: Active Refinements ---
-    if (intent.activeRefinementFilters) {
-      const ref = intent.activeRefinementFilters;
-      // "Less flashy"
-      if (ref.styleModifier === 'less_flashy') {
-        if (product.attributes.isFlashy) {
-          totalScore -= 18;
-        } else if (product.attributes.styles.includes('Minimal') || product.attributes.styles.includes('Classic')) {
-          totalScore += 12;
-        }
-      }
-      // "Best value"
-      if (ref.styleModifier === 'best_value') {
-        if (product.discountPercentage >= 40) {
-          totalScore += 10;
-        }
-        if (product.price < 3000) {
-          totalScore += 8;
-        }
-      }
-      // Category lock
-      if (ref.onlyCategory) {
-        if (product.subCategory.toLowerCase().includes(ref.onlyCategory.toLowerCase()) || 
-            product.attributes.tags.some(t => t.includes(ref.onlyCategory!))) {
-          totalScore += 15;
-        } else {
-          totalScore -= 25;
-        }
-      }
+    // C. Popularity & Rating (+6 pts)
+    const popRatio = (product.signals.popularityScore || 80) / 100;
+    totalScore += popRatio * 6;
+
+    // --- Trade-Off Modifier ---
+    if (prefs.tradeOff === 'high_discount' && product.discountPercentage >= 40) {
+      totalScore += 6;
+    } else if (prefs.tradeOff === 'high_interest' && (product.signals.inCart || product.signals.viewsCount >= 15)) {
+      totalScore += 6;
+    } else if (prefs.tradeOff === 'durability_over_price' && (product.attributes.durabilityRating || 0) >= 4) {
+      totalScore += 6;
     }
 
-    // Clamp score between 30 and 99
-    let finalPercentage = Math.min(98, Math.max(32, Math.round(totalScore)));
+    // Clamp score cleanly between 45% and 99%
+    const finalScore = Math.min(99, Math.max(45, Math.round(totalScore)));
 
-    // Generate explanations
-    const reasons = generateMatchReasons(product, intent, highlights);
+    const { reasons, signalBadges } = generateMatchReasons(product, prefs, highlights);
 
     return {
       productId: product.id,
       product,
-      matchScore: finalPercentage,
+      matchScore: finalScore,
       rank: 0, // Assigned after sorting
       matchReasons: reasons,
+      signalBadges,
       matchHighlights: highlights,
     };
   });
 
-  // Sort descending by score; if tied, sort by discount or rating
+  // Sort descending by score; if tied, sort by price drop then rating
   scoredItems.sort((a, b) => {
     if (b.matchScore !== a.matchScore) {
       return b.matchScore - a.matchScore;
     }
-    return b.product.discountPercentage - a.product.discountPercentage;
+    const dropB = b.product.signals.priceDropAmount || 0;
+    const dropA = a.product.signals.priceDropAmount || 0;
+    if (dropB !== dropA) return dropB - dropA;
+    return b.product.rating - a.product.rating;
   });
 
   // Assign 1-indexed ranks

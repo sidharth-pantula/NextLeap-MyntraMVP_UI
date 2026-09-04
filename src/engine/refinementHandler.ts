@@ -1,39 +1,41 @@
-import { UserIntent } from '../types';
+import { UserPreferences } from '../types';
 
 export function applyRefinement(
-  currentIntent: UserIntent,
+  currentPrefs: UserPreferences,
   refinementText: string
-): UserIntent {
+): UserPreferences {
   const text = refinementText.toLowerCase().trim();
-  const updatedIntent: UserIntent = {
-    ...currentIntent,
-    activeRefinementFilters: { ...(currentIntent.activeRefinementFilters || {}) },
+  const updatedPrefs: UserPreferences = {
+    ...currentPrefs,
+    activeRefinementFilters: { ...(currentPrefs.activeRefinementFilters || {}) },
   };
 
   if (/less flashy|subtle|sober|simple|minimal/i.test(text)) {
-    updatedIntent.activeRefinementFilters!.styleModifier = 'less_flashy';
-    updatedIntent.style = 'Minimal';
+    updatedPrefs.activeRefinementFilters!.styleModifier = 'less_flashy';
+    updatedPrefs.look = 'Minimal';
   } else if (/best value|value for money|cheapest|best discount/i.test(text)) {
-    updatedIntent.activeRefinementFilters!.styleModifier = 'best_value';
-  } else if (/pastel|change to pastel|soft colors/i.test(text)) {
-    updatedIntent.colorPreference = 'Pastel';
+    updatedPrefs.activeRefinementFilters!.styleModifier = 'best_value';
+    updatedPrefs.preference = 'Best Value';
+    updatedPrefs.tradeOff = 'high_discount';
+  } else if (/durable|long lasting|quality/i.test(text)) {
+    updatedPrefs.preference = 'Durability';
+    updatedPrefs.tradeOff = 'durability_over_price';
+  } else if (/cotton|pure cotton/i.test(text)) {
+    updatedPrefs.fabric = 'Cotton';
+  } else if (/silk|pure silk/i.test(text)) {
+    updatedPrefs.fabric = 'Silk';
   } else if (/only dresses|show dresses|dresses only/i.test(text)) {
-    updatedIntent.activeRefinementFilters!.onlyCategory = 'dress';
-    updatedIntent.category = 'Western Wear';
+    updatedPrefs.productType = 'Western';
   } else if (/ethnic only|only lehenga|traditional only/i.test(text)) {
-    updatedIntent.activeRefinementFilters!.onlyCategory = 'ethnic';
-    updatedIntent.category = 'Ethnic Wear';
-  } else if (/under\s*(?:rs\.?|inr|₹)?\s*(\d+)/i.test(text) || /remove anything over\s*(?:rs\.?|inr|₹)?\s*(\d+)/i.test(text)) {
+    updatedPrefs.productType = 'Ethnic';
+  } else if (/under\s*(?:rs\.?|inr|₹)?\s*(\d+)/i.test(text)) {
     const match = text.match(/\d+/);
     if (match) {
       const amount = parseInt(match[0], 10);
-      updatedIntent.budgetMax = amount;
-      updatedIntent.budgetLabel = `Under ₹${amount.toLocaleString('en-IN')}`;
+      updatedPrefs.budgetMax = amount;
+      updatedPrefs.budgetLabel = `Under ₹${amount.toLocaleString('en-IN')}`;
     }
-  } else if (/under 5k|under 5000/i.test(text)) {
-    updatedIntent.budgetMax = 5000;
-    updatedIntent.budgetLabel = 'Under ₹5,000';
   }
 
-  return updatedIntent;
+  return updatedPrefs;
 }

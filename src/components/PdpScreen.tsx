@@ -9,7 +9,7 @@ export const PdpScreen: React.FC = () => {
     wishlistIds, 
     toggleWishlist, 
     setCurrentView,
-    userIntent,
+    userPrefs,
     scores 
   } = useApp();
 

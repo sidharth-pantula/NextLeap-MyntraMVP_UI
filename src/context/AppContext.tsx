@@ -1,8 +1,17 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Product, UserIntent, MatchScoreResult, CartItem, AppView } from '../types';
+import { 
+  Product, 
+  UserPreferences, 
+  MatchScoreResult, 
+  CartItem, 
+  AppView, 
+  AdaptiveQuestion,
+  QuestionDimension 
+} from '../types';
 import { MOCK_PRODUCTS, INITIAL_WISHLIST_IDS } from '../data/mockProducts';
 import { parseIntentFromText } from '../engine/intentParser';
-import { calculateWishlistScores } from '../engine/scorer';
+import { calculateWishlistScores, getFilteredCandidates } from '../engine/scorer';
+import { determineNextQuestion } from '../engine/adaptiveEngine';
 import { applyRefinement } from '../engine/refinementHandler';
 
 interface AppContextType {
@@ -11,9 +20,11 @@ interface AppContextType {
   products: Product[];
   wishlistIds: string[];
   wishlistProducts: Product[];
+  candidates: Product[];
   cartItems: CartItem[];
   selectedProduct: Product;
-  userIntent: UserIntent;
+  userPrefs: UserPreferences;
+  currentQuestion: AdaptiveQuestion | null;
   scores: MatchScoreResult[];
   isAiPrioritized: boolean;
   toastMessage: string | null;
@@ -31,25 +42,31 @@ interface AppContextType {
   updateBagQuantity: (productId: string, size: string, delta: number) => void;
   openPdp: (product: Product) => void;
   
-  // AI Actions
+  // AI Adaptive Actions
   startAiFlow: () => void;
   submitIntent: (promptText: string) => void;
-  updateIntentField: (field: keyof UserIntent, value: any) => void;
-  runAiMatching: () => void;
+  answerQuestion: (dimension: QuestionDimension, value: any) => void;
+  skipQuestion: (dimension: QuestionDimension) => void;
+  runAiMatching: (overridePrefs?: UserPreferences) => void;
   askAiRefine: (refinementText: string) => void;
   showToast: (msg: string) => void;
   resetAiPrioritization: () => void;
   placeOrder: () => void;
 }
 
-const defaultIntent: UserIntent = {
+const defaultPreferences: UserPreferences = {
   rawPrompt: '',
-  occasion: undefined,
-  style: undefined,
+  need: undefined,
+  look: undefined,
+  productType: undefined,
+  fabric: undefined,
+  fit: undefined,
+  preference: undefined,
   budgetMax: undefined,
+  budgetMin: undefined,
   budgetLabel: undefined,
-  category: undefined,
-  colorPreference: undefined,
+  tradeOff: undefined,
+  answeredDimensions: [],
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -66,15 +83,19 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   ]);
   const [selectedProduct, setSelectedProduct] = useState<Product>(MOCK_PRODUCTS[0]);
-  const [userIntent, setUserIntent] = useState<UserIntent>(defaultIntent);
+  const [userPrefs, setUserPrefs] = useState<UserPreferences>(defaultPreferences);
+  const [currentQuestion, setCurrentQuestion] = useState<AdaptiveQuestion | null>(null);
   const [scores, setScores] = useState<MatchScoreResult[]>([]);
   const [isAiPrioritized, setIsAiPrioritized] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [showBagDrawer, setShowBagDrawer] = useState<boolean>(false);
   const [orderSuccess, setOrderSuccess] = useState<boolean>(false);
 
-  // Derived saved wishlist items
+  // Active saved wishlist items
   const wishlistProducts = products.filter((p) => wishlistIds.includes(p.id));
+
+  // Current dynamic candidates based on user preferences
+  const candidates = getFilteredCandidates(wishlistProducts, userPrefs);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -143,44 +164,98 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const advanceAdaptiveQuestion = (updatedPrefs: UserPreferences) => {
+    const activeCandidates = getFilteredCandidates(wishlistProducts, updatedPrefs);
+    const { question, shouldStopEarly } = determineNextQuestion(
+      activeCandidates,
+      updatedPrefs,
+      wishlistProducts.length
+    );
+
+    if (shouldStopEarly || !question) {
+      runAiMatching(updatedPrefs);
+    } else {
+      setCurrentQuestion(question);
+      setCurrentView('ai-adaptive-survey');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  // Directly start the adaptive questioning survey with Q1
   const startAiFlow = () => {
-    setUserIntent(defaultIntent);
-    setCurrentView('ai-intent');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setUserPrefs(defaultPreferences);
+    advanceAdaptiveQuestion(defaultPreferences);
   };
 
   const submitIntent = (promptText: string) => {
     const parsed = parseIntentFromText(promptText);
-    const updated = { ...defaultIntent, ...parsed, rawPrompt: promptText };
-    setUserIntent(updated);
-
-    // Always start at Question 1 so the user goes through all 4 questions
-    setCurrentView('ai-question-1');
+    const updated: UserPreferences = { 
+      ...defaultPreferences, 
+      ...parsed, 
+      rawPrompt: promptText,
+      answeredDimensions: parsed.answeredDimensions || []
+    };
+    setUserPrefs(updated);
+    advanceAdaptiveQuestion(updated);
   };
 
-  const updateIntentField = (field: keyof UserIntent, value: any) => {
-    setUserIntent((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
+  const answerQuestion = (dimension: QuestionDimension, value: any) => {
+    const updated: UserPreferences = {
+      ...userPrefs,
+      answeredDimensions: Array.from(new Set([...userPrefs.answeredDimensions, dimension]))
+    };
+
+    if (dimension === 'NEED') {
+      updated.need = value;
+    } else if (dimension === 'STYLE_LOOK') {
+      updated.look = value;
+    } else if (dimension === 'STYLE_TYPE') {
+      updated.productType = value;
+    } else if (dimension === 'STYLE_FABRIC') {
+      updated.fabric = value;
+    } else if (dimension === 'STYLE_FIT') {
+      updated.fit = value;
+    } else if (dimension === 'PREFERENCE') {
+      updated.preference = value;
+    } else if (dimension === 'BUDGET') {
+      if (value) {
+        updated.budgetMax = value.max;
+        updated.budgetMin = value.min;
+        updated.budgetLabel = value.label;
+      }
+    } else if (dimension === 'ADAPTIVE_TRADE_OFF') {
+      updated.tradeOff = value;
+    }
+
+    setUserPrefs(updated);
+    advanceAdaptiveQuestion(updated);
   };
 
-  const runAiMatching = () => {
+  const skipQuestion = (dimension: QuestionDimension) => {
+    const updated: UserPreferences = {
+      ...userPrefs,
+      answeredDimensions: Array.from(new Set([...userPrefs.answeredDimensions, dimension]))
+    };
+    setUserPrefs(updated);
+    advanceAdaptiveQuestion(updated);
+  };
+
+  const runAiMatching = (overridePrefs?: UserPreferences) => {
+    const targetPrefs = overridePrefs || userPrefs;
     setCurrentView('ai-loading');
     setTimeout(() => {
-      // Calculate scores on user's current saved wishlist products
       const activeWishlist = products.filter((p) => wishlistIds.includes(p.id));
-      const calculatedScores = calculateWishlistScores(activeWishlist, userIntent);
+      const calculatedScores = calculateWishlistScores(activeWishlist, targetPrefs);
       setScores(calculatedScores);
       setIsAiPrioritized(true);
       setCurrentView('best-matches');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 1800);
+    }, 1200);
   };
 
   const askAiRefine = (refinementText: string) => {
-    const updated = applyRefinement(userIntent, refinementText);
-    setUserIntent(updated);
+    const updated = applyRefinement(userPrefs, refinementText);
+    setUserPrefs(updated);
     
     // Re-calculate scores dynamically
     const activeWishlist = products.filter((p) => wishlistIds.includes(p.id));
@@ -191,7 +266,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const resetAiPrioritization = () => {
     setIsAiPrioritized(false);
-    setUserIntent(defaultIntent);
+    setUserPrefs(defaultPreferences);
     setScores([]);
   };
 
@@ -201,11 +276,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     showToast('Order placed successfully! 🎉');
   };
 
-  // Keep scores updated if items are deleted or added to wishlist
+  // Keep scores updated if items are modified
   useEffect(() => {
     if (isAiPrioritized) {
       const activeWishlist = products.filter((p) => wishlistIds.includes(p.id));
-      const calculatedScores = calculateWishlistScores(activeWishlist, userIntent);
+      const calculatedScores = calculateWishlistScores(activeWishlist, userPrefs);
       setScores(calculatedScores);
     }
   }, [wishlistIds]);
@@ -218,9 +293,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         products,
         wishlistIds,
         wishlistProducts,
+        candidates,
         cartItems,
         selectedProduct,
-        userIntent,
+        userPrefs,
+        currentQuestion,
         scores,
         isAiPrioritized,
         toastMessage,
@@ -237,7 +314,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         openPdp,
         startAiFlow,
         submitIntent,
-        updateIntentField,
+        answerQuestion,
+        skipQuestion,
         runAiMatching,
         askAiRefine,
         showToast,

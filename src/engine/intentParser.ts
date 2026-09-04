@@ -1,38 +1,58 @@
-import { UserIntent } from '../types';
+import { UserPreferences, PrimaryNeed, LookStyle, ProductType } from '../types';
 
-export function parseIntentFromText(rawText: string): Partial<UserIntent> {
+export function parseIntentFromText(rawText: string): Partial<UserPreferences> {
   const text = rawText.toLowerCase().trim();
-  const extracted: Partial<UserIntent> = {
+  const extracted: Partial<UserPreferences> = {
     rawPrompt: rawText,
+    answeredDimensions: []
   };
 
-  // 1. Detect Occasion
+  // 1. Detect Need
   if (/wedding|shaadi|marriage|sangeet|reception|mehendi|haldi|bridal|groom|baraat/i.test(text)) {
-    extracted.occasion = 'Wedding';
+    extracted.need = 'Wedding';
+    extracted.answeredDimensions?.push('NEED');
   } else if (/party|night out|club|cocktail|gala|celebration|birthday/i.test(text)) {
-    extracted.occasion = 'Party';
+    extracted.need = 'Party';
+    extracted.answeredDimensions?.push('NEED');
   } else if (/work|office|meeting|formal|interview|corporate|business/i.test(text)) {
-    extracted.occasion = 'Work';
+    extracted.need = 'Work';
+    extracted.answeredDimensions?.push('NEED');
   } else if (/vacation|holiday|trip|beach|resort|travel|summer trip|brunch/i.test(text)) {
-    extracted.occasion = 'Vacation';
+    extracted.need = 'Vacation';
+    extracted.answeredDimensions?.push('NEED');
   } else if (/casual|daily|everyday|chill|weekend|hangout/i.test(text)) {
-    extracted.occasion = 'Casual';
+    extracted.need = 'Casual';
+    extracted.answeredDimensions?.push('NEED');
   }
 
-  // 2. Detect Style
-  if (/traditional|ethnic|desi|indian|cultural/i.test(text)) {
-    extracted.style = 'Traditional';
-  } else if (/elegant|sophisticated|classy|graceful|luxury|regal/i.test(text)) {
-    extracted.style = 'Elegant';
+  // 2. Detect Look & Style
+  if (/elegant|sophisticated|classy|graceful|luxury|regal/i.test(text)) {
+    extracted.look = 'Elegant';
+    extracted.answeredDimensions?.push('STYLE_LOOK');
   } else if (/minimal|simple|clean|sober|subtle|understated|basic/i.test(text)) {
-    extracted.style = 'Minimal';
+    extracted.look = 'Minimal';
+    extracted.answeredDimensions?.push('STYLE_LOOK');
   } else if (/trendy|streetwear|bold|modern|fashionable|stylish|cool/i.test(text)) {
-    extracted.style = 'Trendy';
-  } else if (/boho|bohemian|relaxed|flowy/i.test(text)) {
-    extracted.style = 'Boho';
+    extracted.look = 'Trendy';
+    extracted.answeredDimensions?.push('STYLE_LOOK');
+  } else if (/statement|flashy|glamorous|showstopper/i.test(text)) {
+    extracted.look = 'Statement';
+    extracted.answeredDimensions?.push('STYLE_LOOK');
   }
 
-  // 3. Detect Budget
+  // 3. Detect Product Type
+  if (/traditional|ethnic|desi|indian|lehenga|saree|kurta|anarkali/i.test(text)) {
+    extracted.productType = 'Ethnic';
+    extracted.answeredDimensions?.push('STYLE_TYPE');
+  } else if (/western|dress|gown|blazer|shirt|trousers|jeans/i.test(text)) {
+    extracted.productType = 'Western';
+    extracted.answeredDimensions?.push('STYLE_TYPE');
+  } else if (/fusion|indo-western/i.test(text)) {
+    extracted.productType = 'Fusion';
+    extracted.answeredDimensions?.push('STYLE_TYPE');
+  }
+
+  // 4. Detect Budget
   const underMatch = text.match(/under\s*(?:rs\.?|inr|₹)?\s*(\d+)(?:k)?/i) ||
                      text.match(/below\s*(?:rs\.?|inr|₹)?\s*(\d+)(?:k)?/i) ||
                      text.match(/within\s*(?:rs\.?|inr|₹)?\s*(\d+)(?:k)?/i) ||
@@ -45,40 +65,11 @@ export function parseIntentFromText(rawText: string): Partial<UserIntent> {
     }
     extracted.budgetMax = amount;
     extracted.budgetLabel = `Under ₹${amount.toLocaleString('en-IN')}`;
-  } else if (/cheap|budget-friendly|affordable|low price|under 2k|under 2000/i.test(text)) {
-    extracted.budgetMax = 2000;
-    extracted.budgetLabel = 'Under ₹2,000';
-  } else if (/5000\s*-\s*10000|5k\s*-\s*10k|5k to 10k|premium/i.test(text)) {
-    extracted.budgetMax = 10000;
-    extracted.budgetLabel = '₹5,000–₹10,000';
-  } else if (/2000\s*-\s*5000|2k\s*-\s*5k|2k to 5k|mid range/i.test(text)) {
-    extracted.budgetMax = 5000;
-    extracted.budgetLabel = '₹2,000–₹5,000';
-  } else if (/10000\+|10k\+|luxury|designer/i.test(text)) {
-    extracted.budgetMax = 25000;
-    extracted.budgetLabel = '₹10,000+';
-  }
-
-  // 4. Detect Category
-  if (/lehenga|saree|sari|kurta|anarkali|sherwani|ethnic/i.test(text)) {
-    extracted.category = 'Ethnic Wear';
-  } else if (/dress|maxi|gown|gown dress|co-ord|blazer|shirt|trousers|western/i.test(text)) {
-    extracted.category = 'Western Wear';
-  } else if (/heels|shoes|stilettos|footwear|sandals/i.test(text)) {
-    extracted.category = 'Footwear';
-  } else if (/bag|handbag|potli|satchel|purse|accessories|jewelry/i.test(text)) {
-    extracted.category = 'Accessories';
-  }
-
-  // 5. Detect Color/Tone
-  if (/pastel|peach|blush|dusty rose|mint|lavender|pale/i.test(text)) {
-    extracted.colorPreference = 'Pastel';
-  } else if (/emerald|dark|black|navy|crimson|maroon|deep/i.test(text)) {
-    extracted.colorPreference = 'Dark';
-  } else if (/gold|silver|rose gold|champagne|metallic|shiny|sequin/i.test(text)) {
-    extracted.colorPreference = 'Metallic';
-  } else if (/white|ivory|cream|neutral|beige/i.test(text)) {
-    extracted.colorPreference = 'Neutral';
+    extracted.answeredDimensions?.push('BUDGET');
+  } else if (/cheap|budget-friendly|affordable|low price/i.test(text)) {
+    extracted.budgetMax = 2500;
+    extracted.budgetLabel = 'Under ₹2,500';
+    extracted.answeredDimensions?.push('BUDGET');
   }
 
   return extracted;

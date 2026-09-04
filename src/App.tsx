@@ -7,10 +7,7 @@ import { WishlistScreen } from './components/WishlistScreen';
 import { PdpScreen } from './components/PdpScreen';
 import { BagDrawer } from './components/BagDrawer';
 import { AiIntentModal } from './components/ai-flow/AiIntentModal';
-import { AiQuestionOccasion } from './components/ai-flow/AiQuestionOccasion';
-import { AiQuestionStyle } from './components/ai-flow/AiQuestionStyle';
-import { AiQuestionBudget } from './components/ai-flow/AiQuestionBudget';
-import { AiQuestionCategory } from './components/ai-flow/AiQuestionCategory';
+import { AdaptiveSurveyScreen } from './components/ai-flow/AdaptiveSurveyScreen';
 import { AiLoadingScreen } from './components/ai-flow/AiLoadingScreen';
 import { BestMatchesScreen } from './components/ai-flow/BestMatchesScreen';
 import { PrioritizedGridScreen } from './components/ai-flow/PrioritizedGridScreen';
@@ -29,14 +26,8 @@ const MainRouter: React.FC = () => {
       return <PrioritizedGridScreen />;
     case 'pdp':
       return <PdpScreen />;
-    case 'ai-question-1':
-      return <AiQuestionOccasion />;
-    case 'ai-question-2':
-      return <AiQuestionStyle />;
-    case 'ai-question-3':
-      return <AiQuestionBudget />;
-    case 'ai-question-4':
-      return <AiQuestionCategory />;
+    case 'ai-adaptive-survey':
+      return <AdaptiveSurveyScreen />;
     default:
       return <HomeScreen />;
   }
@@ -45,12 +36,7 @@ const MainRouter: React.FC = () => {
 const AppContent: React.FC = () => {
   const { currentView, toastMessage } = useApp();
 
-  const isFullscreenAiStep = [
-    'ai-question-1',
-    'ai-question-2',
-    'ai-question-3',
-    'ai-question-4',
-  ].includes(currentView);
+  const isFullscreenAiStep = currentView === 'ai-adaptive-survey';
 
   return (
     <div className="min-h-screen bg-background flex flex-col font-sans selection:bg-primary-container selection:text-white">

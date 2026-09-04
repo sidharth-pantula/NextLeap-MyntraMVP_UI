@@ -1,79 +1,87 @@
-import { Product, UserIntent } from '../types';
+import { Product, UserPreferences } from '../types';
 
 export function generateMatchReasons(
   product: Product,
-  intent: UserIntent,
+  prefs: UserPreferences,
   highlights: {
-    budgetMatch: boolean;
-    occasionMatch: boolean;
+    needMatch: boolean;
     styleMatch: boolean;
-    categoryMatch: boolean;
-    colorMatch: boolean;
+    preferenceMatch: boolean;
+    budgetMatch: boolean;
+    priceDropMatch: boolean;
+    highEngagementMatch: boolean;
   }
-): string[] {
+): { reasons: string[]; signalBadges: string[] } {
   const reasons: string[] = [];
+  const signalBadges: string[] = [];
 
-  // 1. Budget Reason
-  if (highlights.budgetMatch) {
-    if (intent.budgetMax && product.price <= intent.budgetMax) {
-      if (product.discountPercentage >= 30) {
-        reasons.push(`Fits your budget (₹${product.price.toLocaleString('en-IN')}) with great ${product.discountPercentage}% discount`);
-      } else {
-        reasons.push(`Fits your budget perfectly within ${intent.budgetLabel || `₹${intent.budgetMax.toLocaleString('en-IN')}`}`);
-      }
+  // Signal Badges
+  if (product.signals.priceDropAmount && product.signals.priceDropAmount > 0) {
+    signalBadges.push(`₹${product.signals.priceDropAmount.toLocaleString('en-IN')} Price Drop`);
+  }
+  if (product.signals.inCart) {
+    signalBadges.push('In Your Bag');
+  } else if (product.signals.viewsCount >= 15) {
+    signalBadges.push('High Interest (Viewed often)');
+  }
+  if (product.signals.stockCount <= 3) {
+    signalBadges.push(`Only ${product.signals.stockCount} left`);
+  }
+  if (product.rating >= 4.7) {
+    signalBadges.push(`${product.rating}★ Top Rated`);
+  }
+
+  // Reason 1: Need / Occasion Fit
+  if (highlights.needMatch && prefs.need) {
+    if (prefs.need === 'Wedding') {
+      reasons.push(`Perfect for wedding occasions with festive ${product.attributes.fabric} detailing`);
+    } else if (prefs.need === 'Party') {
+      reasons.push(`Ideal evening party silhouette in ${product.attributes.look.toLowerCase()} styling`);
+    } else if (prefs.need === 'Work') {
+      reasons.push(`Polished office-appropriate aesthetic with comfortable ${product.attributes.fit.toLowerCase()} fit`);
+    } else if (prefs.need === 'Vacation') {
+      reasons.push(`Breathable, relaxed cut designed for vacation & leisure`);
     } else {
-      reasons.push(`Priced reasonably at ₹${product.price.toLocaleString('en-IN')}`);
+      reasons.push(`Matches your ${prefs.need} requirement with ${product.attributes.look} aesthetic`);
     }
   }
 
-  // 2. Occasion Reason
-  if (highlights.occasionMatch && intent.occasion) {
-    if (intent.occasion === 'Wedding') {
-      if (product.attributes.formality === 'Ultra Formal') {
-        reasons.push(`Suitable for wedding ceremony & reception events`);
-      } else {
-        reasons.push(`Great silhouette ideal for wedding guests`);
-      }
-    } else if (intent.occasion === 'Party' || intent.occasion === 'Cocktail') {
-      reasons.push(`Perfect match for evening parties and cocktail events`);
-    } else if (intent.occasion === 'Work') {
-      reasons.push(`Polished aesthetic appropriate for work & formal settings`);
-    } else if (intent.occasion === 'Vacation') {
-      reasons.push(`Breathable, relaxed cut ideal for resort & holiday wear`);
-    } else {
-      reasons.push(`Matches your ${intent.occasion} occasion requirement`);
-    }
+  // Reason 2: Style & Attribute Precision (Look / Fabric / Fit / Type)
+  if (prefs.look && (product.attributes.look === prefs.look || product.attributes.styles.includes(prefs.look as any))) {
+    reasons.push(`Features your preferred '${prefs.look}' look in rich ${product.attributes.fabric}`);
+  } else if (prefs.fabric && product.attributes.fabric.toLowerCase() === prefs.fabric.toLowerCase()) {
+    reasons.push(`Crafted in your chosen ${prefs.fabric} material with fine drape`);
+  } else if (prefs.productType && product.attributes.productType === prefs.productType) {
+    reasons.push(`Authentic ${prefs.productType} wear design tailored by ${product.brand}`);
+  } else if (prefs.fit && product.attributes.fit === prefs.fit) {
+    reasons.push(`Tailored in your requested ${prefs.fit} fit profile`);
   }
 
-  // 3. Style Reason
-  if (highlights.styleMatch && intent.style) {
-    if (intent.style === 'Elegant') {
-      reasons.push(`Features your preferred 'Elegant' silhouette with premium ${product.attributes.fabric} fabric`);
-    } else if (intent.style === 'Traditional') {
-      reasons.push(`Classic ethnic craftsmanship with traditional styling`);
-    } else if (intent.style === 'Minimal') {
-      reasons.push(`Clean, understated lines matching your minimalist preference`);
-    } else if (intent.style === 'Trendy') {
-      reasons.push(`Modern contemporary cut on-trend for this season`);
-    } else {
-      reasons.push(`Matches your ${intent.style} style preference`);
-    }
+  // Reason 3: Buying Signals & Value Highlights
+  if (product.signals.priceDropAmount && product.signals.priceDropAmount > 0) {
+    reasons.push(`High value: Price recently dropped by ₹${product.signals.priceDropAmount.toLocaleString('en-IN')} (${product.discountPercentage}% total off)`);
+  } else if (highlights.budgetMatch && prefs.budgetMax && product.price <= prefs.budgetMax) {
+    reasons.push(`Fits within your budget at ₹${product.price.toLocaleString('en-IN')}`);
+  } else if (prefs.preference === 'Comfort' && (product.attributes.comfortRating || 4) >= 4) {
+    reasons.push(`High comfort score with breathable ${product.attributes.fabric} fabric`);
+  } else if (prefs.preference === 'Durability' && (product.attributes.durabilityRating || 4) >= 4) {
+    reasons.push(`Top-rated durability and high stitch quality`);
+  } else if (prefs.preference === 'Versatility' && (product.attributes.versatilityRating || 4) >= 4) {
+    reasons.push(`Versatile piece easily paired across multiple occasions`);
+  } else if (product.rating >= 4.5) {
+    reasons.push(`Exceptional ${product.rating}★ rating from ${product.ratingCount}+ customers`);
   }
 
-  // 4. Category/Color/Fabric Reason
-  if (highlights.colorMatch && intent.colorPreference) {
-    reasons.push(`Features your preferred ${product.attributes.color} (${product.attributes.colorFamily}) tone`);
-  } else if (product.attributes.fabric) {
-    reasons.push(`Crafted from luxurious ${product.attributes.fabric} with premium drape`);
+  // Fallbacks if fewer than 2 reasons
+  if (reasons.length < 2) {
+    reasons.push(`Highly saved item with ${product.discountPercentage}% discount on MRP`);
+  }
+  if (reasons.length < 2) {
+    reasons.push(`Quality craftsmanship from ${product.brand}`);
   }
 
-  // Ensure minimum 2-3 reasons
-  if (reasons.length === 0) {
-    reasons.push(`High customer rating (${product.rating} ★ based on ${product.ratingCount}+ reviews)`);
-    reasons.push(`Versatile piece from ${product.brand}`);
-  } else if (reasons.length === 1) {
-    reasons.push(`High customer satisfaction rating of ${product.rating} ★`);
-  }
-
-  return reasons.slice(0, 3);
+  return {
+    reasons: reasons.slice(0, 3),
+    signalBadges: signalBadges.slice(0, 2)
+  };
 }

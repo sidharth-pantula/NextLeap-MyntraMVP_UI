@@ -5,7 +5,7 @@ import { AskAiWidget } from './AskAiWidget';
 export const PrioritizedGridScreen: React.FC = () => {
   const { 
     scores, 
-    userIntent, 
+    userPrefs, 
     removeFromWishlist, 
     openPdp, 
     addToBag, 
@@ -15,7 +15,7 @@ export const PrioritizedGridScreen: React.FC = () => {
   } = useApp();
 
   return (
-    <div className="w-full pb-36">
+    <div className="w-full pb-36 font-sans">
       {/* Header & Prioritization Context */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
         <div>
@@ -39,7 +39,7 @@ export const PrioritizedGridScreen: React.FC = () => {
             className="border border-tertiary text-tertiary bg-tertiary-fixed/30 hover:bg-tertiary-fixed font-bold text-xs md:text-sm px-4 py-2.5 rounded-lg transition-colors flex items-center gap-1.5 shadow-sm cursor-pointer"
           >
             <span className="material-symbols-outlined text-[18px] filled">auto_awesome</span>
-            <span>Top 5 Bento View</span>
+            <span>Top 10 Matches View</span>
           </button>
 
           <button 
@@ -55,40 +55,40 @@ export const PrioritizedGridScreen: React.FC = () => {
         </div>
       </div>
 
-      {/* Active AI Constraints Banner / Filter Chips */}
+      {/* Active AI Constraints Banner */}
       <div className="ai-glass rounded-xl p-4 md:p-5 mb-8 border border-tertiary-fixed-dim flex flex-wrap items-center justify-between gap-4 shadow-sm">
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs font-bold text-secondary uppercase tracking-wider mr-1">
-            Active Intent:
+            Active Context:
           </span>
-          {userIntent.occasion && (
+          {userPrefs.need && (
             <span className="bg-white border border-surface-variant text-on-surface text-xs font-bold px-3 py-1 rounded-full shadow-sm flex items-center gap-1">
               <span>Occasion:</span>
-              <span className="text-primary">{userIntent.occasion}</span>
+              <span className="text-primary">{userPrefs.need}</span>
             </span>
           )}
-          {userIntent.style && (
+          {userPrefs.look && (
             <span className="bg-white border border-surface-variant text-on-surface text-xs font-bold px-3 py-1 rounded-full shadow-sm flex items-center gap-1">
-              <span>Style:</span>
-              <span className="text-tertiary">{userIntent.style}</span>
+              <span>Look:</span>
+              <span className="text-tertiary">{userPrefs.look}</span>
             </span>
           )}
-          {userIntent.budgetMax && (
+          {userPrefs.fabric && (
+            <span className="bg-white border border-surface-variant text-on-surface text-xs font-bold px-3 py-1 rounded-full shadow-sm flex items-center gap-1">
+              <span>Fabric:</span>
+              <span className="text-primary">{userPrefs.fabric}</span>
+            </span>
+          )}
+          {userPrefs.preference && (
+            <span className="bg-white border border-surface-variant text-on-surface text-xs font-bold px-3 py-1 rounded-full shadow-sm flex items-center gap-1">
+              <span>Preference:</span>
+              <span className="text-success-green">{userPrefs.preference}</span>
+            </span>
+          )}
+          {userPrefs.budgetLabel && (
             <span className="bg-white border border-surface-variant text-on-surface text-xs font-bold px-3 py-1 rounded-full shadow-sm flex items-center gap-1">
               <span>Budget:</span>
-              <span className="text-success-green">{userIntent.budgetLabel || `Under ₹${userIntent.budgetMax.toLocaleString('en-IN')}`}</span>
-            </span>
-          )}
-          {userIntent.category && userIntent.category !== 'All Categories' && (
-            <span className="bg-white border border-surface-variant text-on-surface text-xs font-bold px-3 py-1 rounded-full shadow-sm flex items-center gap-1">
-              <span>Category:</span>
-              <span className="text-secondary">{userIntent.category}</span>
-            </span>
-          )}
-          {userIntent.activeRefinementFilters?.styleModifier && (
-            <span className="bg-tertiary text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm flex items-center gap-1">
-              <span>Refinement:</span>
-              <span>{userIntent.activeRefinementFilters.styleModifier.replace('_', ' ')}</span>
+              <span className="text-success-green">{userPrefs.budgetLabel}</span>
             </span>
           )}
         </div>
@@ -98,7 +98,7 @@ export const PrioritizedGridScreen: React.FC = () => {
           className="text-xs text-primary font-bold hover:underline flex items-center gap-1 cursor-pointer"
         >
           <span className="material-symbols-outlined text-[16px]">edit</span>
-          <span>Modify Preferences</span>
+          <span>Re-run Adaptive AI</span>
         </button>
       </div>
 
@@ -133,7 +133,7 @@ export const PrioritizedGridScreen: React.FC = () => {
                     : 'bg-surface-dim text-secondary'
                 }`}>
                   <span className="material-symbols-outlined text-[13px] filled">auto_awesome</span>
-                  <span>#{item.rank} &bull; {item.matchScore}%</span>
+                  <span>#{item.rank} • {item.matchScore}%</span>
                 </div>
 
                 {/* Remove button */}

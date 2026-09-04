@@ -2,7 +2,7 @@ import React from 'react';
 import { useApp } from '../../context/AppContext';
 
 export const AiLoadingScreen: React.FC = () => {
-  const { wishlistProducts, userIntent } = useApp();
+  const { wishlistProducts, userPrefs } = useApp();
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white/95 backdrop-blur-xl p-6 font-sans">
@@ -31,15 +31,15 @@ export const AiLoadingScreen: React.FC = () => {
         {/* Loading Headings */}
         <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full text-xs font-bold uppercase tracking-wider mb-3">
           <span className="material-symbols-outlined text-[14px]">psychology</span>
-          <span>AI Prioritization Engine</span>
+          <span>Adaptive Ranking Engine</span>
         </div>
 
         <h2 className="font-headline-lg text-2xl md:text-3xl font-extrabold text-on-surface mb-2 ai-gradient-text">
-          Finding your best matches
+          Evaluating Top 10 Matches
         </h2>
 
         <p className="font-body-lg text-secondary text-sm md:text-base mb-6">
-          Analyzing <span className="font-bold text-on-surface">{wishlistProducts.length} saved wishlist items</span> for <span className="font-semibold text-primary">{userIntent.occasion || 'Wedding'}</span> &bull; <span className="font-semibold text-tertiary">{userIntent.style || 'Elegant'}</span> aesthetic...
+          Scoring <span className="font-bold text-on-surface">{wishlistProducts.length} saved items</span> across {userPrefs.need || 'your need'}, buying signals, price drops, and style affinities...
         </p>
 
         {/* Shimmer Progress Bar */}
@@ -48,7 +48,7 @@ export const AiLoadingScreen: React.FC = () => {
         </div>
 
         <span className="text-[11px] text-secondary mt-3 tracking-wide">
-          Calculating match scores & ranking recommendations
+          Generating match reasons & final rankings
         </span>
       </div>
     </div>

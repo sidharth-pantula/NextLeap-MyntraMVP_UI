@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 
 export const AskAiWidget: React.FC = () => {
-  const { askAiRefine, userIntent } = useApp();
+  const { askAiRefine, userPrefs } = useApp();
   const [inputText, setInputText] = useState<string>('');
 
   const quickRefinements = [
     { label: 'Show me something less flashy', value: 'less flashy' },
-    { label: 'Find best value under ₹5,000', value: 'under 5k best value' },
-    { label: 'Change to pastel colors', value: 'change to pastel' },
-    { label: 'Show only dresses', value: 'only dresses' },
-    { label: 'Show traditional only', value: 'traditional only' },
+    { label: 'Find best value & price drops', value: 'best value' },
+    { label: 'Prioritize Pure Cotton', value: 'pure cotton' },
+    { label: 'Prioritize Pure Silk', value: 'pure silk' },
+    { label: 'Show ethnic only', value: 'ethnic only' },
+    { label: 'Under ₹3,000 only', value: 'under 3000' },
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -33,13 +34,13 @@ export const AskAiWidget: React.FC = () => {
               auto_awesome
             </span>
             <span className="font-title-md text-sm md:text-base font-bold text-on-surface">
-              Ask AI to refine wishlist
+              Ask AI to refine ranking
             </span>
           </div>
 
-          {userIntent.activeRefinementFilters?.styleModifier && (
+          {userPrefs.activeRefinementFilters?.styleModifier && (
             <span className="text-[11px] font-bold text-tertiary bg-tertiary-fixed px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-              Active: {userIntent.activeRefinementFilters.styleModifier.replace('_', ' ')}
+              Active: {userPrefs.activeRefinementFilters.styleModifier.replace('_', ' ')}
             </span>
           )}
         </div>
@@ -64,7 +65,7 @@ export const AskAiWidget: React.FC = () => {
             type="text"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            placeholder="Type your refinement... e.g. 'remove anything over 5000' or 'less flashy'"
+            placeholder="Type your refinement... e.g. 'remove anything over 4000' or 'focus on cotton'"
             className="w-full bg-surface-container-lowest border border-surface-variant rounded-full pl-5 pr-14 py-2.5 font-body-sm text-sm text-on-surface focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 outline-none transition-all shadow-inner"
           />
           <button 
