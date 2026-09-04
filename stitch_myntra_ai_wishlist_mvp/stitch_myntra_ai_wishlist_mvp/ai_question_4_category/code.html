@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Myntra - Personalization - Question 4</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#cbbeff",
+                      "surface-variant": "#dee2ef",
+                      "primary-fixed": "#ffd9dc",
+                      "primary-fixed-dim": "#ffb2ba",
+                      "tertiary": "#6134e6",
+                      "success-green": "#03A685",
+                      "secondary": "#5a5d73",
+                      "on-primary-fixed": "#400011",
+                      "secondary-container": "#dbdef8",
+                      "bg-off-white": "#F5F5F6",
+                      "on-tertiary-fixed-variant": "#4b07d1",
+                      "on-secondary-container": "#5e6177",
+                      "ai-gradient-start": "#7952FF",
+                      "on-primary-container": "#fffbff",
+                      "error-container": "#ffdad6",
+                      "outline": "#8f6f72",
+                      "inverse-on-surface": "#ecf1fd",
+                      "outline-variant": "#e3bdc0",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed-variant": "#42465a",
+                      "surface-container": "#e9eefb",
+                      "primary-container": "#df2457",
+                      "surface-container-high": "#e4e8f5",
+                      "surface-tint": "#bd0043",
+                      "surface-container-highest": "#dee2ef",
+                      "surface-dim": "#d5dae7",
+                      "on-tertiary-fixed": "#1d0061",
+                      "tertiary-fixed": "#e7deff",
+                      "primary": "#b90041",
+                      "error": "#ba1a1a",
+                      "ai-gradient-end": "#FF3F6C",
+                      "secondary-fixed": "#dee1fa",
+                      "mrp-strikethrough": "#94969F",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "surface-container-low": "#f0f3ff",
+                      "secondary-fixed-dim": "#c2c5de",
+                      "on-tertiary-container": "#fffbff",
+                      "inverse-primary": "#ffb2ba",
+                      "inverse-surface": "#2b313a",
+                      "tertiary-container": "#7a53ff",
+                      "on-tertiary": "#ffffff",
+                      "on-surface-variant": "#5b4042",
+                      "surface": "#f9f9ff",
+                      "on-background": "#171c25",
+                      "on-error": "#ffffff",
+                      "on-secondary-fixed": "#161b2d",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface": "#171c25",
+                      "background": "#f9f9ff",
+                      "surface-bright": "#f9f9ff",
+                      "on-primary-fixed-variant": "#910031"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "grid-margin-desktop": "40px",
+                      "stack-md": "16px",
+                      "grid-margin-mobile": "16px",
+                      "stack-sm": "8px",
+                      "stack-xs": "4px",
+                      "stack-lg": "32px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-bold": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg-mobile": [
+                              "Hanken Grotesk"
+                      ],
+                      "display-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "price-main": [
+                              "Hanken Grotesk"
+                      ],
+                      "price-mrp": [
+                              "Hanken Grotesk"
+                      ],
+                      "title-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-sm": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-bold": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "30px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "price-main": [
+                              "16px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "price-mrp": [
+                              "13px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "title-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+      </script>
+<style>
+        .ai-gradient-text {
+            background: linear-gradient(to right, #7952FF, #FF3F6C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        .ai-gradient-bg {
+            background: linear-gradient(to right, #7952FF, #FF3F6C);
+        }
+        .ai-card-hover {
+            transition: all 0.3s ease;
+        }
+        .ai-card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(121, 82, 255, 0.15);
+            border-color: #cbbeff;
+        }
+        .ai-card-active {
+            border-color: #7952FF;
+            background-color: #f0f3ff;
+            box-shadow: 0 4px 20px rgba(121, 82, 255, 0.2);
+        }
+      </style>
+</head>
+<body class="bg-surface text-on-surface font-body-lg min-h-screen flex flex-col items-center">
+<!-- Transactional Header: Minimal, specific to the flow -->
+<header class="w-full max-w-7xl mx-auto px-grid-margin-mobile md:px-grid-margin-desktop py-stack-md flex justify-between items-center z-50">
+<div class="flex items-center gap-stack-sm cursor-pointer" onclick="window.history.back()">
+<span class="material-symbols-outlined text-secondary hover:text-primary transition-colors">arrow_back</span>
+</div>
+<div class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg font-black text-primary tracking-tight">
+            Myntra
+        </div>
+<div class="w-6"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-3xl mx-auto px-grid-margin-mobile md:px-grid-margin-desktop py-stack-lg flex flex-col items-center justify-center">
+<!-- Progress Indicator -->
+<div class="w-full mb-stack-lg flex flex-col items-center">
+<span class="font-label-bold text-label-bold text-secondary uppercase tracking-widest mb-stack-xs">Step 4 of 4</span>
+<div class="w-full md:w-2/3 h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full ai-gradient-bg w-full rounded-full transition-all duration-500 ease-in-out"></div>
+</div>
+</div>
+<!-- Question Header -->
+<div class="text-center mb-stack-lg w-full">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-display-lg md:text-display-lg text-on-background mb-stack-sm flex items-center justify-center gap-2">
+                What are you looking for?
+            </h1>
+<p class="font-body-lg text-body-lg text-secondary">
+                Select a category to help us tailor your recommendations.
+            </p>
+</div>
+<!-- Options Grid - Bento Style -->
+<div class="grid grid-cols-2 md:grid-cols-3 gap-gutter w-full mb-stack-lg">
+<button class="ai-card-hover flex flex-col items-center justify-center p-stack-lg bg-surface-container-lowest border border-surface-variant rounded-xl aspect-square relative overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity duration-300" data-alt="A modern, fashion-forward editorial style image of a chic dress. Minimalist white studio background. Bright, high-key lighting emphasizing the texture and flow of the fabric. High saturation pink and purple accents subtle in the composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz_Oone9wJ7BBvvfvTurPvMkGUjxIbqvp2myHLFinT-Yt6FVHh36PFSBnUVJ3cu71jRvYwxqRPZA9zEi1yCfMexbm_0CkcnrLF8GKkVTNZQMQpNmW2W7p2ZwnByowES8K_HtXklTp8fdnhiP4EGniOcSX7cEodcmyxjivxnxLYGnfbMFhlKoBsrKr5c3TzqhapjcH0SgvMm336OzofKMyFVUmYfGiwx0bi87zXHteOJh6Pkanq9e7S"/>
+<div class="z-10 flex flex-col items-center">
+<span class="material-symbols-outlined text-[48px] text-tertiary mb-stack-sm group-hover:scale-110 transition-transform duration-300" style="font-variation-settings: 'FILL' 0;">styler</span>
+<span class="font-title-md text-title-md text-on-surface">Dresses</span>
+</div>
+</button>
+<button class="ai-card-hover flex flex-col items-center justify-center p-stack-lg bg-surface-container-lowest border border-surface-variant rounded-xl aspect-square relative overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity duration-300" data-alt="A sophisticated, high-end editorial photo of an elegant saree draped on a mannequin or model silhouette. Soft, diffused lighting. Minimalist background in very light grey. Subtle gradient tones of pink and purple hinting at modern elegance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCR87NrAhODXnSqsWnRQjl0kYaWUqae31RSwMbuaN1lV39NYP0K0CITM_CTXcjwiyEW09lnPZEhr6M74takE1CPSEsaArh6Rltq-z62JjNf1hMG8dOvnKAz3iKoWGU5LlAZ6Mk-8iCGEDWpKruiPZQ85EW9Lw5JUbw2Z0GeO6IgDDpNnz1t8BN0OaMoNPXGYYyQqLNnq2ytt-s1sAUmB0Nkob4EaREXiMJ_2yKWc1YXTxoqAHqqoWkT"/>
+<div class="z-10 flex flex-col items-center">
+<span class="material-symbols-outlined text-[48px] text-tertiary mb-stack-sm group-hover:scale-110 transition-transform duration-300" style="font-variation-settings: 'FILL' 0;">apparel</span>
+<span class="font-title-md text-title-md text-on-surface">Sarees</span>
+</div>
+</button>
+<button class="ai-card-hover flex flex-col items-center justify-center p-stack-lg bg-surface-container-lowest border border-surface-variant rounded-xl aspect-square relative overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity duration-300" data-alt="A trendy, vibrant editorial product shot of a stylish top. Clean, brightly lit white studio environment. High contrast and crisp details. The aesthetic is young, vibrant, and aligned with modern corporate glassmorphism styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaV50mpRFMCW0JC3DE2qWkE64wPEk5ir3z2Aw_fRVu4IW0n0d18yBy5IePZxSIbZZ1miXgiNOTAvvt_nd8vYrzJBuwRcP-fSWFED4bDH_6e8B8XD8wGLOfZZKFwDvtU4FbsrPG3k-7oIvd0K8wx0UnekaKB4QBAhHK4ZvcUcGT_WgWvVIymkQWR_2s58HlPV8n7TbTPKNxu6NmzR9tGYsSzp99mHmPExUwd6YdTTj3pC4UAMOgNmej"/>
+<div class="z-10 flex flex-col items-center">
+<span class="material-symbols-outlined text-[48px] text-tertiary mb-stack-sm group-hover:scale-110 transition-transform duration-300" style="font-variation-settings: 'FILL' 0;">checkroom</span>
+<span class="font-title-md text-title-md text-on-surface">Tops</span>
+</div>
+</button>
+<button class="ai-card-hover flex flex-col items-center justify-center p-stack-lg bg-surface-container-lowest border border-surface-variant rounded-xl aspect-square relative overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity duration-300" data-alt="A premium close-up shot of contemporary fashion footwear. Placed on a pristine white pedestal. Sharp lighting creating soft shadows. The overall mood is sleek, urban, and highly curated for a digital fashion magazine aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVEkLIULG6Hh3BwJ6dlUj7C_VjgtCqHdZo_aKR5_vPjeS6F9bILLlsxGypHdCRXDFjcnRfa1EC3N4TuXEZsGWZ0JFbHx-M_fvSFjlpdPSXs3n9kQ-3MFcvfK2rjEwGj2mnj2xUGvjtU0LIN1Z1gWS1i5-4ZSs9vVNzNyTPbFAzjrIsf3e3KOKD49DpfJz8KuP2xscvMDZx9ux7KFD-WjdGiwSJaqR1NR-Xf98JXc5H2tOTKxlO8IAA"/>
+<div class="z-10 flex flex-col items-center">
+<span class="material-symbols-outlined text-[48px] text-tertiary mb-stack-sm group-hover:scale-110 transition-transform duration-300" style="font-variation-settings: 'FILL' 0;">drive_file_move_outline</span>
+<span class="font-title-md text-title-md text-on-surface">Shoes</span>
+</div>
+</button>
+<button class="ai-card-hover flex flex-col items-center justify-center p-stack-lg bg-surface-container-lowest border border-surface-variant rounded-xl aspect-square relative overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity duration-300" data-alt="A modern, high-contrast flat lay of fashion accessories like a watch and sunglasses. Set against a clean, off-white background with subtle reflective surfaces. Lighting is crisp and editorial. Colors pop against the neutral base." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIxc3eJRXGrIX1VYpfBb2jLE8HKB9p9Z22TnQa3q_o339LoXIjpA3JFKwa-vT6cxnZ1HUdd2dk01fknajQZyR6aFbBTDUO4jHYQuSt0ZzaQVSG5X0N8qxtThgeLgLtiUGFE9RwUjjS8-joKmhvKBxL4u5zIt96xSsm-VoOw9Y5_cbNMuYYfDAAd57RQ5QUK5QUWEci2WHBYSDM_h7TE1cqE5FYHwKMntzUe3XjxgIjM2wkDr-LJ3cx"/>
+<div class="z-10 flex flex-col items-center">
+<span class="material-symbols-outlined text-[48px] text-tertiary mb-stack-sm group-hover:scale-110 transition-transform duration-300" style="font-variation-settings: 'FILL' 0;">watch</span>
+<span class="font-title-md text-title-md text-on-surface">Accessories</span>
+</div>
+</button>
+<button class="ai-card-hover flex flex-col items-center justify-center p-stack-lg bg-surface-container-lowest border border-surface-variant rounded-xl aspect-square relative overflow-hidden group col-span-2 md:col-span-1">
+<div class="z-10 flex flex-col items-center">
+<span class="material-symbols-outlined text-[48px] text-secondary mb-stack-sm group-hover:scale-110 transition-transform duration-300" style="font-variation-settings: 'FILL' 0;">explore</span>
+<span class="font-title-md text-title-md text-on-surface text-center">No preference</span>
+</div>
+</button>
+</div>
+<!-- Action Area -->
+<div class="w-full md:w-2/3 flex flex-col items-center gap-stack-md mt-auto pt-stack-lg">
+<button class="w-full ai-gradient-bg text-on-primary font-title-md text-title-md py-4 rounded-full flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-sm hover:shadow-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                Find My Matches
+            </button>
+<button class="w-full bg-transparent text-secondary font-body-lg text-body-lg py-2 hover:text-primary transition-colors">
+                Skip — no preference
+            </button>
+</div>
+</main>
+<script>
+        // Simple selection logic for interactive feel
+        const cards = document.querySelectorAll('.ai-card-hover');
+        cards.forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove active class from all
+                cards.forEach(c => {
+                    c.classList.remove('ai-card-active');
+                    const icon = c.querySelector('.material-symbols-outlined');
+                    if(icon) icon.style.fontVariationSettings = "'FILL' 0";
+                });
+                
+                // Add active class to clicked
+                this.classList.add('ai-card-active');
+                const icon = this.querySelector('.material-symbols-outlined');
+                if(icon) icon.style.fontVariationSettings = "'FILL' 1";
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Myntra Wishlist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#e7deff",
+                      "surface-variant": "#dee2ef",
+                      "on-secondary-fixed-variant": "#42465a",
+                      "primary-container": "#df2457",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed-variant": "#4b07d1",
+                      "on-surface-variant": "#5b4042",
+                      "error-container": "#ffdad6",
+                      "on-primary": "#ffffff",
+                      "surface-bright": "#f9f9ff",
+                      "surface-container-low": "#f0f3ff",
+                      "inverse-primary": "#ffb2ba",
+                      "on-secondary-container": "#5e6177",
+                      "ai-gradient-start": "#7952FF",
+                      "surface-container-high": "#e4e8f5",
+                      "tertiary": "#6134e6",
+                      "background": "#f9f9ff",
+                      "surface-dim": "#d5dae7",
+                      "on-background": "#171c25",
+                      "inverse-surface": "#2b313a",
+                      "ai-gradient-end": "#FF3F6C",
+                      "primary-fixed-dim": "#ffb2ba",
+                      "mrp-strikethrough": "#94969F",
+                      "secondary-container": "#dbdef8",
+                      "surface-container-highest": "#dee2ef",
+                      "surface-container-lowest": "#ffffff",
+                      "success-green": "#03A685",
+                      "tertiary-container": "#7a53ff",
+                      "on-tertiary-container": "#fffbff",
+                      "on-secondary-fixed": "#161b2d",
+                      "tertiary-fixed-dim": "#cbbeff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-container": "#fffbff",
+                      "on-tertiary-fixed": "#1d0061",
+                      "on-error-container": "#93000a",
+                      "on-secondary": "#ffffff",
+                      "surface-tint": "#bd0043",
+                      "on-surface": "#171c25",
+                      "primary": "#b90041",
+                      "primary-fixed": "#ffd9dc",
+                      "surface-container": "#e9eefb",
+                      "on-primary-fixed-variant": "#910031",
+                      "bg-off-white": "#F5F5F6",
+                      "surface": "#f9f9ff",
+                      "secondary-fixed": "#dee1fa",
+                      "outline-variant": "#e3bdc0",
+                      "on-error": "#ffffff",
+                      "inverse-on-surface": "#ecf1fd",
+                      "secondary": "#5a5d73",
+                      "outline": "#8f6f72",
+                      "secondary-fixed-dim": "#c2c5de",
+                      "on-primary-fixed": "#400011"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "grid-margin-mobile": "16px",
+                      "stack-md": "16px",
+                      "stack-sm": "8px",
+                      "gutter": "16px",
+                      "stack-xs": "4px",
+                      "stack-lg": "32px",
+                      "grid-margin-desktop": "40px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Hanken Grotesk"
+                      ],
+                      "title-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-bold": [
+                              "Hanken Grotesk"
+                      ],
+                      "display-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-sm": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "price-mrp": [
+                              "Hanken Grotesk"
+                      ],
+                      "price-main": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "30px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "title-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-bold": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "price-mrp": [
+                              "13px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "price-main": [
+                              "16px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .ai-gradient-text {
+            background: linear-gradient(90deg, #7952FF 0%, #FF3F6C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .ai-gradient-bg {
+            background: linear-gradient(90deg, #7952FF 0%, #FF3F6C 100%);
+        }
+        .ai-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .product-card:hover .hover-action {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .hover-action {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-lg min-h-screen pt-16 pb-24 md:pb-0">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-10 h-16 bg-surface-container-lowest border-b border-surface-variant shadow-sm hidden md:flex">
+<div class="flex items-center gap-8">
+<a class="font-headline-lg text-headline-lg font-black text-primary" href="#">Myntra</a>
+<div class="flex gap-6">
+<a class="text-secondary font-body-lg text-body-lg hover:text-primary transition-colors" href="#">Men</a>
+<a class="text-secondary font-body-lg text-body-lg hover:text-primary transition-colors" href="#">Women</a>
+<a class="text-secondary font-body-lg text-body-lg hover:text-primary transition-colors" href="#">Kids</a>
+<a class="text-secondary font-body-lg text-body-lg hover:text-primary transition-colors" href="#">Home &amp; Living</a>
+<a class="text-secondary font-body-lg text-body-lg hover:text-primary transition-colors" href="#">Beauty</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<input class="w-80 h-10 pl-10 pr-4 rounded-full border border-surface-variant bg-bg-off-white focus:outline-none focus:border-primary focus:bg-surface-container-lowest font-body-sm text-body-sm transition-colors" placeholder="Search for products, brands and more" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-secondary text-sm">search</span>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-ai-gradient-start text-sm" style="font-variation-settings: 'FILL' 1;">mic</span>
+</div>
+<div class="flex gap-4">
+<a aria-label="favorite" class="flex flex-col items-center text-primary opacity-80" href="#">
+<span class="material-symbols-outlined">favorite</span>
+</a>
+<a aria-label="shopping_bag" class="flex flex-col items-center text-secondary hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="max-w-[1280px] mx-auto px-grid-margin-mobile md:px-grid-margin-desktop py-stack-lg">
+<!-- Header & Sorting -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-stack-lg gap-stack-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">My Wishlist</h1>
+<p class="font-body-lg text-body-lg text-secondary mt-stack-xs">19 items</p>
+</div>
+<div class="relative w-full md:w-auto">
+<select class="w-full md:w-48 h-10 pl-4 pr-10 rounded-DEFAULT border border-surface-variant bg-surface-container-lowest focus:outline-none focus:border-primary font-body-sm text-body-sm appearance-none cursor-pointer">
+<option>Sort by: Latest Added</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Discount</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-secondary pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- AI Banner -->
+<div class="ai-glass rounded-xl p-6 mb-stack-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-stack-md border border-tertiary-fixed-dim relative overflow-hidden">
+<!-- Background tint -->
+<div class="absolute inset-0 bg-tertiary opacity-5 pointer-events-none"></div>
+<div class="relative z-10">
+<h2 class="font-title-md text-title-md ai-gradient-text flex items-center gap-2">
+<span class="material-symbols-outlined text-ai-gradient-start" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                    Make your wishlist work for you
+                </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-stack-xs max-w-2xl">
+                    Tell us what you're shopping for and we'll find the most relevant items from your wishlist.
+                </p>
+</div>
+<button class="relative z-10 ai-gradient-bg text-on-primary font-label-bold text-label-bold px-6 py-3 rounded-DEFAULT hover:opacity-90 transition-opacity flex items-center gap-2 whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+                Build Wishlist
+            </button>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-gutter">
+<!-- Item 1 -->
+<div class="product-card group relative bg-surface-container-lowest rounded-DEFAULT border border-surface-variant overflow-hidden hover:shadow-lg transition-shadow">
+<div class="relative aspect-[3/4] bg-bg-off-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A young man modeling a trendy, oversized graphic t-shirt in pale pink with abstract black designs. The lighting is bright and studio-quality, highlighting the texture of the cotton fabric against a clean white background. Modern, minimalist fashion photography style with vibrant pink accents in the ui." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjMdIPVUnvgPKm2HY7Dy-KdkPsLPQ3XTnD3Pou58FLgry8E2mFl8rpg2Ea9gY7H-YdW4g5xTFkqowmTbfoZl7ktz7oLaF6rVMKeAitwziHaNoq2hdPEek75fJcaYHmEU_p-sqm3Fn0shPBQH0G13J-HeFd7UjfMmxPYEUaBlF0VolKs096tY2MlMrql_aod3Gx7MSQO4Ty8UyY1PQ9fy-PCNKWoSXeCRAGpDnQ7ftMMhzcf0Z6v9i5"/>
+<button class="absolute top-2 right-2 p-1.5 bg-surface-container-lowest/80 backdrop-blur-sm rounded-full text-secondary hover:text-error transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+<!-- Hover Overlay -->
+<div class="hover-action absolute bottom-0 left-0 w-full p-2 bg-gradient-to-t from-black/50 to-transparent">
+<button class="w-full bg-primary text-on-primary font-label-bold text-label-bold py-2.5 rounded-DEFAULT text-center shadow-md">
+                            MOVE TO BAG
+                        </button>
+</div>
+</div>
+<div class="p-3">
+<h3 class="font-title-md text-[14px] leading-tight text-on-surface truncate">Roadster</h3>
+<p class="font-body-sm text-body-sm text-secondary truncate mt-0.5">Men Oversized Pure Cotton T-shirt</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="font-price-main text-price-main text-on-surface">₹499</span>
+<span class="font-price-mrp text-price-mrp text-mrp-strikethrough line-through">₹999</span>
+<span class="font-label-bold text-[10px] text-primary">50% OFF</span>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="product-card group relative bg-surface-container-lowest rounded-DEFAULT border border-surface-variant overflow-hidden hover:shadow-lg transition-shadow">
+<div class="relative aspect-[3/4] bg-bg-off-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A woman wearing an elegant, flowy floral maxi dress in shades of deep purple and soft pink. She is standing outdoors with a soft, blurred garden background in natural sunlight. High-fashion e-commerce photography style emphasizing movement and premium quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO6wH5kZxucRuzq_JFvt8-IMXu6uMO5JVcrDMf5-BhOeOdHPnW9J2hVIkbOPpOSMpKptLRnODcdqPRFFv9m6hE07nqMbIxC-oACkh7SOWLje3Rno7d0gMW7f1HWduMIf4xMnerJ6Qq8G6BQhmd5zEt45dwAfRyQW_gWNU9Q7qawFICKyFVuyyy2FdDeFEOPtS6H-PAs9lZ6jX0V2fsiy4R7TrSAKDD4nyNKQMugwsUtOmRxfFywNuK"/>
+<button class="absolute top-2 right-2 p-1.5 bg-surface-container-lowest/80 backdrop-blur-sm rounded-full text-secondary hover:text-error transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+<!-- Hover Overlay -->
+<div class="hover-action absolute bottom-0 left-0 w-full p-2 bg-gradient-to-t from-black/50 to-transparent">
+<button class="w-full bg-primary text-on-primary font-label-bold text-label-bold py-2.5 rounded-DEFAULT text-center shadow-md">
+                            MOVE TO BAG
+                        </button>
+</div>
+</div>
+<div class="p-3">
+<h3 class="font-title-md text-[14px] leading-tight text-on-surface truncate">Anouk</h3>
+<p class="font-body-sm text-body-sm text-secondary truncate mt-0.5">Women Floral Printed Maxi Dress</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="font-price-main text-price-main text-on-surface">₹1249</span>
+<span class="font-price-mrp text-price-mrp text-mrp-strikethrough line-through">₹2499</span>
+<span class="font-label-bold text-[10px] text-primary">50% OFF</span>
+</div>
+</div>
+</div>
+<!-- Item 3 (AI Matched) -->
+<div class="product-card group relative bg-surface-container-lowest rounded-DEFAULT border-2 border-ai-gradient-start overflow-hidden hover:shadow-lg transition-shadow shadow-[0_0_15px_rgba(121,82,255,0.15)]">
+<div class="absolute top-0 left-0 w-full h-1 ai-gradient-bg z-10"></div>
+<div class="relative aspect-[3/4] bg-bg-off-white overflow-hidden">
+<div class="absolute top-3 left-3 z-10 bg-surface-container-lowest/90 backdrop-blur-sm rounded-full px-2 py-1 flex items-center gap-1 border border-tertiary-fixed-dim">
+<span class="material-symbols-outlined text-[12px] text-ai-gradient-start" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-bold text-[10px] text-on-surface">AI MATCH</span>
+</div>
+<img class="w-full h-full object-cover" data-alt="A sleek, modern pair of white sneakers with subtle neon pink and purple accents. The shoes are displayed on a clean white pedestal with soft, dramatic studio lighting highlighting the sleek silhouette and premium materials. High-end footwear photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtNDdA_l1ryrk64Y14Ohj0C8NQ6xuIPMN0TIAD_S_K5i1sXSpMs6BxbW8kWQNC-j0gafS8F1Jj4-zRmx-Za9Z1HfMacE_AEdGCQfyJkEJ8gJEKcQgEE7JcKy6xR_PE7Yf9KKH2iME8ja47TmORQ2weyyPRMoR_7xmy0t8VYWq1Xiwc9IR2aQ3JTxzsvNEVSTZuvZGCtzImQIYJLnDKCAJOoE_JxhQ0Syjrz7n4fBI2VEyKl9dshkQ-"/>
+<button class="absolute top-2 right-2 p-1.5 bg-surface-container-lowest/80 backdrop-blur-sm rounded-full text-secondary hover:text-error transition-colors flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+<!-- Hover Overlay -->
+<div class="hover-action absolute bottom-0 left-0 w-full p-2 bg-gradient-to-t from-black/50 to-transparent z-10">
+<button class="w-full bg-primary text-on-primary font-label-bold text-label-bold py-2.5 rounded-DEFAULT text-center shadow-md">
+                            MOVE TO BAG
+                        </button>
+</div>
+</div>
+<div class="p-3 relative z-10 bg-surface-container-lowest">
+<h3 class="font-title-md text-[14px] leading-tight text-on-surface truncate">Puma</h3>
+<p class="font-body-sm text-body-sm text-secondary truncate mt-0.5">Unisex Smash V2 Sneakers</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="font-price-main text-price-main text-on-surface">₹2199</span>
+<span class="font-price-mrp text-price-mrp text-mrp-strikethrough line-through">₹3999</span>
+<span class="font-label-bold text-[10px] text-primary">45% OFF</span>
+</div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="product-card group relative bg-surface-container-lowest rounded-DEFAULT border border-surface-variant overflow-hidden hover:shadow-lg transition-shadow">
+<div class="relative aspect-[3/4] bg-bg-off-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close-up shot of a stylish, minimalist black leather crossbody bag for women. The bag features clean lines and a subtle gold buckle. It is placed on a smooth, off-white marble surface with soft, diffused lighting. Premium accessory photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5GKGsOfJIGtPnCMQQZaBpdlXZQeerMh36C5zzJ1AODVO0MV0qiMfW2UxJ1C751eFuKMV1SiZu-jC-Dg_rGyZsUBGFOD7dAozMhzEIgRdFNMfiqLl4javlv_ozKbPvftQPgrccPP366kQkSHVjr_cmiwbv0WKfXAqmHPK-k-B-nzod-geOqbCrDdzGGALByPYhkIYQ_SOEJcyjMUOxsDCa8NYKsVo3gd3iPUyhPXeKmQEjdDUPhrWj"/>
+<button class="absolute top-2 right-2 p-1.5 bg-surface-container-lowest/80 backdrop-blur-sm rounded-full text-secondary hover:text-error transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+<!-- Hover Overlay -->
+<div class="hover-action absolute bottom-0 left-0 w-full p-2 bg-gradient-to-t from-black/50 to-transparent">
+<button class="w-full bg-primary text-on-primary font-label-bold text-label-bold py-2.5 rounded-DEFAULT text-center shadow-md">
+                            MOVE TO BAG
+                        </button>
+</div>
+</div>
+<div class="p-3">
+<h3 class="font-title-md text-[14px] leading-tight text-on-surface truncate">H&amp;M</h3>
+<p class="font-body-sm text-body-sm text-secondary truncate mt-0.5">Women Black Crossbody Bag</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="font-price-main text-price-main text-on-surface">₹1499</span>
+</div>
+</div>
+</div>
+<!-- Generate remaining items using a script to keep code clean, but outputting HTML directly for demonstration -->
+<!-- Item 5 -->
+<div class="product-card group relative bg-surface-container-lowest rounded-DEFAULT border border-surface-variant overflow-hidden hover:shadow-lg transition-shadow">
+<div class="relative aspect-[3/4] bg-bg-off-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A man posing in a sharp, tailored navy blue blazer over a crisp white t-shirt. The setting is a bright, modern studio with soft daylight illuminating the fine texture of the suit fabric. High-end menswear e-commerce photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoXfcTWfOykkhtQHrLtn8UCQ6mPbjBeKJxYFGtYoi-Ng1Gh6l-FiLgiNAdsW0O8wEhSp9D060mv_vYtbwmvhDTIxtMdWdIq4_fedc36nRTvz-u0tsmgkxAWnN-aCP_MQHGFM9eLsE-WcZDIPvPOGp1HDugjaI19FkIqybf4tCK_VeTlomYcTfPbEDEMei-AkC3PKS5r79wwoUOTeUpiO-hAsW-vISyYHZtd-yW-zOedBOaqiXe6OZ8"/>
+<button class="absolute top-2 right-2 p-1.5 bg-surface-container-lowest/80 backdrop-blur-sm rounded-full text-secondary hover:text-error transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+<div class="hover-action absolute bottom-0 left-0 w-full p-2 bg-gradient-to-t from-black/50 to-transparent">
+<button class="w-full bg-primary text-on-primary font-label-bold text-label-bold py-2.5 rounded-DEFAULT text-center shadow-md">
+                            MOVE TO BAG
+                        </button>
+</div>
+</div>
+<div class="p-3">
+<h3 class="font-title-md text-[14px] leading-tight text-on-surface truncate">Mango Man</h3>
+<p class="font-body-sm text-body-sm text-secondary truncate mt-0.5">Slim Fit Checked Casual Blazer</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="font-price-main text-price-main text-on-surface">₹4590</span>
+<span class="font-price-mrp text-price-mrp text-mrp-strikethrough line-through">₹7990</span>
+<span class="font-label-bold text-[10px] text-primary">42% OFF</span>
+</div>
+</div>
+</div>
+<!-- Item 6 -->
+<div class="product-card group relative bg-surface-container-lowest rounded-DEFAULT border border-surface-variant overflow-hidden hover:shadow-lg transition-shadow">
+<div class="relative aspect-[3/4] bg-bg-off-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A stylish flat lay of premium makeup products, including a vibrant pink lipstick and a sleek eyeshadow palette, arranged on a pristine white surface. Soft, glamorous lighting highlights the textures and colors. High-quality beauty product photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn14RME9BZk06Ye3ZWfy-YveFCxuH8suarKeGPIb7LdlQwuZ1KxfigH6gGShlJN45wjKN8NgzrGD-zzOCI2qr2RMwOZkHuYnwPfeA6E3GZTD8oD8uMeglD0K5k-BF52oynp8NdOHAy2tSdXm_5RTvJjTjhdmjNV01W8HuVVNsBqfnkPEZJzftIOsef1dwB7tbUMvcXWvjK7OawjK6t7zGWi9UijiIlMDEarQbSfXpEVNYp_SXxHI6q"/>
+<button class="absolute top-2 right-2 p-1.5 bg-surface-container-lowest/80 backdrop-blur-sm rounded-full text-secondary hover:text-error transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+<div class="hover-action absolute bottom-0 left-0 w-full p-2 bg-gradient-to-t from-black/50 to-transparent">
+<button class="w-full bg-primary text-on-primary font-label-bold text-label-bold py-2.5 rounded-DEFAULT text-center shadow-md">
+                            MOVE TO BAG
+                        </button>
+</div>
+</div>
+<div class="p-3">
+<h3 class="font-title-md text-[14px] leading-tight text-on-surface truncate">M.A.C</h3>
+<p class="font-body-sm text-body-sm text-secondary truncate mt-0.5">Retro Matte Lipstick - Ruby Woo</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="font-price-main text-price-main text-on-surface">₹1950</span>
+</div>
+</div>
+</div>
+<!-- Item 7 -->
+<div class="product-card group relative bg-surface-container-lowest rounded-DEFAULT border border-surface-variant overflow-hidden hover:shadow-lg transition-shadow">
+<div class="relative aspect-[3/4] bg-bg-off-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close up of a chunky, contemporary silver analog watch with a deep blue dial, resting on a textured grey background. Crisp, focused lighting emphasizing the metallic reflections and premium build quality. Modern accessory photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyOqQyrU37s4FYBtDWiiae04-JKzWfmAmVwhCh8L7be5GP4EsWr_KQFdgFZ5-P6zvdpPjV3xw2vhFtIFzpF1YsNwZNmT9YsiyEIGzCCy3KZ9KNEU83gC3ATLwMI5-dooZ1okorq6_WgGFDBQMoAWgNcWElnbdEY1geZ9t0UOAhwCNxsbVky2fQUEwtiIddlH9o4PnETXIfDwTgkUGalpMeWF0QEqe_2KPTG8RI65mI0wGb0kry6iVH"/>
+<button class="absolute top-2 right-2 p-1.5 bg-surface-container-lowest/80 backdrop-blur-sm rounded-full text-secondary hover:text-error transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+<div class="hover-action absolute bottom-0 left-0 w-full p-2 bg-gradient-to-t from-black/50 to-transparent">
+<button class="w-full bg-primary text-on-primary font-label-bold text-label-bold py-2.5 rounded-DEFAULT text-center shadow-md">
+                            MOVE TO BAG
+                        </button>
+</div>
+</div>
+<div class="p-3">
+<h3 class="font-title-md text-[14px] leading-tight text-on-surface truncate">Fossil</h3>
+<p class="font-body-sm text-body-sm text-secondary truncate mt-0.5">Men Blue Dial Chronograph Watch</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="font-price-main text-price-main text-on-surface">₹8495</span>
+<span class="font-price-mrp text-price-mrp text-mrp-strikethrough line-through">₹10995</span>
+<span class="font-label-bold text-[10px] text-primary">22% OFF</span>
+</div>
+</div>
+</div>
+<!-- Item 8 -->
+<div class="product-card group relative bg-surface-container-lowest rounded-DEFAULT border border-surface-variant overflow-hidden hover:shadow-lg transition-shadow">
+<div class="relative aspect-[3/4] bg-bg-off-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A woman modeling a cozy, chunky knit oversized sweater in a warm beige tone. She is styled with minimalist gold jewelry. The background is a clean, bright white studio setting with soft, inviting lighting. Fashion-forward casual wear photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFPzpPvMj0ob9Q6B7nN3NzSkGPAUR_stTR7uR43wQKxBGvGaJ0KGkoxK4K-OP_gzlEJ79wvPA1fTYfpeYdfBIkbUvDipxZl_FJoR7KaZ6Manbv-Wv5qBhVOgEdK5q987waRAy5tL4YQih5zUowID9zHxjwpGK9E-dB_wrSDacr-1JmNNp1iJU6EBhoFKCLtDetuTLvazJWIR3guSYIvzgh3wAJaADSzwRkIe_BGFBb2mIRwIcormOl"/>
+<button class="absolute top-2 right-2 p-1.5 bg-surface-container-lowest/80 backdrop-blur-sm rounded-full text-secondary hover:text-error transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+<div class="hover-action absolute bottom-0 left-0 w-full p-2 bg-gradient-to-t from-black/50 to-transparent">
+<button class="w-full bg-primary text-on-primary font-label-bold text-label-bold py-2.5 rounded-DEFAULT text-center shadow-md">
+                            MOVE TO BAG
+                        </button>
+</div>
+</div>
+<div class="p-3">
+<h3 class="font-title-md text-[14px] leading-tight text-on-surface truncate">ONLY</h3>
+<p class="font-body-sm text-body-sm text-secondary truncate mt-0.5">Women Beige Cable Knit Sweater</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="font-price-main text-price-main text-on-surface">₹1899</span>
+<span class="font-price-mrp text-price-mrp text-mrp-strikethrough line-through">₹3299</span>
+<span class="font-label-bold text-[10px] text-primary">42% OFF</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Hidden on Desktop) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center py-2 bg-surface-container-lowest pb-safe border-t border-surface-variant shadow-lg md:hidden">
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-low transition-colors w-full py-1" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="font-label-bold text-label-bold mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-low transition-colors w-full py-1" href="#">
+<span class="material-symbols-outlined text-[24px]">category</span>
+<span class="font-label-bold text-label-bold mt-1">Categories</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-low transition-colors w-full py-1" href="#">
+<span class="material-symbols-outlined text-[24px]">play_circle</span>
+<span class="font-label-bold text-label-bold mt-1">Studio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-low transition-colors w-full py-1" href="#">
+<span class="material-symbols-outlined text-[24px]">auto_awesome</span>
+<span class="font-label-bold text-label-bold mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary active-tab bg-surface-container-low rounded-xl py-1 w-full scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-bold text-label-bold mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

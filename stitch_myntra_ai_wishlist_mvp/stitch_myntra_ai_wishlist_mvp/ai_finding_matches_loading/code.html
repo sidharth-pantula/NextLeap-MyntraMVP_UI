@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Processing - Myntra</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-fixed-dim": "#cbbeff",
+                        "surface-variant": "#dee2ef",
+                        "primary-fixed": "#ffd9dc",
+                        "primary-fixed-dim": "#ffb2ba",
+                        "tertiary": "#6134e6",
+                        "success-green": "#03A685",
+                        "secondary": "#5a5d73",
+                        "on-primary-fixed": "#400011",
+                        "secondary-container": "#dbdef8",
+                        "bg-off-white": "#F5F5F6",
+                        "on-tertiary-fixed-variant": "#4b07d1",
+                        "on-secondary-container": "#5e6177",
+                        "ai-gradient-start": "#7952FF",
+                        "on-primary-container": "#fffbff",
+                        "error-container": "#ffdad6",
+                        "outline": "#8f6f72",
+                        "inverse-on-surface": "#ecf1fd",
+                        "outline-variant": "#e3bdc0",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#42465a",
+                        "surface-container": "#e9eefb",
+                        "primary-container": "#df2457",
+                        "surface-container-high": "#e4e8f5",
+                        "surface-tint": "#bd0043",
+                        "surface-container-highest": "#dee2ef",
+                        "surface-dim": "#d5dae7",
+                        "on-tertiary-fixed": "#1d0061",
+                        "tertiary-fixed": "#e7deff",
+                        "primary": "#b90041",
+                        "error": "#ba1a1a",
+                        "ai-gradient-end": "#FF3F6C",
+                        "secondary-fixed": "#dee1fa",
+                        "mrp-strikethrough": "#94969F",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f0f3ff",
+                        "secondary-fixed-dim": "#c2c5de",
+                        "on-tertiary-container": "#fffbff",
+                        "inverse-primary": "#ffb2ba",
+                        "inverse-surface": "#2b313a",
+                        "tertiary-container": "#7a53ff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#5b4042",
+                        "surface": "#f9f9ff",
+                        "on-background": "#171c25",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#161b2d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#171c25",
+                        "background": "#f9f9ff",
+                        "surface-bright": "#f9f9ff",
+                        "on-primary-fixed-variant": "#910031"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "grid-margin-desktop": "40px",
+                        "stack-md": "16px",
+                        "grid-margin-mobile": "16px",
+                        "stack-sm": "8px",
+                        "stack-xs": "4px",
+                        "stack-lg": "32px",
+                        "gutter": "16px"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-bold": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "price-main": ["Hanken Grotesk"],
+                        "price-mrp": ["Hanken Grotesk"],
+                        "title-md": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"]
+                    },
+                    fontSize: {
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "label-bold": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "700" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "30px", fontWeight: "700" }],
+                        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "800" }],
+                        "price-main": ["16px", { lineHeight: "1", fontWeight: "700" }],
+                        "price-mrp": ["13px", { lineHeight: "1", fontWeight: "400" }],
+                        "title-md": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom Animations for AI Loading State */
+        @keyframes shimmer {
+            0% { transform: translateX(-150%) skewX(-15deg); }
+            50% { transform: translateX(150%) skewX(-15deg); }
+            100% { transform: translateX(150%) skewX(-15deg); }
+        }
+        
+        .animate-shimmer {
+            animation: shimmer 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bg-ai-gradient {
+            background-image: linear-gradient(135deg, var(--tw-colors-ai-gradient-start), var(--tw-colors-ai-gradient-end));
+        }
+        
+        .text-ai-gradient {
+            background: linear-gradient(135deg, var(--tw-colors-ai-gradient-start), var(--tw-colors-ai-gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Subtle glowing orbit effect */
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 8s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Dimmed Background Overlay to emphasize processing state -->
+<div class="fixed inset-0 bg-gradient-to-br from-ai-gradient-start/10 via-surface-container-lowest to-ai-gradient-end/10 z-0"></div>
+<!-- TopNavBar (Dimmed per instructions) -->
+<nav class="fixed top-0 w-full z-10 flex justify-between items-center px-4 md:px-10 h-16 bg-surface-container-lowest border-b border-surface-variant shadow-sm opacity-40 grayscale-[20%] pointer-events-none transition-all duration-700">
+<!-- Brand -->
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-black text-primary">
+            Myntra
+        </div>
+<!-- Navigation Links (Web) -->
+<div class="hidden md:flex items-center space-x-6">
+<a class="text-secondary font-body-lg text-body-lg" href="#">Men</a>
+<a class="text-secondary font-body-lg text-body-lg" href="#">Women</a>
+<a class="text-secondary font-body-lg text-body-lg" href="#">Kids</a>
+<a class="text-secondary font-body-lg text-body-lg" href="#">Home &amp; Living</a>
+<a class="text-secondary font-body-lg text-body-lg" href="#">Beauty</a>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-primary">favorite</span>
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+</div>
+</nav>
+<!-- Main Processing Canvas -->
+<main class="relative z-50 flex flex-col items-center justify-center min-h-screen px-4">
+<!-- Glassmorphism Container for focus -->
+<div class="relative flex flex-col items-center justify-center w-full max-w-sm p-8 rounded-[2rem] bg-surface-container-lowest/60 backdrop-blur-2xl border border-white/40 shadow-[0_16px_64px_-16px_rgba(121,82,255,0.15)] overflow-hidden">
+<!-- Shimmer sweep across the card -->
+<div class="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer pointer-events-none"></div>
+<!-- AI Sparkle Animation Assembly -->
+<div class="relative flex items-center justify-center w-32 h-32 mb-8">
+<!-- Outer glowing rings -->
+<div class="absolute inset-0 rounded-full border border-ai-gradient-start/20 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
+<div class="absolute inset-4 rounded-full border border-ai-gradient-end/30 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite_0.5s]"></div>
+<!-- Rotating gradient mesh backdrop -->
+<div class="absolute inset-2 rounded-full bg-ai-gradient opacity-20 blur-xl animate-spin-slow"></div>
+<!-- Central Icon -->
+<div class="relative z-10 flex items-center justify-center w-16 h-16 rounded-full bg-surface-container-lowest shadow-sm border border-surface-variant/50">
+<span class="material-symbols-outlined text-4xl text-ai-gradient animate-pulse" style="font-variation-settings: 'FILL' 1;">
+                        auto_awesome
+                    </span>
+</div>
+</div>
+<!-- Typography -->
+<h1 class="font-title-md text-title-md text-on-surface text-center mb-3 flex items-center gap-2">
+<span class="text-ai-gradient">✨</span> 
+                Finding your best matches
+            </h1>
+<p class="font-body-sm text-body-sm text-secondary text-center max-w-[260px] opacity-80 leading-relaxed">
+                Looking through your 19 saved items in Wishlist...
+            </p>
+<!-- Minimal progress indicator -->
+<div class="w-24 h-1 mt-8 rounded-full bg-surface-variant overflow-hidden">
+<div class="h-full bg-ai-gradient w-1/2 rounded-full animate-[shimmer_1.5s_infinite]"></div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,643 @@
+Yes — the key clarification should be that **this is not a new wishlist app or a Myntra-inspired app. It is the Myntra app itself, with one additional AI-powered Wishlist capability layered into the existing experience.**
+
+I would refine your prompt like this:
+
+---
+
+# Build the Functional MVP — Exact Myntra App + AI Wishlist Feature
+
+I am providing the **final UI generated in Stitch as a ZIP file**.
+
+Your task is to build a **fully functional MVP of the Myntra app around this existing UI**, while adding the **new AI-powered Wishlist functionality described below**.
+
+## 1. CRITICAL PRODUCT DIRECTION
+
+### This is an EXACT MYNTRA APP
+
+The application should be treated as **Myntra itself**, not as a new app inspired by Myntra.
+
+Recreate the existing Myntra experience as accurately as possible:
+
+* Same overall Myntra UI
+* Same visual language
+* Same navigation structure
+* Same header/navigation
+* Same product discovery experience
+* Same product cards
+* Same product detail experience
+* Same Wishlist experience
+* Same buttons, typography, spacing, icons, interactions and overall styling
+* Same ecommerce mental model
+
+**The only major difference is that we are adding a new AI-powered Wishlist feature on top of the existing Myntra Wishlist experience.**
+
+Think of the product as:
+
+> **“Myntra launches an AI-powered Wishlist feature.”**
+
+Do NOT build a separate AI shopping application.
+
+Do NOT make it look like a startup/AI assistant interface.
+
+Do NOT redesign Myntra around the AI feature.
+
+The existing Myntra experience should remain intact, with the new functionality naturally integrated into it.
+
+---
+
+# 2. STITCH UI IS THE SOURCE OF TRUTH
+
+The attached Stitch ZIP contains the **final approved UI screens**.
+
+Before writing the application:
+
+1. Inspect the entire ZIP.
+2. Identify every screen and shared component.
+3. Understand how the screens correspond to the Myntra experience.
+4. Identify the intended navigation and interactions.
+5. Recreate the Stitch screens as accurately as possible.
+6. Build the functionality behind those screens.
+
+### UI IS LOCKED
+
+Do not independently redesign the UI.
+
+Do not introduce a different visual language.
+
+Do not replace the Stitch components with your own interpretation.
+
+Do not change colors, typography, spacing, product-card design, navigation, buttons or layouts unless required for functionality.
+
+**Stitch = visual source of truth.**
+
+Your responsibility is to make the provided Myntra UI **functional**.
+
+---
+
+# 3. EXISTING MYNTRA EXPERIENCE
+
+The base application should behave like a normal Myntra shopping experience.
+
+Users should be able to:
+
+* Browse products
+* Navigate through categories
+* Search/browse products
+* Open product details
+* Select sizes
+* Add products to Wishlist
+* Remove products from Wishlist
+* Add products to Bag
+* Buy products
+* Navigate between Home, Wishlist, Product Detail and Bag
+
+Use realistic mock/local product data for the MVP.
+
+The application does not need to connect to Myntra's real backend.
+
+---
+
+# 4. THE NEW FEATURE — AI-POWERED WISHLIST
+
+The **only major new functionality** we are introducing is:
+
+### AI Wishlist Prioritization
+
+The existing Myntra Wishlist allows users to save products, but when the Wishlist becomes large, users have difficulty identifying which saved products are relevant to what they need **right now**.
+
+Our feature adds an AI layer to the existing Wishlist.
+
+The experience should be:
+
+**Existing Myntra Wishlist → Build Wishlist → Tell AI what you need → AI understands intent → AI prioritizes existing saved products → User shops**
+
+The AI must work **within the existing Wishlist**.
+
+It should not become a separate recommendation marketplace.
+
+---
+
+# 5. BUILD WISHLIST
+
+Add the **Build Wishlist** functionality shown in the Stitch UI to the existing Myntra Wishlist.
+
+When the user selects it, they can describe what they are currently shopping for.
+
+For example:
+
+> “I need something for my friend's wedding.”
+
+Support:
+
+* Natural-language input
+* Quick-select options where shown in the Stitch UI
+
+The system should interpret this as the user's **current shopping intent**.
+
+---
+
+# 6. AI QUESTION FLOW
+
+After the initial input, the AI should ask a small number of relevant questions to better understand the user's requirement.
+
+Possible factors:
+
+* Occasion
+* Style
+* Budget
+* Category
+* Preferences
+
+The questions should be **contextual to the user's initial request**.
+
+Do not create a long survey.
+
+The experience should feel like a short AI shopping conversation.
+
+For the MVP, this can use deterministic/mock AI logic rather than requiring a production LLM.
+
+---
+
+# 7. AI PRIORITIZES THE EXISTING WISHLIST
+
+This is the most important functionality.
+
+The AI must analyze the **products already saved in the user's Wishlist**.
+
+Each product should have structured metadata such as:
+
+* Category
+* Product type
+* Occasion
+* Style
+* Price
+* Brand
+* Colour
+* Availability
+
+The recommendation engine compares the user's current intent against these attributes.
+
+It then calculates an **individual relevance percentage for every saved product**.
+
+For example:
+
+* Dress A — **94% Match**
+* Dress B — **87% Match**
+* Shirt C — **81% Match**
+* Dress D — **72% Match**
+* Shoes E — **64% Match**
+
+The Wishlist should then be ordered from **highest relevance to lowest relevance**.
+
+### IMPORTANT
+
+Do **NOT** divide products into sections such as:
+
+* Best Matches
+* Good Matches
+* Less Relevant
+* 90%+
+* 80%+
+
+Instead, maintain **one unified Myntra Wishlist grid**, with each product showing its own individual match percentage.
+
+The percentage must be visible directly on the product card wherever shown in the Stitch UI.
+
+---
+
+# 8. TOP 5 RECOMMENDATIONS
+
+Where the Stitch UI specifically presents a **Top 5 recommendation view**, show the five highest-ranked products from the user's existing Wishlist.
+
+These should be actual products from the user's Wishlist.
+
+Do not generate unrelated products.
+
+Do not randomly assign rankings.
+
+The ranking must be determined by the product metadata and the user's stated requirements.
+
+---
+
+# 9. EXPLAIN WHY A PRODUCT MATCHES
+
+The AI should be able to explain the relevance score using the actual product attributes.
+
+For example:
+
+**94% Match**
+
+**Why this matches:**
+
+* Fits your budget
+* Matches your preferred style
+* Suitable for the occasion
+
+The explanation should correspond to the attributes that actually caused the product to rank highly.
+
+---
+
+# 10. ASK AI / REFINEMENT
+
+Implement the **Ask AI** interaction shown in the Stitch UI.
+
+The user can refine their requirement after seeing the prioritized Wishlist.
+
+Examples:
+
+> “Show me something less flashy.”
+
+> “Which one is the best value?”
+
+> “Show me something I can wear again.”
+
+The AI should re-rank the **same existing Wishlist** according to the new requirement.
+
+It must not randomly recommend unrelated products outside the Wishlist.
+
+---
+
+# 11. PRODUCT DETAIL
+
+The Product Detail page should remain a **normal Myntra product-detail experience**.
+
+The user should be able to:
+
+* View product images
+* View product information
+* Select size
+* Add to Wishlist
+* Add to Bag
+* Buy Now
+
+When a user clicks a recommended product, the correct product must open.
+
+The recommendation context should not break the normal Myntra shopping experience.
+
+---
+
+# 12. DATA
+
+Use realistic local/mock data.
+
+Create approximately **15–25 Wishlist products** across relevant categories.
+
+Every product should contain enough structured metadata for meaningful recommendation scoring.
+
+The scoring should be:
+
+* Deterministic
+* Explainable
+* Based on actual attributes
+* Sensitive to changes in user intent
+
+If the user's requirements change, the ranking and match percentages should change accordingly.
+
+---
+
+# 13. APPLICATION ARCHITECTURE
+
+Keep the implementation modular.
+
+Separate:
+
+* Product data
+* Wishlist state
+* User shopping intent
+* AI question logic
+* Recommendation/scoring engine
+* Ranking logic
+* Product detail state
+* Bag state
+* UI components
+
+The recommendation layer should be structured so that a real LLM/API can replace the mock intelligence later without rebuilding the frontend.
+
+---
+
+# 14. DEVELOPMENT PRIORITY
+
+Build in this order:
+
+1. Inspect the Stitch ZIP completely.
+2. Map every Stitch screen to the corresponding Myntra experience.
+3. Recreate the Myntra UI exactly.
+4. Implement normal Myntra navigation and shopping interactions.
+5. Implement persistent Wishlist state.
+6. Add the **Build Wishlist** feature.
+7. Implement the AI input/question flow.
+8. Implement Wishlist relevance scoring.
+9. Display individual match percentages.
+10. Implement AI refinement/re-ranking.
+11. Implement normal Myntra Product Detail and Bag interactions.
+12. Test the complete end-to-end experience.
+
+---
+
+# 15. FINAL USER JOURNEY
+
+The final application should feel like a normal Myntra app until the user chooses to use the new AI feature.
+
+### Normal Myntra experience
+
+**Home → Browse → Product → Wishlist / Bag**
+
+### New AI Wishlist experience
+
+**Wishlist → Build Wishlist → Describe Need → Answer AI Questions → AI Prioritizes Existing Wishlist → View Match % → Ask AI / Refine → Product Detail → Add to Bag / Buy Now**
+
+---
+
+# 16. FINAL SUCCESS CRITERIA
+
+Before considering the MVP complete, run and test the application yourself.
+
+Verify that:
+
+* The application feels like **Myntra**, not a separate AI app.
+* The Stitch UI is reproduced accurately.
+* Existing Myntra shopping flows remain intact.
+* Wishlist state persists throughout the journey.
+* Build Wishlist works.
+* AI questions work.
+* Recommendations use **existing Wishlist products only**.
+* Every saved product can receive an individual relevance score.
+* Match percentages are meaningful and data-driven.
+* Wishlist ranking changes when user intent changes.
+* Ask AI successfully refines the ranking.
+* Clicking a recommendation opens the correct Product Detail.
+* Add to Bag / Buy Now work.
+* No major screen deviates from the provided Stitch design.
+
+## MOST IMPORTANT INSTRUCTION
+
+**Do not build a new app around the concept of AI Wishlist. Build the Myntra app exactly as represented by the provided Stitch UI, and add the AI Wishlist prioritization feature as an additional capability within the existing Myntra experience.**
+
+The final result should look and feel like:
+
+> **Myntra, with one new feature: AI-powered Wishlist prioritization.**
+
+# Build the Functional MVP Around This Existing UI
+
+I am providing the **final UI generated in Stitch**.
+
+Your task is to build a **fully functional MVP around this existing UI**.
+
+## IMPORTANT — UI IS LOCKED
+
+The Stitch UI is the **absolute source of truth for the frontend design**.
+
+Do NOT redesign it.
+
+Do NOT create a different layout.
+
+Do NOT change the visual style.
+
+Do NOT introduce your own navigation, components, colors, typography, spacing, cards, buttons, or UX patterns unless absolutely necessary for functionality.
+
+Reproduce the provided Stitch UI as accurately as possible.
+
+Your job is to make the existing UI **work**.
+
+---
+
+## Product Context
+
+### Problem
+
+Active wishlist users save many products but struggle to identify which saved items are relevant to their current need, occasion, budget, preferences, and availability, making it difficult to decide what is worth acting on without manually re-evaluating their entire wishlist.
+
+### Solution
+
+This is an **AI-powered Myntra Wishlist** feature.
+
+It helps users identify the most relevant products from their **existing Wishlist** based on what they are shopping for right now.
+
+The core experience is:
+
+**Wishlist → Build Wishlist → AI understands need → AI prioritizes saved products → User decides**
+
+---
+
+# FUNCTIONALITY TO IMPLEMENT
+
+## 1. Home
+
+Use the Stitch-designed Home screen exactly as provided.
+
+Make the existing interactions functional:
+
+- Browse products
+- Open product
+- Add/remove Wishlist
+- Open Wishlist
+- Navigate through the UI
+
+Use realistic mock product data.
+
+---
+
+## 2. Wishlist
+
+Use the Stitch Wishlist screen exactly as provided.
+
+The Wishlist should contain realistic saved products.
+
+Users must be able to:
+
+- View saved products
+- Remove products
+- Open product details
+- Start the AI Wishlist experience through the existing **Build Wishlist** CTA
+
+Maintain Wishlist state throughout the application.
+
+If a product is added to Wishlist from Home/Product Detail, it should appear in Wishlist.
+
+---
+
+# 3. BUILD WISHLIST / AI INPUT
+
+When the user clicks the existing **Build Wishlist** CTA, implement the flow shown in the Stitch UI.
+
+The user should be able to describe what they currently need.
+
+Support:
+
+- Natural-language input
+- Quick-select options
+
+Example:
+
+> “I need something for my friend's wedding.”
+
+The system should interpret the user's input.
+
+---
+
+# 4. AI QUESTIONS
+
+Implement the AI question flow shown in the Stitch UI.
+
+Ask a small number of relevant questions about:
+
+- Occasion
+- Style
+- Budget
+- Category/preferences
+
+The questions should respond to the user's initial input.
+
+Do not make this a long questionnaire.
+
+For the MVP, the AI can use a structured/mock intelligence layer rather than requiring a production-grade AI backend immediately.
+
+However, the behaviour must feel intelligent.
+
+---
+
+# 5. RECOMMENDATION ENGINE
+
+This is the core functionality.
+
+Use the products already present in the user's Wishlist.
+
+Each product should have structured attributes such as:
+
+- Category
+- Product type
+- Occasion
+- Style
+- Price
+- Brand
+- Colour
+- Availability
+
+Compare these attributes against the user's current requirements.
+
+Generate a relevance score and rank the Wishlist products.
+
+Show the Top 5 recommendations using the **existing Stitch recommendation UI**.
+
+Example:
+
+**94% Match**
+
+MANGO
+Satin Midi Dress
+₹4,999
+
+**Why this matches**
+
+- Fits your budget
+- Matches your preferred style
+- Suitable for the occasion
+
+The score and reasoning should be generated from the actual product attributes and user preferences.
+
+Do not randomly assign scores.
+
+---
+
+# 6. AI REFINEMENT
+
+Implement the **Ask AI / refinement interaction already present in the Stitch UI**.
+
+Examples:
+
+> “Show me something less flashy.”
+
+> “Which one is the best value?”
+
+> “Show me something I can wear again.”
+
+The system should re-rank the user's existing Wishlist based on the new request.
+
+It should NOT simply return random products.
+
+---
+
+# 7. PRODUCT DETAIL
+
+Use the Stitch product-detail UI.
+
+Make it functional:
+
+- Product information
+- Image/gallery interaction if present
+- Size selection
+- Wishlist
+- Add to Bag
+- Buy Now
+
+The selected product must remain consistent with the recommendation the user clicked.
+
+---
+
+# DATA
+
+For the MVP, use local/mock product data.
+
+Create enough realistic products to make the experience convincing.
+
+The Wishlist should contain approximately 15–25 products across categories.
+
+Each product should have structured metadata so recommendation scoring is meaningful.
+
+---
+
+# ARCHITECTURE
+
+Keep the application modular.
+
+Separate:
+
+- Product data
+- Wishlist state
+- User intent
+- AI/question logic
+- Recommendation/ranking logic
+- UI components
+
+The AI/recommendation layer should be designed so a real LLM/API can be connected later without rebuilding the UI.
+
+---
+
+# DEVELOPMENT PRIORITY
+
+Build in this order:
+
+1. Reproduce the Stitch UI accurately.
+2. Make navigation functional.
+3. Implement Wishlist state.
+4. Implement Build Wishlist flow.
+5. Implement AI question/state logic.
+6. Implement recommendation ranking.
+7. Implement AI refinement.
+8. Implement product detail and purchase actions.
+9. Test the complete flow.
+
+---
+
+# FINAL TEST
+
+The complete application must support this journey:
+
+**Home**
+→ **Browse**
+→ **Wishlist**
+→ **Build Wishlist**
+→ **Describe Need**
+→ **Answer AI Questions**
+→ **Top 5 Wishlist Recommendations**
+→ **Ask AI / Refine**
+→ **Product Detail**
+→ **Add to Bag / Buy Now**
+
+Before considering the MVP complete, run the application and test the entire journey yourself.
+
+Compare every screen against the provided Stitch UI and correct any visual deviations.
+
+### Final objective
+
+

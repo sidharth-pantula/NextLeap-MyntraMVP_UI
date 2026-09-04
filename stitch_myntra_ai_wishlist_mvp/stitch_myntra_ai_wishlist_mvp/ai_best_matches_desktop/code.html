@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Your Best Matches - Myntra AI</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#e7deff",
+                        "surface-variant": "#dee2ef",
+                        "on-secondary-fixed-variant": "#42465a",
+                        "primary-container": "#df2457",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#4b07d1",
+                        "on-surface-variant": "#5b4042",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "surface-container-low": "#f0f3ff",
+                        "inverse-primary": "#ffb2ba",
+                        "on-secondary-container": "#5e6177",
+                        "ai-gradient-start": "#7952FF",
+                        "surface-container-high": "#e4e8f5",
+                        "tertiary": "#6134e6",
+                        "background": "#f9f9ff",
+                        "surface-dim": "#d5dae7",
+                        "on-background": "#171c25",
+                        "inverse-surface": "#2b313a",
+                        "ai-gradient-end": "#FF3F6C",
+                        "primary-fixed-dim": "#ffb2ba",
+                        "mrp-strikethrough": "#94969F",
+                        "secondary-container": "#dbdef8",
+                        "surface-container-highest": "#dee2ef",
+                        "surface-container-lowest": "#ffffff",
+                        "success-green": "#03A685",
+                        "tertiary-container": "#7a53ff",
+                        "on-tertiary-container": "#fffbff",
+                        "on-secondary-fixed": "#161b2d",
+                        "tertiary-fixed-dim": "#cbbeff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#fffbff",
+                        "on-tertiary-fixed": "#1d0061",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#bd0043",
+                        "on-surface": "#171c25",
+                        "primary": "#b90041",
+                        "primary-fixed": "#ffd9dc",
+                        "surface-container": "#e9eefb",
+                        "on-primary-fixed-variant": "#910031",
+                        "bg-off-white": "#F5F5F6",
+                        "surface": "#f9f9ff",
+                        "secondary-fixed": "#dee1fa",
+                        "outline-variant": "#e3bdc0",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#ecf1fd",
+                        "secondary": "#5a5d73",
+                        "outline": "#8f6f72",
+                        "secondary-fixed-dim": "#c2c5de",
+                        "on-primary-fixed": "#400011"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "grid-margin-mobile": "16px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "gutter": "16px",
+                        "stack-xs": "4px",
+                        "stack-lg": "32px",
+                        "grid-margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "title-md": ["Hanken Grotesk"],
+                        "label-bold": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "price-mrp": ["Hanken Grotesk"],
+                        "price-main": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "price-mrp": ["13px", { "lineHeight": "1", "fontWeight": "400" }],
+                        "price-main": ["16px", { "lineHeight": "1", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .ai-glow {
+            box-shadow: 0 4px 24px rgba(121, 82, 255, 0.15);
+        }
+        /* Hide scrollbar for clean horizontal scrolling in refinement area if needed */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col relative pb-32">
+<!-- TopNavBar (Shared Component) -->
+<nav class="hidden md:flex fixed top-0 w-full z-50 justify-between items-center px-grid-margin-desktop h-16 bg-surface-container-lowest shadow-sm border-b border-surface-variant transition-all">
+<!-- Logo -->
+<div class="font-headline-lg font-black text-primary tracking-tight">
+            Myntra
+        </div>
+<!-- Links -->
+<div class="flex space-x-8 items-center h-full">
+<a class="text-secondary font-body-lg text-body-lg hover:text-primary transition-colors flex items-center h-full" href="#">Men</a>
+<a class="text-primary font-bold border-b-2 border-primary flex items-center h-full" href="#">Women</a>
+<a class="text-secondary font-body-lg text-body-lg hover:text-primary transition-colors flex items-center h-full" href="#">Kids</a>
+<a class="text-secondary font-body-lg text-body-lg hover:text-primary transition-colors flex items-center h-full" href="#">Home &amp; Living</a>
+<a class="text-secondary font-body-lg text-body-lg hover:text-primary transition-colors flex items-center h-full" href="#">Beauty</a>
+</div>
+<!-- Trailing Actions -->
+<div class="flex space-x-6 items-center">
+<button class="text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button class="text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 px-grid-margin-desktop max-w-[1280px] w-full mx-auto">
+<!-- Header Section -->
+<header class="mb-stack-lg flex flex-col items-start gap-stack-sm">
+<h1 class="font-display-lg text-on-surface">Your Best Matches</h1>
+<div class="inline-flex items-center gap-2 bg-tertiary-fixed text-on-tertiary-fixed-variant px-4 py-2 rounded-full font-label-bold ai-glow border border-tertiary-fixed-dim">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                Based on: Wedding • Elegant • ₹5,000–₹10,000
+            </div>
+</header>
+<!-- Bento Grid Layout for Matches -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Featured Top Match (Spans 12 cols, Horizontal Layout) -->
+<article class="col-span-12 bg-surface-container-lowest rounded-xl border border-surface-variant overflow-hidden flex flex-row group hover:shadow-lg transition-shadow duration-300">
+<!-- Image Side (3:4 Aspect Ratio Container) -->
+<div class="w-1/3 relative flex-shrink-0">
+<div class="w-full h-full min-h-[400px] bg-cover bg-center group-hover:scale-105 transition-transform duration-700" data-alt="A high-fashion editorial photograph of a stunning, elegant dusty rose wedding lehenga in a bright, modern studio setting. The lighting is soft and ethereal, creating a luminous glow that highlights the intricate silver embroidery and rich silk texture. The aesthetic is highly premium, reflecting a modern corporate e-commerce style with a crisp, clean background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBlEvY_zJCwMOZgnk4mQqpppPKMDJpLVjGNQoIfFMeCroviPY1op8CsOBY3VDAmE9hcbI8sWpTPuYktFwVe_FID1mcTaWNJmrj7NfKDVHDZWta8ap3x3RsVncnPQ7jbnYNCEh4QubY4ODr0nc23CEBCcsXUTEptCgVw_gm9X5r0JdoffnLuBcbbsjqa8yrNaPVtnDjOcM1pRW2TKMNI-laK52nuk7Ullukhd1gG921IjMSap9Yl2ade')"></div>
+<!-- AI Match Badge -->
+<div class="absolute top-4 left-4 bg-gradient-to-r from-ai-gradient-start to-ai-gradient-end text-on-primary px-3 py-1 rounded-full font-label-bold flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                        98% Match
+                    </div>
+</div>
+<!-- Content Side -->
+<div class="w-2/3 p-8 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-label-bold text-secondary uppercase tracking-wider mb-1">Manyavar Mohey</h3>
+<h2 class="font-headline-lg text-on-surface">Dusty Rose Embroidered Silk Lehenga</h2>
+</div>
+<button class="text-secondary hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[28px]">favorite</span>
+</button>
+</div>
+<div class="flex items-baseline gap-3 mb-6">
+<span class="font-price-main text-2xl text-on-surface">₹8,999</span>
+<span class="font-price-mrp text-mrp-strikethrough line-through">₹14,999</span>
+<span class="font-label-bold text-ai-gradient-end bg-primary-fixed px-2 py-0.5 rounded-sm">40% OFF</span>
+</div>
+<!-- Why this matches section -->
+<div class="bg-surface-container-low rounded-lg p-5 border border-surface-variant">
+<h4 class="font-title-md text-on-surface-variant mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">check_circle</span>
+                                Why this is your top match
+                            </h4>
+<ul class="space-y-3 font-body-lg text-on-surface-variant">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-success-green mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span><strong>Fits your budget perfectly:</strong> High quality within the ₹5k-10k range.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-success-green mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span><strong>Matches your style:</strong> Features the requested 'Elegant' minimalistic embroidery.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-success-green mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span><strong>Suitable for occasion:</strong> Classic silhouette ideal for a Wedding guest or ceremony.</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="mt-8">
+<button class="w-full bg-gradient-to-r from-ai-gradient-start to-ai-gradient-end text-on-primary font-title-md py-4 rounded-lg hover:opacity-90 transition-opacity flex justify-center items-center gap-2">
+<span class="material-symbols-outlined">shopping_bag</span>
+                            View Product Details
+                        </button>
+</div>
+</div>
+</article>
+<!-- Grid Matches (Rows 2, Columns 4 each) -->
+<!-- Card 2 -->
+<article class="col-span-4 bg-surface-container-lowest rounded-xl border border-surface-variant overflow-hidden flex flex-col group hover:shadow-lg transition-shadow duration-300">
+<div class="relative w-full aspect-[3/4] overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-700" data-alt="A high-fashion editorial photograph of a deep emerald green velvet gown on a model in a minimalist, well-lit studio. The lighting creates a luxurious sheen on the velvet fabric, emphasizing its premium quality. The overall mood is sophisticated and modern, fitting a high-end e-commerce aesthetic with a crisp, light background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCLXIlzM2PhACCB5Y3yzFAPm0ufhWOCuBEQCDKMDm3nZJqB5Ysgn8clbDiqzlZ-qwQA5QkJWVkb0dJG5FYotCMq6595eHr5hIryeWPZyeptLMAPmxNiPfWDphweaX6GSZMKLYo90gG6gvSNU8lNHSeH2KT27GuHrkmQATFRKtk9Dw8JJcprRYSbQVYTVio6rcTvB7ElEdf-XmaFwwA1QFLIjnqq0AkUxsNESh7NkaWoPXAYeyGesa5g')"></div>
+<div class="absolute top-3 left-3 bg-gradient-to-r from-ai-gradient-start to-ai-gradient-end text-on-primary px-2.5 py-1 rounded-full font-label-bold flex items-center gap-1 shadow-sm text-[10px]">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                        94% Match
+                    </div>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<h3 class="font-label-bold text-secondary uppercase tracking-wider mb-1 text-[10px]">Biba</h3>
+<h2 class="font-title-md text-on-surface line-clamp-1 mb-2 text-base">Emerald Velvet Evening Gown</h2>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-price-main text-lg text-on-surface">₹7,450</span>
+<span class="font-price-mrp text-mrp-strikethrough line-through">₹10,500</span>
+</div>
+<div class="bg-surface-container-low rounded-md p-3 mb-4 flex-grow">
+<p class="font-label-bold text-on-surface-variant mb-2">Why it matches:</p>
+<ul class="space-y-1.5 font-body-sm text-on-surface-variant text-[13px]">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-success-green text-[14px]">check</span> Elegant drape</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-success-green text-[14px]">check</span> Wedding reception appropriate</li>
+</ul>
+</div>
+<button class="w-full bg-surface-variant text-on-surface font-title-md py-2.5 rounded hover:bg-surface-dim transition-colors text-sm">
+                        View Product
+                    </button>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="col-span-4 bg-surface-container-lowest rounded-xl border border-surface-variant overflow-hidden flex flex-col group hover:shadow-lg transition-shadow duration-300">
+<div class="relative w-full aspect-[3/4] overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-700" data-alt="A high-fashion editorial photograph of a pastel peach georgette saree featuring delicate pearl embellishments. The setting is a bright, modern studio with soft, diffused lighting that casts a gentle glow on the flowing fabric. The aesthetic is ethereal, elegant, and premium, perfectly suited for a modern fashion e-commerce platform." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAB4bxeYqOtZhFmoTcKcC2ZIgzxXetmVyK1V_AF_orrUZzkVWZoJIo_tB7wDLYoCe5ipfqjTszCXWlqqu1VEtPBYuNtEjD-dcc4KRIAF7libQ_KVEbsmFVwF8fPC7WnokvAjNi4n2n_6GtEAp0gWahTOSKcYfZ_SlJDhPIu_aughBp8DY0FARi3pmmFLV3MT1K8MxPhgKGlYOjl3L_bpcogT6AjdRsh8_DT6C5Q56SgMsWOVp6G_3EN')"></div>
+<div class="absolute top-3 left-3 bg-gradient-to-r from-ai-gradient-start to-ai-gradient-end text-on-primary px-2.5 py-1 rounded-full font-label-bold flex items-center gap-1 shadow-sm text-[10px]">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                        91% Match
+                    </div>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<h3 class="font-label-bold text-secondary uppercase tracking-wider mb-1 text-[10px]">Kalki Fashion</h3>
+<h2 class="font-title-md text-on-surface line-clamp-1 mb-2 text-base">Peach Pearl Embellished Saree</h2>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-price-main text-lg text-on-surface">₹9,200</span>
+<span class="font-price-mrp text-mrp-strikethrough line-through">₹12,000</span>
+</div>
+<div class="bg-surface-container-low rounded-md p-3 mb-4 flex-grow">
+<p class="font-label-bold text-on-surface-variant mb-2">Why it matches:</p>
+<ul class="space-y-1.5 font-body-sm text-on-surface-variant text-[13px]">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-success-green text-[14px]">check</span> Pastel elegance trend</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-success-green text-[14px]">check</span> Premium fabric selection</li>
+</ul>
+</div>
+<button class="w-full bg-surface-variant text-on-surface font-title-md py-2.5 rounded hover:bg-surface-dim transition-colors text-sm">
+                        View Product
+                    </button>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="col-span-4 bg-surface-container-lowest rounded-xl border border-surface-variant overflow-hidden flex flex-col group hover:shadow-lg transition-shadow duration-300">
+<div class="relative w-full aspect-[3/4] overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-700" data-alt="A high-fashion editorial photograph of an ivory silk Anarkali suit with subtle gold zari work, styled on a model in a crisp, modern studio environment. The high-key lighting accentuates the clean lines and rich texture of the silk. The overall visual tone is sophisticated, luxurious, and perfectly aligned with a premium e-commerce aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAg6rR9vSMIPVKhhmgrLZfWwgxXpRAuRD8hJk6kx0JiiXJwCs5P4S6fB_O04Wq4kiVyEzx8XtPJmq9imx1xd0ui6yD073mX7ZbldOje7JN60Ez8jSJl2uXIgpqVmT3B2DHHTNCwzak8sL90yZqwAuHT7R9VsDl37GrWQnn-vMSgCZDWL02F8wD9WnN1m4jUBt5bKh8EpsNvuOUOB2TlcUehf_ERmxXiL3WtNjnnDGNR_2OHSfn2k__A')"></div>
+<div class="absolute top-3 left-3 bg-gradient-to-r from-ai-gradient-start to-ai-gradient-end text-on-primary px-2.5 py-1 rounded-full font-label-bold flex items-center gap-1 shadow-sm text-[10px]">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                        88% Match
+                    </div>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<h3 class="font-label-bold text-secondary uppercase tracking-wider mb-1 text-[10px]">Ritu Kumar</h3>
+<h2 class="font-title-md text-on-surface line-clamp-1 mb-2 text-base">Ivory Silk Zari Anarkali</h2>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-price-main text-lg text-on-surface">₹6,800</span>
+<span class="font-price-mrp text-mrp-strikethrough line-through">₹9,990</span>
+</div>
+<div class="bg-surface-container-low rounded-md p-3 mb-4 flex-grow">
+<p class="font-label-bold text-on-surface-variant mb-2">Why it matches:</p>
+<ul class="space-y-1.5 font-body-sm text-on-surface-variant text-[13px]">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-success-green text-[14px]">check</span> Classic wedding daywear</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-success-green text-[14px]">check</span> Great value in budget</li>
+</ul>
+</div>
+<button class="w-full bg-surface-variant text-on-surface font-title-md py-2.5 rounded hover:bg-surface-dim transition-colors text-sm">
+                        View Product
+                    </button>
+</div>
+</article>
+</div>
+</main>
+<!-- AI Refinement Footer (Sticky Bottom) -->
+<div class="fixed bottom-0 left-0 w-full z-40 px-grid-margin-desktop pb-6 pt-10 pointer-events-none flex justify-center">
+<!-- Gradient fade to hide content behind the bar nicely -->
+<div class="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-surface via-surface/90 to-transparent -z-10"></div>
+<div class="glass-panel w-full max-w-[900px] rounded-2xl border border-surface-variant p-5 shadow-[0_8px_32px_rgba(0,0,0,0.08)] pointer-events-auto flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-ai-gradient-start" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-title-md text-on-surface">Ask AI to refine</span>
+</div>
+<!-- Chips -->
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-1">
+<button class="flex-shrink-0 border border-outline-variant bg-surface-container-lowest rounded-full px-4 py-2 font-label-bold text-on-surface-variant hover:border-primary hover:text-primary transition-colors">
+                    Show me something less flashy
+                </button>
+<button class="flex-shrink-0 border border-outline-variant bg-surface-container-lowest rounded-full px-4 py-2 font-label-bold text-on-surface-variant hover:border-primary hover:text-primary transition-colors">
+                    Find best value
+                </button>
+<button class="flex-shrink-0 border border-outline-variant bg-surface-container-lowest rounded-full px-4 py-2 font-label-bold text-on-surface-variant hover:border-primary hover:text-primary transition-colors">
+                    Change to pastel colors
+                </button>
+<button class="flex-shrink-0 border border-outline-variant bg-surface-container-lowest rounded-full px-4 py-2 font-label-bold text-on-surface-variant hover:border-primary hover:text-primary transition-colors">
+                    Add matching jewelry
+                </button>
+</div>
+<!-- Text Input -->
+<div class="relative w-full mt-2">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-full pl-5 pr-14 py-3 font-body-lg text-on-surface focus:border-ai-gradient-start focus:ring-1 focus:ring-ai-gradient-start outline-none transition-all shadow-inner" placeholder="Or type what you're looking for... e.g., 'needs to have long sleeves'" type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 bg-surface-container-highest rounded-full p-2 text-on-surface hover:text-ai-gradient-start transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

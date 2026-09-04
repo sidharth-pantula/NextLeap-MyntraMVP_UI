@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Myntra Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#e7deff",
+                        "surface-variant": "#dee2ef",
+                        "on-secondary-fixed-variant": "#42465a",
+                        "primary-container": "#df2457",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#4b07d1",
+                        "on-surface-variant": "#5b4042",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "surface-container-low": "#f0f3ff",
+                        "inverse-primary": "#ffb2ba",
+                        "on-secondary-container": "#5e6177",
+                        "ai-gradient-start": "#7952FF",
+                        "surface-container-high": "#e4e8f5",
+                        "tertiary": "#6134e6",
+                        "background": "#f9f9ff",
+                        "surface-dim": "#d5dae7",
+                        "on-background": "#171c25",
+                        "inverse-surface": "#2b313a",
+                        "ai-gradient-end": "#FF3F6C",
+                        "primary-fixed-dim": "#ffb2ba",
+                        "mrp-strikethrough": "#94969F",
+                        "secondary-container": "#dbdef8",
+                        "surface-container-highest": "#dee2ef",
+                        "surface-container-lowest": "#ffffff",
+                        "success-green": "#03A685",
+                        "tertiary-container": "#7a53ff",
+                        "on-tertiary-container": "#fffbff",
+                        "on-secondary-fixed": "#161b2d",
+                        "tertiary-fixed-dim": "#cbbeff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#fffbff",
+                        "on-tertiary-fixed": "#1d0061",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#bd0043",
+                        "on-surface": "#171c25",
+                        "primary": "#b90041",
+                        "primary-fixed": "#ffd9dc",
+                        "surface-container": "#e9eefb",
+                        "on-primary-fixed-variant": "#910031",
+                        "bg-off-white": "#F5F5F6",
+                        "surface": "#f9f9ff",
+                        "secondary-fixed": "#dee1fa",
+                        "outline-variant": "#e3bdc0",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#ecf1fd",
+                        "secondary": "#5a5d73",
+                        "outline": "#8f6f72",
+                        "secondary-fixed-dim": "#c2c5de",
+                        "on-primary-fixed": "#400011"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "grid-margin-mobile": "16px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "gutter": "16px",
+                        "stack-xs": "4px",
+                        "stack-lg": "32px",
+                        "grid-margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "title-md": ["Hanken Grotesk"],
+                        "label-bold": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "price-mrp": ["Hanken Grotesk"],
+                        "price-main": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "price-mrp": ["13px", { "lineHeight": "1", "fontWeight": "400" }],
+                        "price-main": ["16px", { "lineHeight": "1", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .glass-overlay { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .text-gradient { background: linear-gradient(90deg, #7952FF, #FF3F6C); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased pt-16 md:pt-20">
+<!-- TopNav - Desktop only for full layout based on instructions, mobile uses bottom nav generally -->
+<nav class="hidden md:flex fixed top-0 w-full z-50 justify-between items-center px-4 md:px-10 h-20 bg-surface-container-lowest shadow-sm border-b border-surface-variant transition-all duration-300" id="main-nav">
+<!-- Logo -->
+<div class="flex items-center">
+<span class="font-headline-lg text-headline-lg font-black text-primary tracking-tighter">Myntra</span>
+</div>
+<!-- Links -->
+<div class="hidden lg:flex space-x-8 items-center h-full">
+<a class="h-full flex items-center text-primary font-bold border-b-4 border-primary px-2 transition-colors" href="#">Men</a>
+<a class="h-full flex items-center text-secondary font-body-lg text-body-lg hover:text-primary transition-colors px-2" href="#">Women</a>
+<a class="h-full flex items-center text-secondary font-body-lg text-body-lg hover:text-primary transition-colors px-2" href="#">Kids</a>
+<a class="h-full flex items-center text-secondary font-body-lg text-body-lg hover:text-primary transition-colors px-2" href="#">Home &amp; Living</a>
+<a class="h-full flex items-center text-secondary font-body-lg text-body-lg hover:text-primary transition-colors px-2" href="#">Beauty</a>
+<a class="h-full flex items-center text-secondary font-body-lg text-body-lg hover:text-primary transition-colors px-2 group relative" href="#">
+                Studio <sup class="text-[10px] text-primary font-bold ml-1 absolute top-5 -right-4 group-hover:animate-pulse">NEW</sup>
+</a>
+</div>
+<!-- Search & Icons -->
+<div class="flex items-center space-x-6 w-full lg:w-auto justify-end">
+<div class="relative hidden md:block w-96 group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-container-low border border-surface-variant rounded-full py-2 pl-12 pr-4 text-body-sm font-body-sm focus:outline-none focus:border-primary focus:bg-white transition-all focus:shadow-[0_0_0_2px_rgba(185,0,65,0.1)]" placeholder="Search for products, brands and more" type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-tertiary cursor-pointer hover:scale-110 transition-transform">mic</span>
+</div>
+<div class="flex space-x-4 items-center">
+<button class="flex flex-col items-center group">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors">person</span>
+<span class="text-[10px] font-bold text-secondary group-hover:text-primary hidden xl:block">Profile</span>
+</button>
+<button class="flex flex-col items-center group relative">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors">favorite</span>
+<span class="text-[10px] font-bold text-secondary group-hover:text-primary hidden xl:block">Wishlist</span>
+<span class="absolute -top-1 -right-1 bg-primary text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+</button>
+<button class="flex flex-col items-center group relative">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors" data-weight="fill">shopping_bag</span>
+<span class="text-[10px] font-bold text-secondary group-hover:text-primary hidden xl:block">Bag</span>
+<span class="absolute -top-1 -right-1 bg-primary text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">1</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Mobile Nav Header (simplified) -->
+<nav class="md:hidden fixed top-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-surface-container-lowest shadow-sm border-b border-surface-variant">
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-secondary">menu</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-black text-primary">Myntra</span>
+</div>
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-secondary">search</span>
+<span class="material-symbols-outlined text-secondary">favorite</span>
+<span class="material-symbols-outlined text-secondary">shopping_bag</span>
+</div>
+</nav>
+<main class="max-w-[1280px] mx-auto px-4 md:px-10 pb-24">
+<!-- Hero Promo Banner -->
+<section class="mt-8 mb-12 relative rounded-xl overflow-hidden shadow-sm group cursor-pointer h-[400px] md:h-[500px]">
+<div class="bg-cover bg-center w-full h-full absolute inset-0 transform group-hover:scale-105 transition-transform duration-700" data-alt="A high-fashion editorial banner for an e-commerce fashion sale. A diverse group of stylish models wearing vibrant, trendy summer streetwear walking confidently. Bright, studio lighting, bold pink and white typography overlay. Premium, vibrant, energetic modern corporate style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFSJYeIeulVXVSGfQHA1C8PRUjcMmcY6Wda02XVUmzXGnxwCMkfrkEb2QHS6klaen7ChO09lmjnKh7ndePhqSpST3R-YdZW0-i8MeuOLwV-BBaBwv8LXpEaUjK7SPJPatAEoaR3zWqe4f5aWJsCs4dgb0GTWuKp6t7HnSREBxfdlmHwP9JTJbhj6DIL8ZleLYWIAQ3dzUHW1CWSe9aZNwydDou_uBNqNPiES2Mp_0iZskfbIRVbX7i')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center">
+<div class="p-8 md:p-16 text-left w-full md:w-2/3 lg:w-1/2">
+<span class="inline-block px-3 py-1 bg-primary text-white font-label-bold text-label-bold uppercase tracking-widest rounded mb-4 shadow-sm animate-pulse">Biggest Sale of the Year</span>
+<h1 class="font-display-lg text-display-lg text-white mb-2 leading-tight">End of Reason <br/><span class="text-[#FF3F6C] drop-shadow-md">SALE</span></h1>
+<p class="text-white text-title-md font-title-md mb-6 opacity-90">50-80% OFF on Top Brands</p>
+<button class="bg-white text-primary font-bold py-3 px-8 rounded flex items-center space-x-2 hover:bg-bg-off-white transition-colors shadow-md">
+<span>Shop Now</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Trending Categories (Horizontal Scroll) -->
+<section class="mb-16">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-6 uppercase tracking-wider text-center md:text-left">Shop by Category</h2>
+<div class="flex overflow-x-auto space-x-4 md:space-x-6 pb-4 hide-scrollbar snap-x">
+<!-- Category Item 1 -->
+<div class="snap-start shrink-0 w-32 md:w-48 group cursor-pointer">
+<div class="w-full aspect-square rounded-full overflow-hidden mb-3 border-2 border-transparent group-hover:border-primary transition-colors p-1">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="Close up of trendy men's casual wear, a stylish denim jacket and white t-shirt. Bright lighting, clean white background, modern corporate e-commerce style, vibrant colors." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA3B5s235tyDKYAcv5gfvHn5xrzHnQNokSJqL-bjhDl51i66pjYX-tkUv78y_wT4lqXLlVrumC-uoSQJpAegK60Wp3ZrA304znWtOukX1YSWlnTsdhPOLgoNEOLLFDtft6rDNh8BITU_CTcHAKWUKLYlSLic5bH7u7M_Kkf_n9aDXXaxNHHsua-B-IHDcLfI5Nqqma03B2VfYhDXxFfOwD2HK8zRyFlOl5jyzoox6_mNwu8AiGyLsV_')"></div>
+</div>
+<p class="text-center font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors">Men's Casuals</p>
+</div>
+<!-- Category Item 2 -->
+<div class="snap-start shrink-0 w-32 md:w-48 group cursor-pointer">
+<div class="w-full aspect-square rounded-full overflow-hidden mb-3 border-2 border-transparent group-hover:border-primary transition-colors p-1">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="Elegant women's ethnic wear, a beautifully embroidered kurti. Soft, warm lighting, clean studio background, modern corporate e-commerce style, premium look." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-OixsJTAGjlOT8MMJd4fsvUyR4OVAZL8CbFB3KShnf0fNPfu5grC9qUFNeZ4-NGPbWnp9CNQVIp2zAy3Hx5SXpi3QY4LirLaNPhYuZIw2BKlVTY7s_Lxu5zPqkr3VWkcJFKGfyVNl8Ry8RyhVLXM3Bz2UPnrtI85auKxJbIsMe3_ylPR5w0IhFa0lcGgba6bVX0nilVXSayPDHfqPjSJ1zVdTn7I7bBOQbhkvjhlyZz5Z-FyOa3hy')"></div>
+</div>
+<p class="text-center font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors">Ethnic Wear</p>
+</div>
+<!-- Category Item 3 -->
+<div class="snap-start shrink-0 w-32 md:w-48 group cursor-pointer">
+<div class="w-full aspect-square rounded-full overflow-hidden mb-3 border-2 border-transparent group-hover:border-primary transition-colors p-1">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="High quality athletic running shoes in vibrant neon colors floating slightly. Clean minimal background, high contrast lighting, modern corporate e-commerce style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAZv5fpmJ2gxyC3yk1rFWFgjtBpHYeVa4I5xI1kH8xu6mZ9k9wtSlzKa17irODYyeP4dHaWwCBtLKHwfTzXcLnqRgXha3UnRJUOg7puUeO-q-5EMwTRnuVZys4P61kec1dYPc1KY-VxN88DpGUbjErxoIAUXG1sEtW3zgOrA5qc8vHNlcHeRJK-6ID6Qb55ljqKgM6PcefEiQ8NGG5yeXWDA4zzrzU1_MunA4cU90oUq7r8_XEj47Fi')"></div>
+</div>
+<p class="text-center font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors">Footwear</p>
+</div>
+<!-- Category Item 4 -->
+<div class="snap-start shrink-0 w-32 md:w-48 group cursor-pointer">
+<div class="w-full aspect-square rounded-full overflow-hidden mb-3 border-2 border-transparent group-hover:border-primary transition-colors p-1">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="A curated collection of premium skincare products, glass bottles with soft pink and white tones. Professional product photography, modern corporate e-commerce style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAOZiTCqlXomuyn10dIqfhAV3dSEcm4_d5t8UCfYDsLnchAtYfzQd6J6sC3aB7qNiW9gSQvbt5ifvV11ltnd1DJhHTnE6pk7f-peEl6ByMcXwFTjebAggIOTucVW2MzZ7dPzAAsiGhUkrCN1HfxjN_GHRcobkQ3irGR0d_g9O8Uchc7m-BL9wVRYf5g3hyYoZHl_OciFJn3DpYZNxNMib2j7dpJGptTPj0gw_lfE-hI5ToYw-3q5EsT')"></div>
+</div>
+<p class="text-center font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors">Beauty &amp; Makeup</p>
+</div>
+<!-- Category Item 5 -->
+<div class="snap-start shrink-0 w-32 md:w-48 group cursor-pointer">
+<div class="w-full aspect-square rounded-full overflow-hidden mb-3 border-2 border-transparent group-hover:border-primary transition-colors p-1">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="A stylish modern living room corner with a yellow armchair, green plant, and minimalist lamp. Warm inviting lighting, modern corporate e-commerce style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAvC9UKyNnMZ3qm_a05Mq6q7PXQZWXhrQ0Hnp5RjMpuHqU1zSerWQUuhyn3C6r3EouFYJTnCL8KJXD77d6G36j3pzIHgVlZlbS2pYG_bhzzH9g8R6WNe2x4e53zEa4anfcA6ViL3sJpQQsqneA3loeMZS09pWBK6b4uZa2MI-fKnzQKpE65UYmvaEjiT7sZIMsEo0GjYGuzEtLrzwsQkwerhV1w1_FpV0ukcoTz_pgTks0j6wlYgZGk')"></div>
+</div>
+<p class="text-center font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors">Home Decor</p>
+</div>
+<!-- Category Item 6 -->
+<div class="snap-start shrink-0 w-32 md:w-48 group cursor-pointer">
+<div class="w-full aspect-square rounded-full overflow-hidden mb-3 border-2 border-transparent group-hover:border-primary transition-colors p-1 relative">
+<div class="absolute inset-0 bg-gradient-to-tr from-ai-gradient-start/20 to-ai-gradient-end/20 z-10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-white shadow-sm drop-shadow-md">auto_awesome</span>
+</div>
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="Abstract soft glowing gradient shapes in purple and pink representing AI discovery. Modern, premium, luminous layers style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBoDfefIhbqmkxUEwl2i8nPrm0v03coZzY6-BC5qNnQPyaP2rwpbch74BYLhQM0FNJDAPsh8U0uhoeAecPExhPm0jQ32SU06qQWK_G0f7FSHRUErpgghAtMYIdg-0Y7HybOAinmWBQZsIpytzmZ_eiTnCB1LLQOuGa2-_XstwEBANEmLj8vaMxu8JetJn25WvEVEl-MoA7YTHWU1E7aidzpBnhRxKl1RCVSQBOAUnOp7dtvdMOahmIW')"></div>
+</div>
+<p class="text-center font-title-md text-title-md text-gradient font-bold">AI Match</p>
+</div>
+</div>
+</section>
+<!-- Product Grid (4 Columns) -->
+<section>
+<div class="flex justify-between items-end mb-6">
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-wider">Recommended For You</h2>
+<a class="text-primary font-title-md text-title-md hover:underline hidden md:block" href="#">View All</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+<!-- Product Card 1 -->
+<div class="group flex flex-col relative bg-surface-container-lowest border border-transparent hover:border-surface-variant hover:shadow-lg transition-all duration-300 rounded overflow-hidden">
+<div class="relative aspect-[3/4] w-full overflow-hidden bg-bg-off-white">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" data-alt="A man modeling a crisp white linen button-down shirt paired with beige chinos. Standing in a bright, modern studio. High-end e-commerce fashion photography, clean white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7C3Iwc0DtKgJEeAuopnIjLgAlu3ADQP7BhBPJGu92gRMhtUxnwYSQv0HzA5kdy_MAapZoLEuVbGK36FrSIEwxrUJ5ECJEXym98MAbZQrJRoBt7zgp3WNObpBE2tjW3PiePwDKf_j0bVmwiX-6zOo9sQ6Nx221-aqZ0cmY0wXQJ4Qyhlb6ZYSbyR0VdIH39ItV-ehgZ_VL8Z_CnWuxKRK96a8RCJshMOk1XxwuDdzRYguhMhLfGfJ3"/>
+<div class="absolute top-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1 flex items-center space-x-1 rounded text-[10px] font-bold shadow-sm">
+<span>4.2</span><span class="material-symbols-outlined text-success-green text-[12px] font-bold" data-weight="fill">star</span><span class="text-secondary pl-1 border-l border-surface-variant">1.2k</span>
+</div>
+<button class="absolute top-2 right-2 p-1.5 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:text-primary transition-colors hover:scale-110 active:scale-95 z-10">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<!-- Hover Overlay -->
+<div class="absolute inset-x-0 bottom-0 p-3 bg-white/95 backdrop-blur-md translate-y-full group-hover:translate-y-0 transition-transform duration-300 border-t border-surface-variant flex gap-2">
+<button class="flex-1 bg-white border border-surface-variant text-on-surface py-2 font-label-bold text-label-bold text-center hover:border-primary transition-colors rounded">WISH</button>
+</div>
+</div>
+<div class="p-3 flex-1 flex flex-col bg-white z-20">
+<h3 class="font-bold text-on-surface text-body-lg truncate">HIGHLANDER</h3>
+<p class="text-secondary text-body-sm font-body-sm truncate mb-2 font-light">Men White Casual Shirt</p>
+<div class="mt-auto flex items-baseline space-x-2 flex-wrap">
+<span class="font-price-main text-price-main text-on-surface">Rs. 899</span>
+<span class="font-price-mrp text-price-mrp text-mrp-strikethrough line-through">Rs. 1999</span>
+<span class="font-label-bold text-[10px] text-success-green uppercase tracking-wide">(55% OFF)</span>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group flex flex-col relative bg-surface-container-lowest border border-transparent hover:border-surface-variant hover:shadow-lg transition-all duration-300 rounded overflow-hidden">
+<div class="relative aspect-[3/4] w-full overflow-hidden bg-bg-off-white">
+<div class="absolute top-2 left-0 bg-primary-container text-white px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider z-10 rounded-r">Bestseller</div>
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" data-alt="A trendy casual olive green women's jumpsuit with a tie waist. The model is posing dynamically in a brightly lit studio. Premium modern e-commerce style, vibrant and crisp." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVmd3Go_JYRSe65CwSrGBvDhovKPmeMbQZYhsorC_rkK_4XF2o-LwoIbyT9mE1y111f_Ks4kZrFjQqgEvUM-4kh9uZW2L8qP-BIQAxu3M9PKFMvYGW8YVSLllz1X1jghjYdVXMtOBBY0ruwR2NsOD0sIFa2ePLXz8VIt2j0GoZQa539mnWvbQR12iJrmwd9CijZy7JsSwL0B9BLNmsZWc6DhpkTY5LU-NCqQb3bwJZKRYwR_01hlhn"/>
+<button class="absolute top-2 right-2 p-1.5 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:text-primary transition-colors hover:scale-110 active:scale-95 z-10">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="absolute inset-x-0 bottom-0 p-3 bg-white/95 backdrop-blur-md translate-y-full group-hover:translate-y-0 transition-transform duration-300 border-t border-surface-variant flex gap-2">
+<button class="flex-1 bg-white border border-surface-variant text-on-surface py-2 font-label-bold text-label-bold text-center hover:border-primary transition-colors rounded">WISH</button>
+</div>
+</div>
+<div class="p-3 flex-1 flex flex-col bg-white z-20">
+<h3 class="font-bold text-on-surface text-body-lg truncate">FableStreet</h3>
+<p class="text-secondary text-body-sm font-body-sm truncate mb-2 font-light">Olive Green Solid Jumpsuit</p>
+<div class="mt-auto flex items-baseline space-x-2 flex-wrap">
+<span class="font-price-main text-price-main text-on-surface">Rs. 1499</span>
+<span class="font-price-mrp text-price-mrp text-mrp-strikethrough line-through">Rs. 2999</span>
+<span class="font-label-bold text-[10px] text-success-green uppercase tracking-wide">(50% OFF)</span>
+</div>
+</div>
+</div>
+<!-- Product Card 3 (AI Accent) -->
+<div class="group flex flex-col relative bg-surface-container-lowest border border-transparent hover:border-tertiary-fixed hover:shadow-[0_4px_20px_rgba(121,82,255,0.15)] transition-all duration-300 rounded overflow-hidden">
+<div class="relative aspect-[3/4] w-full overflow-hidden bg-bg-off-white">
+<div class="absolute top-2 left-2 bg-gradient-to-r from-ai-gradient-start to-ai-gradient-end text-white px-2 py-1 rounded-full text-[10px] font-bold flex items-center space-x-1 z-10 shadow-sm">
+<span class="material-symbols-outlined text-[12px]">auto_awesome</span>
+<span>AI Match</span>
+</div>
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" data-alt="A stylish pair of men's dark wash slim fit jeans. Folded neatly on a minimalist white block pedestal. Soft directional lighting, modern premium editorial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFvDIss1mfET9xkCQdXcPTtnUecFyutc-3DObAxwEu5jkrVJKPwm2czq7_fLgNMyPfTKnz_svf3H0ZmPYQwFx01PNIUx4YZf5dBVOZo_ZFRQGDz-bzNIlrcq0d9NrWKE3WLyJeIkBz-9VT4Z-yMBB-n1dkllZV8dkDaLZ5vKOVy5qkA2bZj7_yMu4dlyc58XM6gjMu-hX3mmOGkOy26rD2Zh0hqSbOAEx6y-Sr8kRtnVp1ed3bOQhn"/>
+<button class="absolute top-2 right-2 p-1.5 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:text-primary transition-colors hover:scale-110 active:scale-95 z-10">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="absolute inset-x-0 bottom-0 p-3 bg-white/95 backdrop-blur-md translate-y-full group-hover:translate-y-0 transition-transform duration-300 border-t border-surface-variant flex gap-2">
+<button class="flex-1 bg-white border border-surface-variant text-on-surface py-2 font-label-bold text-label-bold text-center hover:border-primary transition-colors rounded">WISH</button>
+</div>
+</div>
+<div class="p-3 flex-1 flex flex-col bg-white z-20">
+<h3 class="font-bold text-on-surface text-body-lg truncate">Levis</h3>
+<p class="text-secondary text-body-sm font-body-sm truncate mb-2 font-light">Men Slim Fit Dark Wash Jeans</p>
+<div class="mt-auto flex items-baseline space-x-2 flex-wrap">
+<span class="font-price-main text-price-main text-on-surface">Rs. 2249</span>
+<span class="font-price-mrp text-price-mrp text-mrp-strikethrough line-through">Rs. 4499</span>
+<span class="font-label-bold text-[10px] text-success-green uppercase tracking-wide">(50% OFF)</span>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group flex flex-col relative bg-surface-container-lowest border border-transparent hover:border-surface-variant hover:shadow-lg transition-all duration-300 rounded overflow-hidden">
+<div class="relative aspect-[3/4] w-full overflow-hidden bg-bg-off-white">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" data-alt="A sleek black smartwatch with a silicone strap displayed on a subtle grey background with soft glowing highlights. Modern tech accessory photography, clean and premium." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU0omErBj-z09p-TXlfDWuFBYsYl9XQCF9bUciggS5N6e4_lbqzhFkuekhEpKwWhAMHfYS2WIhek6PMPFUx9UrL1H_CHyQhoA_f3BNZXIGeAO7TWs1laB3HEiAZJ6tB05E_i8FN4wnd2vw7XDcQIhvkIcNh1X-BMipoI0wzYkmXbMjKgeJDvoB-5pkP1R1X8eneCAIynszy6wz85NMHIgZ4n7ArD9ZuvHtkXAIeucgUlZjTW-UA3HI"/>
+<button class="absolute top-2 right-2 p-1.5 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:text-primary transition-colors hover:scale-110 active:scale-95 z-10">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="absolute inset-x-0 bottom-0 p-3 bg-white/95 backdrop-blur-md translate-y-full group-hover:translate-y-0 transition-transform duration-300 border-t border-surface-variant flex gap-2">
+<button class="flex-1 bg-white border border-surface-variant text-on-surface py-2 font-label-bold text-label-bold text-center hover:border-primary transition-colors rounded">WISH</button>
+</div>
+</div>
+<div class="p-3 flex-1 flex flex-col bg-white z-20">
+<h3 class="font-bold text-on-surface text-body-lg truncate">boAt</h3>
+<p class="text-secondary text-body-sm font-body-sm truncate mb-2 font-light">Wave Call Smart Watch</p>
+<div class="mt-auto flex items-baseline space-x-2 flex-wrap">
+<span class="font-price-main text-price-main text-on-surface">Rs. 1799</span>
+<span class="font-price-mrp text-price-mrp text-mrp-strikethrough line-through">Rs. 7990</span>
+<span class="font-label-bold text-[10px] text-success-green uppercase tracking-wide">(77% OFF)</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Nav Bar (Mobile only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center py-2 bg-surface-container-lowest shadow-[0_-4px_10px_rgba(0,0,0,0.05)] border-t border-surface-variant pb-safe">
+<a class="flex flex-col items-center justify-center text-primary group active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined group-hover:bg-surface-container-low rounded-full px-4 py-1" data-weight="fill">home</span>
+<span class="font-label-bold text-label-bold mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary group hover:text-primary active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined group-hover:bg-surface-container-low rounded-full px-4 py-1">category</span>
+<span class="font-label-bold text-[10px] mt-1 font-normal group-hover:font-bold">Categories</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary group hover:text-primary active:scale-95 transition-transform relative" href="#">
+<span class="material-symbols-outlined group-hover:bg-surface-container-low rounded-full px-4 py-1">play_circle</span>
+<span class="font-label-bold text-[10px] mt-1 font-normal group-hover:font-bold">Studio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary group hover:text-primary active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined group-hover:bg-surface-container-low rounded-full px-4 py-1">auto_awesome</span>
+<span class="font-label-bold text-[10px] mt-1 font-normal group-hover:font-bold">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary group hover:text-primary active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined group-hover:bg-surface-container-low rounded-full px-4 py-1">person</span>
+<span class="font-label-bold text-[10px] mt-1 font-normal group-hover:font-bold">Profile</span>
+</a>
+</nav>
+</body></html>

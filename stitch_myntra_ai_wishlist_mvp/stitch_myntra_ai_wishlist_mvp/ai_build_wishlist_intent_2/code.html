@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Myntra - Build Wishlist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#e7deff",
+                        "surface-variant": "#dee2ef",
+                        "on-secondary-fixed-variant": "#42465a",
+                        "primary-container": "#df2457",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#4b07d1",
+                        "on-surface-variant": "#5b4042",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "surface-container-low": "#f0f3ff",
+                        "inverse-primary": "#ffb2ba",
+                        "on-secondary-container": "#5e6177",
+                        "ai-gradient-start": "#7952FF",
+                        "surface-container-high": "#e4e8f5",
+                        "tertiary": "#6134e6",
+                        "background": "#f9f9ff",
+                        "surface-dim": "#d5dae7",
+                        "on-background": "#171c25",
+                        "inverse-surface": "#2b313a",
+                        "ai-gradient-end": "#FF3F6C",
+                        "primary-fixed-dim": "#ffb2ba",
+                        "mrp-strikethrough": "#94969F",
+                        "secondary-container": "#dbdef8",
+                        "surface-container-highest": "#dee2ef",
+                        "surface-container-lowest": "#ffffff",
+                        "success-green": "#03A685",
+                        "tertiary-container": "#7a53ff",
+                        "on-tertiary-container": "#fffbff",
+                        "on-secondary-fixed": "#161b2d",
+                        "tertiary-fixed-dim": "#cbbeff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#fffbff",
+                        "on-tertiary-fixed": "#1d0061",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#bd0043",
+                        "on-surface": "#171c25",
+                        "primary": "#b90041",
+                        "primary-fixed": "#ffd9dc",
+                        "surface-container": "#e9eefb",
+                        "on-primary-fixed-variant": "#910031",
+                        "bg-off-white": "#F5F5F6",
+                        "surface": "#f9f9ff",
+                        "secondary-fixed": "#dee1fa",
+                        "outline-variant": "#e3bdc0",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#ecf1fd",
+                        "secondary": "#5a5d73",
+                        "outline": "#8f6f72",
+                        "secondary-fixed-dim": "#c2c5de",
+                        "on-primary-fixed": "#400011"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "grid-margin-mobile": "16px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "gutter": "16px",
+                        "stack-xs": "4px",
+                        "stack-lg": "32px",
+                        "grid-margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "title-md": ["Hanken Grotesk"],
+                        "label-bold": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "price-mrp": ["Hanken Grotesk"],
+                        "price-main": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "price-mrp": ["13px", { "lineHeight": "1", "fontWeight": "400" }],
+                        "price-main": ["16px", { "lineHeight": "1", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: theme('colors.background');
+        }
+        .ai-gradient-text {
+            background: linear-gradient(90deg, theme('colors.ai-gradient-start'), theme('colors.ai-gradient-end'));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .ai-blur {
+            backdrop-filter: blur(12px);
+            background-color: rgba(249, 249, 255, 0.85); /* surface bright with opacity */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+<!-- Top Navigation (Suppressed - This is a focused flow) -->
+<!-- Main Canvas -->
+<main class="flex-grow flex items-center justify-center p-4 md:p-8">
+<!-- Focused Container -->
+<div class="w-full max-w-2xl bg-surface-container-lowest rounded-xl shadow-lg border border-surface-variant overflow-hidden relative">
+<!-- AI Decorative Header -->
+<div class="h-2 w-full bg-gradient-to-r from-ai-gradient-start to-ai-gradient-end absolute top-0 left-0"></div>
+<div class="p-8 md:p-12">
+<!-- Close Action (Temporary departure) -->
+<div class="flex justify-end mb-4">
+<button class="text-secondary hover:text-primary transition-colors focus:outline-none">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Header Content -->
+<div class="text-center mb-stack-lg">
+<div class="flex justify-center items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-ai-gradient-start text-[28px]" data-icon="auto_awesome" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">What are you shopping for?</h1>
+</div>
+<p class="font-body-lg text-body-lg text-secondary">Type it in your own words, or pick a quick option below to build your wishlist.</p>
+</div>
+<!-- Input Area -->
+<div class="mb-stack-lg relative">
+<textarea class="w-full h-32 p-4 font-body-lg text-body-lg text-on-surface bg-surface-container-low border border-surface-variant rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-secondary-fixed-dim" id="wishlist-input" placeholder="e.g. I need something for my friend's wedding..."></textarea>
+<!-- AI Hint / Sparkles -->
+<div class="absolute bottom-4 right-4 flex items-center gap-1 text-ai-gradient-start pointer-events-none opacity-50">
+<span class="font-label-bold text-label-bold uppercase">AI Match</span>
+</div>
+</div>
+<!-- Quick Select Chips -->
+<div class="mb-stack-lg">
+<p class="font-label-bold text-label-bold text-secondary uppercase mb-stack-sm tracking-wider">Quick Suggestions</p>
+<div class="flex flex-wrap gap-3">
+<!-- Chip 1 -->
+<button class="px-4 py-2 rounded-full border border-surface-variant bg-surface-container-lowest text-on-surface font-body-sm text-body-sm hover:border-primary hover:text-primary transition-all focus:outline-none">
+                            Wedding
+                        </button>
+<!-- Chip 2 -->
+<button class="px-4 py-2 rounded-full border border-surface-variant bg-surface-container-lowest text-on-surface font-body-sm text-body-sm hover:border-primary hover:text-primary transition-all focus:outline-none">
+                            Vacation
+                        </button>
+<!-- Chip 3 -->
+<button class="px-4 py-2 rounded-full border border-surface-variant bg-surface-container-lowest text-on-surface font-body-sm text-body-sm hover:border-primary hover:text-primary transition-all focus:outline-none">
+                            Work
+                        </button>
+<!-- Chip 4 -->
+<button class="px-4 py-2 rounded-full border border-surface-variant bg-surface-container-lowest text-on-surface font-body-sm text-body-sm hover:border-primary hover:text-primary transition-all focus:outline-none">
+                            Birthday / Gift
+                        </button>
+<!-- Chip 5 -->
+<button class="px-4 py-2 rounded-full border border-surface-variant bg-surface-container-lowest text-on-surface font-body-sm text-body-sm hover:border-primary hover:text-primary transition-all focus:outline-none">
+                            Party
+                        </button>
+<!-- Chip 6 -->
+<button class="px-4 py-2 rounded-full border border-surface-variant bg-surface-container-lowest text-on-surface font-body-sm text-body-sm hover:border-primary hover:text-primary transition-all focus:outline-none">
+                            Something else
+                        </button>
+</div>
+</div>
+<!-- Action Area -->
+<div class="mt-8 flex justify-end">
+<button class="bg-surface-variant text-secondary-fixed-dim font-title-md text-title-md py-3 px-8 rounded-lg cursor-not-allowed transition-all duration-300 w-full sm:w-auto" disabled="" id="continue-btn">
+                        Continue
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Nav (Suppressed - Task-Focused page) -->
+<script>
+        // Simple script to handle input and button state
+        const inputArea = document.getElementById('wishlist-input');
+        const continueBtn = document.getElementById('continue-btn');
+        const chips = document.querySelectorAll('button.rounded-full');
+
+        function updateButtonState() {
+            if (inputArea.value.trim().length > 0) {
+                continueBtn.disabled = false;
+                continueBtn.classList.remove('bg-surface-variant', 'text-secondary-fixed-dim', 'cursor-not-allowed');
+                continueBtn.classList.add('bg-[#FF3F6C]', 'text-on-primary', 'hover:bg-primary-container', 'shadow-md');
+            } else {
+                continueBtn.disabled = true;
+                continueBtn.classList.add('bg-surface-variant', 'text-secondary-fixed-dim', 'cursor-not-allowed');
+                continueBtn.classList.remove('bg-[#FF3F6C]', 'text-on-primary', 'hover:bg-primary-container', 'shadow-md');
+            }
+        }
+
+        inputArea.addEventListener('input', updateButtonState);
+
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                inputArea.value = chip.textContent.trim();
+                updateButtonState();
+                
+                // Visual feedback for chip selection
+                chips.forEach(c => {
+                    c.classList.remove('border-primary', 'text-primary', 'bg-primary-fixed');
+                    c.classList.add('border-surface-variant', 'bg-surface-container-lowest');
+                });
+                chip.classList.remove('border-surface-variant', 'bg-surface-container-lowest');
+                chip.classList.add('border-primary', 'text-primary', 'bg-primary-fixed');
+            });
+        });
+    </script>
+</body></html>

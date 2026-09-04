@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Myntra AI Personalization - Budget</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#cbbeff",
+                        "surface-variant": "#dee2ef",
+                        "primary-fixed": "#ffd9dc",
+                        "primary-fixed-dim": "#ffb2ba",
+                        "tertiary": "#6134e6",
+                        "success-green": "#03A685",
+                        "secondary": "#5a5d73",
+                        "on-primary-fixed": "#400011",
+                        "secondary-container": "#dbdef8",
+                        "bg-off-white": "#F5F5F6",
+                        "on-tertiary-fixed-variant": "#4b07d1",
+                        "on-secondary-container": "#5e6177",
+                        "ai-gradient-start": "#7952FF",
+                        "on-primary-container": "#fffbff",
+                        "error-container": "#ffdad6",
+                        "outline": "#8f6f72",
+                        "inverse-on-surface": "#ecf1fd",
+                        "outline-variant": "#e3bdc0",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#42465a",
+                        "surface-container": "#e9eefb",
+                        "primary-container": "#df2457",
+                        "surface-container-high": "#e4e8f5",
+                        "surface-tint": "#bd0043",
+                        "surface-container-highest": "#dee2ef",
+                        "surface-dim": "#d5dae7",
+                        "on-tertiary-fixed": "#1d0061",
+                        "tertiary-fixed": "#e7deff",
+                        "primary": "#b90041",
+                        "error": "#ba1a1a",
+                        "ai-gradient-end": "#FF3F6C",
+                        "secondary-fixed": "#dee1fa",
+                        "mrp-strikethrough": "#94969F",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f0f3ff",
+                        "secondary-fixed-dim": "#c2c5de",
+                        "on-tertiary-container": "#fffbff",
+                        "inverse-primary": "#ffb2ba",
+                        "inverse-surface": "#2b313a",
+                        "tertiary-container": "#7a53ff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#5b4042",
+                        "surface": "#f9f9ff",
+                        "on-background": "#171c25",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#161b2d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#171c25",
+                        "background": "#f9f9ff",
+                        "surface-bright": "#f9f9ff",
+                        "on-primary-fixed-variant": "#910031"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "grid-margin-desktop": "40px",
+                        "stack-md": "16px",
+                        "grid-margin-mobile": "16px",
+                        "stack-sm": "8px",
+                        "stack-xs": "4px",
+                        "stack-lg": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-bold": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "price-main": ["Hanken Grotesk"],
+                        "price-mrp": ["Hanken Grotesk"],
+                        "title-md": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "price-main": ["16px", { "lineHeight": "1", "fontWeight": "700" }],
+                        "price-mrp": ["13px", { "lineHeight": "1", "fontWeight": "400" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: theme('colors.bg-off-white');
+        }
+        .ai-glow {
+            box-shadow: 0 0 24px rgba(121, 82, 255, 0.15);
+        }
+        .ai-gradient-text {
+            background: linear-gradient(135deg, theme('colors.ai-gradient-start'), theme('colors.ai-gradient-end'));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Custom Radio Button Styles */
+        .budget-option input[type="radio"] {
+            display: none;
+        }
+        .budget-option label {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .budget-option input[type="radio"]:checked + label {
+            border-color: theme('colors.ai-gradient-end');
+            background-color: rgba(255, 63, 108, 0.05);
+            box-shadow: 0 0 0 1px theme('colors.ai-gradient-end');
+        }
+        .budget-option input[type="radio"]:checked + label .check-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
+<!-- Top Navigation (Suppressed for transactional intent, but keeping a minimal brand header for context) -->
+<header class="fixed top-0 w-full z-50 flex justify-center items-center px-4 h-16 bg-surface-container-lowest/80 backdrop-blur-md shadow-sm">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-black text-primary">Myntra</h1>
+</header>
+<main class="w-full max-w-[600px] mt-20 mb-32 flex flex-col gap-stack-lg relative z-10">
+<!-- Progress Indicator -->
+<div class="flex flex-col gap-stack-sm w-full">
+<div class="flex justify-between items-end">
+<span class="font-label-bold text-label-bold text-secondary uppercase tracking-wider">Step 3 of 4</span>
+<span class="font-label-bold text-label-bold text-ai-gradient-start flex items-center gap-1">
+<span class="material-symbols-outlined" style="font-size: 14px;">auto_awesome</span> AI Match
+                </span>
+</div>
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-ai-gradient-start to-ai-gradient-end w-3/4 rounded-full transition-all duration-500 ease-in-out"></div>
+</div>
+</div>
+<!-- Question Header -->
+<div class="text-center flex flex-col gap-stack-sm mt-stack-md">
+<h2 class="font-display-lg text-display-lg text-on-surface">What’s your budget?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">We'll tailor recommendations to fit your spending style.</p>
+</div>
+<!-- Options Form -->
+<form class="flex flex-col gap-stack-md mt-stack-md w-full" id="budgetForm">
+<div class="budget-option">
+<input id="budget1" name="budget" type="radio" value="under2k"/>
+<label class="glass-panel w-full rounded-xl p-6 flex items-center justify-between border-2 border-transparent hover:border-surface-dim group relative overflow-hidden" for="budget1">
+<div class="absolute inset-0 bg-gradient-to-r from-ai-gradient-start/5 to-ai-gradient-end/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="font-price-main text-price-main text-on-surface relative z-10 text-xl">Under ₹2,000</span>
+<div class="w-6 h-6 rounded-full border-2 border-surface-variant flex items-center justify-center relative z-10 bg-white">
+<span class="material-symbols-outlined check-icon text-ai-gradient-end opacity-0 transform scale-50 transition-all duration-300" style="font-size: 16px; font-weight: 800;">check</span>
+</div>
+</label>
+</div>
+<div class="budget-option">
+<input id="budget2" name="budget" type="radio" value="2kto5k"/>
+<label class="glass-panel w-full rounded-xl p-6 flex items-center justify-between border-2 border-transparent hover:border-surface-dim group relative overflow-hidden" for="budget2">
+<div class="absolute inset-0 bg-gradient-to-r from-ai-gradient-start/5 to-ai-gradient-end/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="font-price-main text-price-main text-on-surface relative z-10 text-xl">₹2,000 – ₹5,000</span>
+<div class="w-6 h-6 rounded-full border-2 border-surface-variant flex items-center justify-center relative z-10 bg-white">
+<span class="material-symbols-outlined check-icon text-ai-gradient-end opacity-0 transform scale-50 transition-all duration-300" style="font-size: 16px; font-weight: 800;">check</span>
+</div>
+</label>
+</div>
+<div class="budget-option">
+<input id="budget3" name="budget" type="radio" value="5kto10k"/>
+<label class="glass-panel w-full rounded-xl p-6 flex items-center justify-between border-2 border-transparent hover:border-surface-dim group relative overflow-hidden" for="budget3">
+<div class="absolute inset-0 bg-gradient-to-r from-ai-gradient-start/5 to-ai-gradient-end/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="font-price-main text-price-main text-on-surface relative z-10 text-xl">₹5,000 – ₹10,000</span>
+<div class="w-6 h-6 rounded-full border-2 border-surface-variant flex items-center justify-center relative z-10 bg-white">
+<span class="material-symbols-outlined check-icon text-ai-gradient-end opacity-0 transform scale-50 transition-all duration-300" style="font-size: 16px; font-weight: 800;">check</span>
+</div>
+</label>
+</div>
+<div class="budget-option">
+<input id="budget4" name="budget" type="radio" value="over10k"/>
+<label class="glass-panel w-full rounded-xl p-6 flex items-center justify-between border-2 border-transparent hover:border-surface-dim group relative overflow-hidden" for="budget4">
+<div class="absolute inset-0 bg-gradient-to-r from-ai-gradient-start/5 to-ai-gradient-end/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="font-price-main text-price-main text-on-surface relative z-10 text-xl">₹10,000+</span>
+<div class="w-6 h-6 rounded-full border-2 border-surface-variant flex items-center justify-center relative z-10 bg-white">
+<span class="material-symbols-outlined check-icon text-ai-gradient-end opacity-0 transform scale-50 transition-all duration-300" style="font-size: 16px; font-weight: 800;">check</span>
+</div>
+</label>
+</div>
+</form>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 w-full p-4 md:p-8 bg-surface-container-lowest/90 backdrop-blur-md border-t border-surface-variant z-50 flex justify-center">
+<div class="w-full max-w-[600px] flex gap-4">
+<button class="flex-1 py-4 px-6 rounded-DEFAULT bg-surface-variant text-on-surface font-title-md text-title-md hover:bg-surface-dim transition-colors" type="button">
+                Back
+            </button>
+<button class="flex-[2] py-4 px-6 rounded-DEFAULT bg-[#FF3F6C] text-white font-title-md text-title-md shadow-lg shadow-[#FF3F6C]/30 hover:bg-[#e02e5a] transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100" disabled="" id="continueBtn" type="button">
+                Continue
+            </button>
+</div>
+</div>
+<!-- Ambient Background Effects -->
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-ai-gradient-start/5 blur-[100px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-ai-gradient-end/5 blur-[120px]"></div>
+</div>
+<script>
+        const radioButtons = document.querySelectorAll('input[name="budget"]');
+        const continueBtn = document.getElementById('continueBtn');
+        const labels = document.querySelectorAll('.budget-option label');
+
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (document.querySelector('input[name="budget"]:checked')) {
+                    continueBtn.disabled = false;
+                }
+                
+                // Reset styles
+                labels.forEach(label => {
+                    label.classList.remove('ai-glow');
+                    label.querySelector('.check-icon').parentElement.classList.remove('border-ai-gradient-end', 'bg-ai-gradient-end/10');
+                    label.querySelector('.check-icon').parentElement.classList.add('border-surface-variant', 'bg-white');
+                });
+
+                // Apply active styles
+                if (radio.checked) {
+                    const activeLabel = radio.nextElementSibling;
+                    activeLabel.classList.add('ai-glow');
+                    const circle = activeLabel.querySelector('.check-icon').parentElement;
+                    circle.classList.remove('border-surface-variant', 'bg-white');
+                    circle.classList.add('border-ai-gradient-end', 'bg-ai-gradient-end/10');
+                }
+            });
+        });
+    </script>
+</body></html>

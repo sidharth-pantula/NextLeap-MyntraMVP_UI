@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>What's the occasion? - Myntra</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#cbbeff",
+                        "surface-variant": "#dee2ef",
+                        "primary-fixed": "#ffd9dc",
+                        "primary-fixed-dim": "#ffb2ba",
+                        "tertiary": "#6134e6",
+                        "success-green": "#03A685",
+                        "secondary": "#5a5d73",
+                        "on-primary-fixed": "#400011",
+                        "secondary-container": "#dbdef8",
+                        "bg-off-white": "#F5F5F6",
+                        "on-tertiary-fixed-variant": "#4b07d1",
+                        "on-secondary-container": "#5e6177",
+                        "ai-gradient-start": "#7952FF",
+                        "on-primary-container": "#fffbff",
+                        "error-container": "#ffdad6",
+                        "outline": "#8f6f72",
+                        "inverse-on-surface": "#ecf1fd",
+                        "outline-variant": "#e3bdc0",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#42465a",
+                        "surface-container": "#e9eefb",
+                        "primary-container": "#df2457",
+                        "surface-container-high": "#e4e8f5",
+                        "surface-tint": "#bd0043",
+                        "surface-container-highest": "#dee2ef",
+                        "surface-dim": "#d5dae7",
+                        "on-tertiary-fixed": "#1d0061",
+                        "tertiary-fixed": "#e7deff",
+                        "primary": "#b90041",
+                        "error": "#ba1a1a",
+                        "ai-gradient-end": "#FF3F6C",
+                        "secondary-fixed": "#dee1fa",
+                        "mrp-strikethrough": "#94969F",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f0f3ff",
+                        "secondary-fixed-dim": "#c2c5de",
+                        "on-tertiary-container": "#fffbff",
+                        "inverse-primary": "#ffb2ba",
+                        "inverse-surface": "#2b313a",
+                        "tertiary-container": "#7a53ff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#5b4042",
+                        "surface": "#f9f9ff",
+                        "on-background": "#171c25",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#161b2d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#171c25",
+                        "background": "#f9f9ff",
+                        "surface-bright": "#f9f9ff",
+                        "on-primary-fixed-variant": "#910031"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "grid-margin-desktop": "40px",
+                        "stack-md": "16px",
+                        "grid-margin-mobile": "16px",
+                        "stack-sm": "8px",
+                        "stack-xs": "4px",
+                        "stack-lg": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-bold": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "price-main": ["Hanken Grotesk"],
+                        "price-mrp": ["Hanken Grotesk"],
+                        "title-md": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "price-main": ["16px", { "lineHeight": "1", "fontWeight": "700" }],
+                        "price-mrp": ["13px", { "lineHeight": "1", "fontWeight": "400" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .ai-gradient-text {
+            background: linear-gradient(90deg, #7952FF, #FF3F6C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .option-card {
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+        
+        .option-card.selected {
+            border-color: #FF3F6C;
+            background-color: #f0f3ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(185, 0, 65, 0.1);
+        }
+        
+        .option-card:hover:not(.selected) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-color: #dee2ef;
+        }
+    </style>
+</head>
+<body class="h-full bg-surface-bright text-on-surface antialiased flex flex-col font-body-lg">
+<!-- Header -->
+<header class="fixed top-0 w-full z-50 glass-panel shadow-sm">
+<div class="max-w-[1280px] mx-auto px-grid-margin-mobile md:px-grid-margin-desktop h-16 flex items-center justify-between">
+<button class="flex items-center text-on-surface hover:text-primary transition-colors group">
+<span class="material-symbols-outlined text-[24px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
+<span class="ml-2 font-label-bold text-label-bold hidden md:inline">Back</span>
+</button>
+<div class="flex flex-col items-center flex-1">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg font-black text-on-surface">
+                    AI Match <span class="material-symbols-outlined text-primary text-[20px] align-middle">auto_awesome</span>
+</h1>
+</div>
+<div class="w-10 md:w-16"></div> <!-- Spacer for centering -->
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-variant h-1">
+<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="bg-primary h-1 w-1/4 transition-all duration-500 ease-out" role="progressbar"></div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col mt-20 px-grid-margin-mobile md:px-grid-margin-desktop max-w-[1280px] mx-auto w-full pb-32">
+<!-- Progress Indicator Text -->
+<div class="flex justify-between items-center mb-stack-lg mt-stack-md">
+<span class="font-label-bold text-label-bold text-secondary uppercase tracking-widest">Step 1 of 4</span>
+<span class="font-label-bold text-label-bold ai-gradient-text flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+                Personalizing
+            </span>
+</div>
+<!-- Question Section -->
+<div class="text-center mb-stack-lg max-w-2xl mx-auto">
+<h2 class="font-display-lg text-display-lg mb-stack-sm text-on-surface">What's the occasion?</h2>
+<p class="font-body-lg text-body-lg text-secondary">Select an event to help us tailor your AI recommendations.</p>
+</div>
+<!-- Options Grid -->
+<div class="grid grid-cols-2 md:grid-cols-3 gap-gutter max-w-4xl mx-auto w-full flex-1 content-start">
+<!-- Option 1: Wedding -->
+<button class="option-card bg-surface-container-lowest rounded-xl p-stack-md flex flex-col items-center justify-center gap-stack-sm aspect-square relative overflow-hidden group">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[32px] font-light">favorite</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Wedding</span>
+<!-- Selection Check -->
+<div class="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center opacity-0 scale-50 transition-all duration-200 check-icon">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</button>
+<!-- Option 2: Party -->
+<button class="option-card bg-surface-container-lowest rounded-xl p-stack-md flex flex-col items-center justify-center gap-stack-sm aspect-square relative overflow-hidden group selected">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[32px] font-light">celebration</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Party</span>
+<!-- Selection Check -->
+<div class="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center opacity-100 scale-100 transition-all duration-200 check-icon">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</button>
+<!-- Option 3: Work -->
+<button class="option-card bg-surface-container-lowest rounded-xl p-stack-md flex flex-col items-center justify-center gap-stack-sm aspect-square relative overflow-hidden group">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[32px] font-light">work</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Work</span>
+<!-- Selection Check -->
+<div class="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center opacity-0 scale-50 transition-all duration-200 check-icon">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</button>
+<!-- Option 4: Vacation -->
+<button class="option-card bg-surface-container-lowest rounded-xl p-stack-md flex flex-col items-center justify-center gap-stack-sm aspect-square relative overflow-hidden group">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[32px] font-light">flight_takeoff</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Vacation</span>
+<!-- Selection Check -->
+<div class="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center opacity-0 scale-50 transition-all duration-200 check-icon">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</button>
+<!-- Option 5: Casual -->
+<button class="option-card bg-surface-container-lowest rounded-xl p-stack-md flex flex-col items-center justify-center gap-stack-sm aspect-square relative overflow-hidden group">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[32px] font-light">coffee</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Casual</span>
+<!-- Selection Check -->
+<div class="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center opacity-0 scale-50 transition-all duration-200 check-icon">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</button>
+<!-- Option 6: Other -->
+<button class="option-card bg-surface-container-lowest rounded-xl p-stack-md flex flex-col items-center justify-center gap-stack-sm aspect-square relative overflow-hidden group">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[32px] font-light">more_horiz</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Other</span>
+<!-- Selection Check -->
+<div class="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center opacity-0 scale-50 transition-all duration-200 check-icon">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</button>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 w-full glass-panel border-t border-surface-variant p-grid-margin-mobile md:p-grid-margin-desktop md:py-stack-md z-50">
+<div class="max-w-[1280px] mx-auto flex justify-center">
+<button class="w-full md:w-auto md:min-w-[320px] bg-primary hover:bg-surface-tint text-on-primary font-title-md text-title-md py-4 px-8 rounded-full transition-all flex items-center justify-center gap-2 shadow-sm">
+                Continue
+                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<script>
+        // Simple script to handle selection logic for visual feedback
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.option-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // Deselect all
+                    cards.forEach(c => {
+                        c.classList.remove('selected');
+                        const check = c.querySelector('.check-icon');
+                        if(check) {
+                            check.classList.remove('opacity-100', 'scale-100');
+                            check.classList.add('opacity-0', 'scale-50');
+                        }
+                    });
+                    
+                    // Select clicked
+                    card.classList.add('selected');
+                    const check = card.querySelector('.check-icon');
+                    if(check) {
+                        check.classList.remove('opacity-0', 'scale-50');
+                        check.classList.add('opacity-100', 'scale-100');
+                    }
+                });
+            });
+        });
+    </script>
+</body></html>

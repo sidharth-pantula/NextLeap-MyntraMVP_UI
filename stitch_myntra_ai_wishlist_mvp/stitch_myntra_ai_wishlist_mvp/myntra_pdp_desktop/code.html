@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Myntra PDP - Elegant Evening Dress</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#e7deff",
+                        "surface-variant": "#dee2ef",
+                        "on-secondary-fixed-variant": "#42465a",
+                        "primary-container": "#df2457",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#4b07d1",
+                        "on-surface-variant": "#5b4042",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "surface-container-low": "#f0f3ff",
+                        "inverse-primary": "#ffb2ba",
+                        "on-secondary-container": "#5e6177",
+                        "ai-gradient-start": "#7952FF",
+                        "surface-container-high": "#e4e8f5",
+                        "tertiary": "#6134e6",
+                        "background": "#f9f9ff",
+                        "surface-dim": "#d5dae7",
+                        "on-background": "#171c25",
+                        "inverse-surface": "#2b313a",
+                        "ai-gradient-end": "#FF3F6C",
+                        "primary-fixed-dim": "#ffb2ba",
+                        "mrp-strikethrough": "#94969F",
+                        "secondary-container": "#dbdef8",
+                        "surface-container-highest": "#dee2ef",
+                        "surface-container-lowest": "#ffffff",
+                        "success-green": "#03A685",
+                        "tertiary-container": "#7a53ff",
+                        "on-tertiary-container": "#fffbff",
+                        "on-secondary-fixed": "#161b2d",
+                        "tertiary-fixed-dim": "#cbbeff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#fffbff",
+                        "on-tertiary-fixed": "#1d0061",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#bd0043",
+                        "on-surface": "#171c25",
+                        "primary": "#b90041",
+                        "primary-fixed": "#ffd9dc",
+                        "surface-container": "#e9eefb",
+                        "on-primary-fixed-variant": "#910031",
+                        "bg-off-white": "#F5F5F6",
+                        "surface": "#f9f9ff",
+                        "secondary-fixed": "#dee1fa",
+                        "outline-variant": "#e3bdc0",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#ecf1fd",
+                        "secondary": "#5a5d73",
+                        "outline": "#8f6f72",
+                        "secondary-fixed-dim": "#c2c5de",
+                        "on-primary-fixed": "#400011"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "grid-margin-mobile": "16px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "gutter": "16px",
+                        "stack-xs": "4px",
+                        "stack-lg": "32px",
+                        "grid-margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "title-md": ["Hanken Grotesk"],
+                        "label-bold": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "price-mrp": ["Hanken Grotesk"],
+                        "price-main": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "price-mrp": ["13px", { "lineHeight": "1", "fontWeight": "400" }],
+                        "price-main": ["16px", { "lineHeight": "1", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-lg min-h-screen pb-safe">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-10 h-16 bg-surface-container-lowest border-b border-surface-variant shadow-sm hidden md:flex">
+<div class="flex items-center gap-8">
+<a class="font-headline-lg text-headline-lg font-black text-primary tracking-tight" href="#">Myntra</a>
+<div class="flex gap-6">
+<a class="text-secondary font-body-lg text-body-lg hover:text-primary transition-colors" href="#">Men</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Women</a>
+<a class="text-secondary font-body-lg text-body-lg hover:text-primary transition-colors" href="#">Kids</a>
+<a class="text-secondary font-body-lg text-body-lg hover:text-primary transition-colors" href="#">Home &amp; Living</a>
+<a class="text-secondary font-body-lg text-body-lg hover:text-primary transition-colors" href="#">Beauty</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-secondary text-sm">search</span>
+</div>
+<input class="block w-64 pl-10 pr-10 py-2 border border-surface-variant rounded-full bg-surface-bright text-body-sm font-body-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Search for products, brands and more" type="text"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-ai-gradient-start text-sm">mic</span>
+</div>
+</div>
+<div class="flex gap-4">
+<a class="text-secondary hover:text-primary transition-colors flex flex-col items-center gap-1" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</a>
+<a class="text-secondary hover:text-primary transition-colors flex flex-col items-center gap-1" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</a>
+<a class="text-secondary hover:text-primary transition-colors flex flex-col items-center gap-1" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="max-w-[1280px] mx-auto px-grid-margin-desktop pt-24 pb-32">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Product Images (Left side) -->
+<div class="md:col-span-7 grid grid-cols-2 gap-4">
+<img class="w-full aspect-[3/4] object-cover rounded-lg cursor-zoom-in hover:opacity-95 transition-opacity" data-alt="A high-fashion studio shot of a stunning, deep crimson red evening gown worn by a model. The gown is made of premium, lustrous satin fabric that drapes elegantly to the floor. The model is posed against a pristine, minimalist white background in a brightly lit studio setup. High-key lighting creates soft highlights on the satin, emphasizing its luxurious texture. The overall aesthetic is editorial, modern, and highly polished, suitable for a premium fashion brand catalog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5dR4xfXDwVNR0hBCkIpV5laXoxNhtNQRto5lR9O2JLzD7yEcS2fbGlwT8zL_ZI99H_jyERGHQSRT4-bfv4qN8n_DSYJW3zXBIJB65Yhu_9DybscBTGXXXzeuiTIrMt3Zoo88S_ZukYild9m70erJ5yr8ZC8MZml58It8YxYwAVHdaBsIveRo7_TGTCnoB9cDlav3Tb4sla_LFtRvF01DK0hBCwDqDWiG86BBpWXKJ2YbX-HfEnn0g"/>
+<img class="w-full aspect-[3/4] object-cover rounded-lg cursor-zoom-in hover:opacity-95 transition-opacity" data-alt="A close-up studio shot of the back details of a deep crimson red satin evening gown. The dress features a delicate crisscross back strap design. The lighting is soft and directional, highlighting the smooth texture of the fabric and the intricate construction of the straps. The background is a stark, clean white, maintaining a minimalist and high-end editorial aesthetic. The focus is sharp on the garment's details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKmj2kW_wBQpOcBzixImNCxLihvrhzhr7L-uxlwB5asB6mWa6hf72ETg_cND_tr2uQy4JIav58rJP9CMyp7wz8yojBa6jAYmJ8QSABf0s5wS4DeZiPyMSee2pzN6ZT_P2hBfEWYTFYvcMudQ3wJDVPEsdDAqFxI1NOvomsDfPI1qR9BHk1q2P2CjMIHyFKojUsM2khYyxzGi6e42ffVOVgnMYTwLy6Fhpea5Y-7bSy661zefzUAtbG"/>
+<img class="w-full aspect-[3/4] object-cover rounded-lg cursor-zoom-in hover:opacity-95 transition-opacity" data-alt="A full-length studio shot showing the flowing silhouette of a crimson red satin evening gown. The model is caught mid-turn, allowing the fabric of the skirt to flare out gracefully, demonstrating movement and drape. The lighting is bright and evenly distributed across a pure white background. The vibrant pink/red hue of the dress pops dramatically against the neutral setting, conveying a sense of vibrant, modern fashion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQGPYzo9AlENa_EhwdwKvTkR-yCEl5mxawt2NEtOlHoHYdf4bX_cofecptlGvCkOTr8xumZSvQMYC9MV3F7JLqeNn-jhV76h5qE4FFKgq72LhtanaJjQPz0-2GFeXSFBtlzNwBLY3MYz8K8dn80CZPaNWZAdsX1vxT_r2vFozTblL09RCLF8xYU3cw9hOEJnlh1dGdkIt4ezuwkY-i6dASUcin3ZibaaMUZGTiUx_UJsO6nhn0sBFV"/>
+<img class="w-full aspect-[3/4] object-cover rounded-lg cursor-zoom-in hover:opacity-95 transition-opacity" data-alt="A detailed close-up shot focusing on the neckline and bodice of a premium crimson satin evening dress. The fabric exhibits a soft sheen under professional studio lighting. The neckline is a subtle cowl neck design. The pure white background ensures all attention remains on the texture and cut of the garment. The image perfectly captures a sleek, contemporary, and sophisticated fashion style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZs9beTGO63eySK3tihGDZIXZ06tj6NqK_7Gv7zWzapQnwC5BV9YRTY13kuwJnx2e7ShCO68gWPGPU2hkypzZyM-nD9tkWl5M8uBdUIN_-bt3G4ZycmD8hzFb6qzNZsYZDxrB_b7nZmMcuGHc9bfz-OQuWONman1l-pGmuOXd38H3ollfemc7QnnrMXRH5pUcTAoxGsUar7gSGP98nvMMKVZlBtQuxJ-u79jRMLf3puhonnUj9Sbwa"/>
+</div>
+<!-- Product Details (Right side) -->
+<div class="md:col-span-5 md:pl-8 flex flex-col gap-6 sticky top-24 self-start">
+<!-- Header Info -->
+<div class="border-b border-surface-variant pb-6">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Sera</h1>
+<h2 class="font-title-md text-title-md text-secondary font-normal mb-4">Women Crimson Solid Satin Maxi Evening Gown</h2>
+<div class="flex items-center gap-3">
+<div class="inline-flex items-center gap-1 bg-success-green px-2 py-1 rounded">
+<span class="font-label-bold text-label-bold text-on-primary">4.2</span>
+<span class="material-symbols-outlined filled text-on-primary text-[14px]">star</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">| 1.2k Ratings</span>
+</div>
+</div>
+<!-- Pricing -->
+<div class="border-b border-surface-variant pb-6">
+<div class="flex items-baseline gap-3 mb-2">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">₹2,499</span>
+<span class="font-price-mrp text-price-mrp text-mrp-strikethrough line-through">MRP ₹5,999</span>
+<span class="font-label-bold text-label-bold text-[#FF905A]">(58% OFF)</span>
+</div>
+<p class="font-body-sm text-body-sm text-success-green font-bold">inclusive of all taxes</p>
+</div>
+<!-- AI Context Card -->
+<div class="relative overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest p-5 shadow-sm">
+<div class="absolute inset-0 bg-gradient-to-br from-ai-gradient-start/5 to-ai-gradient-end/5 pointer-events-none"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-ai-gradient-start filled">auto_awesome</span>
+<h3 class="font-title-md text-title-md text-on-surface text-[16px]">Why you might like this</h3>
+</div>
+<ul class="space-y-2">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-ai-gradient-start text-[18px] mt-0.5">check_circle</span>
+<span class="font-body-sm text-body-sm text-secondary">Perfect match for "evening weddings" based on your recent searches.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-ai-gradient-start text-[18px] mt-0.5">check_circle</span>
+<span class="font-body-sm text-body-sm text-secondary">Premium satin fabric offers a luxurious drape and feel.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Size Selection -->
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<h3 class="font-title-md text-title-md text-on-surface text-[16px]">SELECT SIZE</h3>
+<a class="font-label-bold text-label-bold text-primary hover:underline" href="#">SIZE CHART &gt;</a>
+</div>
+<div class="flex gap-4">
+<button class="w-12 h-12 rounded-full border border-surface-variant font-label-bold text-label-bold text-on-surface hover:border-primary transition-colors flex items-center justify-center">S</button>
+<button class="w-12 h-12 rounded-full border-2 border-primary font-label-bold text-label-bold text-primary flex items-center justify-center">M</button>
+<button class="w-12 h-12 rounded-full border border-surface-variant font-label-bold text-label-bold text-on-surface hover:border-primary transition-colors flex items-center justify-center relative">
+                            L
+                        </button>
+<button class="w-12 h-12 rounded-full border border-surface-variant font-label-bold text-label-bold text-surface-variant cursor-not-allowed flex items-center justify-center relative overflow-hidden">
+                            XL
+                            <div class="absolute w-full h-[1px] bg-surface-variant transform rotate-45"></div>
+</button>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex gap-4 pt-4">
+<button class="flex-1 bg-[#FF3F6C] text-on-primary font-label-bold text-label-bold py-4 rounded-lg flex items-center justify-center gap-2 hover:bg-[#ED3A64] transition-colors">
+<span class="material-symbols-outlined">shopping_bag</span>
+                        ADD TO BAG
+                    </button>
+<button class="flex-1 bg-inverse-surface text-on-primary font-label-bold text-label-bold py-4 rounded-lg hover:bg-opacity-90 transition-colors">
+                        BUY NOW
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile only) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center py-2 bg-surface-container-lowest border-t border-surface-variant shadow-lg pb-safe md:hidden">
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-low transition-colors w-16 h-12 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-bold text-label-bold text-[10px] mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-low transition-colors w-16 h-12 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="category">category</span>
+<span class="font-label-bold text-label-bold text-[10px] mt-1">Categories</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-low transition-colors w-16 h-12 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="play_circle">play_circle</span>
+<span class="font-label-bold text-label-bold text-[10px] mt-1">Studio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary scale-95 transition-transform w-16 h-12 rounded-lg" href="#">
+<span class="material-symbols-outlined filled" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-label-bold text-label-bold text-[10px] mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-low transition-colors w-16 h-12 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-bold text-label-bold text-[10px] mt-1">Profile</span>
+</a>
+</nav>
+</body></html>
