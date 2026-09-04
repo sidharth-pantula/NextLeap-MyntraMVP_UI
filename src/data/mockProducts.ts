@@ -652,11 +652,232 @@ export const MOCK_PRODUCTS: Product[] = [
       popularityScore: 98,
       stockCount: 12
     }
+  },
+  {
+    id: 'prod-16',
+    brand: 'Rareism',
+    title: 'Minimal Lilac Cotton High-Low Blouse',
+    description: 'Modern relaxed silhouette top tailored in 100% fine organic cotton with spread collar and pleated back.',
+    category: 'Women',
+    subCategory: 'Western Wear',
+    price: 1599,
+    originalPrice: 2999,
+    discountPercentage: 47,
+    rating: 4.5,
+    ratingCount: 310,
+    images: [
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuDCJk5RwERQdHypdHHgiI_GJIS7Gp1hDF60s3YzLKn6IJl2NeckT--dIMXEHcDrCgR9eXGXXUBw0ZsMXO1yPeKsbw3BvrO8OJSsy4k2W4fmTH24V7fJtikXreovx7zu3GoQJh520o0cil3s9JDTZT4P1a3dg5PgdQXjPQPfMWFYW9I18VaS2Z-eNCISVvVtD_lzBy3v-5DR_AEx1eZABuWUtIfgytIdr7y_1fAT1opgmEsfgpUzu3fM'
+    ],
+    sizes: ['S', 'M', 'L'],
+    inStock: true,
+    attributes: {
+      occasions: ['Casual', 'Work', 'Everyday'],
+      styles: ['Minimal', 'Trendy'],
+      look: 'Minimal',
+      productType: 'Western',
+      fabric: 'Cotton',
+      fit: 'Relaxed',
+      color: 'Lilac Pastel',
+      colorFamily: 'Pastel',
+      formality: 'Smart Casual',
+      isFlashy: false,
+      durabilityRating: 4,
+      comfortRating: 5,
+      versatilityRating: 5,
+      pattern: 'Solid',
+      tags: ['top', 'blouse', 'cotton', 'pastel', 'workwear', 'summer']
+    },
+    signals: {
+      viewsCount: 13,
+      addedDaysAgo: 3,
+      inCart: false,
+      priceDropAmount: 400,
+      priceDropPercentage: 20,
+      popularityScore: 89,
+      stockCount: 5
+    }
+  },
+  {
+    id: 'prod-17',
+    brand: 'Kalyan Silks',
+    title: 'Kanjeevaram Gold & Crimson Pure Silk Saree',
+    description: 'Authentic handwoven pure mulberry silk Kanjeevaram saree featuring grand korvai gold zari border and rich pallu.',
+    category: 'Women',
+    subCategory: 'Ethnic Wear',
+    price: 14500,
+    originalPrice: 22000,
+    discountPercentage: 34,
+    rating: 4.9,
+    ratingCount: 780,
+    images: [
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuBlEvY_zJCwMOZgnk4mQqpppPKMDJpLVjGNQoIfFMeCroviPY1op8CsOBY3VDAmE9hcbI8sWpTPuYktFwVe_FID1mcTaWNJmrj7NfKDVHDZWta8ap3x3RsVncnPQ7jbnYNCEh4QubY4ODr0nc23CEBCcsXUTEptCgVw_gm9X5r0JdoffnLuBcbbsjqa8yrNaPVtnDjOcM1pRW2TKMNI-laK52nuk7Ullukhd1gG921IjMSap9Yl2ade'
+    ],
+    sizes: ['Free Size'],
+    inStock: true,
+    attributes: {
+      occasions: ['Wedding', 'Festive'],
+      styles: ['Statement', 'Classic'],
+      look: 'Statement',
+      productType: 'Ethnic',
+      fabric: 'Silk',
+      fit: 'Regular',
+      color: 'Crimson & Gold',
+      colorFamily: 'Bright',
+      formality: 'Ultra Formal',
+      isFlashy: true,
+      durabilityRating: 5,
+      comfortRating: 4,
+      versatilityRating: 3,
+      pattern: 'Embroidered',
+      tags: ['kanjeevaram', 'silk', 'saree', 'wedding', 'bridal', 'gold zari']
+    },
+    signals: {
+      viewsCount: 28,
+      addedDaysAgo: 1,
+      inCart: true,
+      priceDropAmount: 2500,
+      priceDropPercentage: 15,
+      popularityScore: 99,
+      stockCount: 1
+    }
+  },
+  {
+    id: 'prod-18',
+    brand: 'U.S. Polo Assn.',
+    title: 'Tailored Fit Solid Pique Cotton Polo',
+    description: 'Signature combed cotton pique polo shirt with ribbed collar, two-button placket and brand embroidery.',
+    category: 'Men',
+    subCategory: 'Western Wear',
+    price: 1299,
+    originalPrice: 2199,
+    discountPercentage: 41,
+    rating: 4.5,
+    ratingCount: 2100,
+    images: [
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCsuU7XZLew7TPOAt10TmqCfbGOovjKXxmANOiGoCkqlTMovA5c9-F2R2lEzw4cCaMfrRbR4fweA-RVS5QTINQ0YGGcoWIpvF5XuPs0eQe-xZTmn9NtjxgglfjaAHFjHnKIil9YaJ0BGN0-nwkbn2bcclamAn7VNeqhATva0BzPG3j9Vhuqmwl6FALlnYaOgV5qNZE-qKnaISzO2nhJQDzJ4T14DEDnxvI5MDxI13CnOhj1NBUrDUJ'
+    ],
+    sizes: ['M', 'L', 'XL'],
+    inStock: true,
+    attributes: {
+      occasions: ['Casual', 'Everyday', 'Vacation'],
+      styles: ['Casual', 'Classic'],
+      look: 'Casual',
+      productType: 'Western',
+      fabric: 'Cotton',
+      fit: 'Regular',
+      color: 'Navy Blue',
+      colorFamily: 'Dark',
+      formality: 'Casual',
+      isFlashy: false,
+      durabilityRating: 5,
+      comfortRating: 5,
+      versatilityRating: 5,
+      pattern: 'Solid',
+      tags: ['polo', 'tshirt', 'cotton', 'casual', 'everyday', 'summer']
+    },
+    signals: {
+      viewsCount: 17,
+      addedDaysAgo: 2,
+      inCart: false,
+      priceDropAmount: 300,
+      priceDropPercentage: 19,
+      popularityScore: 92,
+      stockCount: 9
+    }
+  },
+  {
+    id: 'prod-19',
+    brand: 'House of Pataudi',
+    title: 'Regal Black Zari Embroidered Silk Blend Kurta Set',
+    description: 'Exquisite jet black royal kurta crafted with self-motif embroidery along collar and placket, paired with churidar trousers.',
+    category: 'Men',
+    subCategory: 'Ethnic Wear',
+    price: 3499,
+    originalPrice: 6999,
+    discountPercentage: 50,
+    rating: 4.7,
+    ratingCount: 890,
+    images: [
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuBkR5LlgIuBvS9njxab4bqC5vbXETsEBjxBXsxgl3a-t7ILijW8SwOMDwMR0CBnULrhHDqMB5XfWoazqYSPL1x-jAAh9Qx9t2UCbCtaQdIdx2-sqo1xy_7jv--7CrZplRIWcYe5P8Ii2hjEPGjj9rFOmerCEmyrQqYDpQanw0fGNMbq83kWMzbAg5b3y3f1mh-Dx1h5NFv0djW18ditDCutRNv8ikXOu3EHyJJLRPmsMVLbNnQEoiH'
+    ],
+    sizes: ['38', '40', '42', '44'],
+    inStock: true,
+    attributes: {
+      occasions: ['Wedding', 'Party', 'Festive'],
+      styles: ['Elegant', 'Statement'],
+      look: 'Elegant',
+      productType: 'Ethnic',
+      fabric: 'Silk',
+      fit: 'Tailored',
+      color: 'Jet Black',
+      colorFamily: 'Dark',
+      formality: 'Ultra Formal',
+      isFlashy: false,
+      durabilityRating: 5,
+      comfortRating: 4,
+      versatilityRating: 4,
+      pattern: 'Embroidered',
+      tags: ['kurta', 'men ethnic', 'wedding', 'pataudi', 'silk', 'reception']
+    },
+    signals: {
+      viewsCount: 21,
+      addedDaysAgo: 1,
+      inCart: true,
+      priceDropAmount: 700,
+      priceDropPercentage: 17,
+      popularityScore: 97,
+      stockCount: 3
+    }
+  },
+  {
+    id: 'prod-20',
+    brand: 'ALDO',
+    title: 'Pointed Toe Embellished Stiletto Pumps',
+    description: 'Sleek 3.5-inch metallic champagne stiletto pumps with cushion flex padding and crystal buckle detail.',
+    category: 'Women',
+    subCategory: 'Footwear',
+    price: 4999,
+    originalPrice: 8999,
+    discountPercentage: 44,
+    rating: 4.6,
+    ratingCount: 380,
+    images: [
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCLXIlzM2PhACCB5Y3yzFAPm0ufhWOCuBEQCDKMDm3nZJqB5Ysgn8clbDiqzlZ-qwQA5QkJWVkb0dJG5FYotCMq6595eHr5hIryeWPZyeptLMAPmxNiPfWDphweaX6GSZMKLYo90gG6gvSNU8lNHSeH2KT27GuHrkmQATFRKtk9Dw8JJcprRYSbQVYTVio6rcTvB7ElEdf-XmaFwwA1QFLIjnqq0AkUxsNESh7NkaWoPXAYeyGesa5g'
+    ],
+    sizes: ['36', '37', '38', '39'],
+    inStock: true,
+    attributes: {
+      occasions: ['Party', 'Cocktail', 'Wedding'],
+      styles: ['Statement', 'Trendy'],
+      look: 'Statement',
+      productType: 'Western',
+      fabric: 'Satin',
+      fit: 'Slim',
+      color: 'Champagne Metallic',
+      colorFamily: 'Metallic',
+      formality: 'Ultra Formal',
+      isFlashy: true,
+      durabilityRating: 4,
+      comfortRating: 4,
+      versatilityRating: 4,
+      pattern: 'Solid',
+      tags: ['heels', 'stilettos', 'party shoes', 'aldo', 'glam']
+    },
+    signals: {
+      viewsCount: 15,
+      addedDaysAgo: 2,
+      inCart: false,
+      priceDropAmount: 1000,
+      priceDropPercentage: 17,
+      popularityScore: 93,
+      stockCount: 2
+    }
   }
 ];
 
 export const INITIAL_WISHLIST_IDS = [
   'prod-01', 'prod-02', 'prod-03', 'prod-04', 'prod-05',
   'prod-06', 'prod-07', 'prod-08', 'prod-09', 'prod-10',
-  'prod-11', 'prod-12', 'prod-13', 'prod-14', 'prod-15'
+  'prod-11', 'prod-12', 'prod-13', 'prod-14', 'prod-15',
+  'prod-16', 'prod-17', 'prod-18', 'prod-19', 'prod-20'
 ];

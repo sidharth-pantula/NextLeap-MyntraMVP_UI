@@ -8,8 +8,6 @@ export const AdaptiveSurveyScreen: React.FC = () => {
     userPrefs, 
     answerQuestion, 
     skipQuestion, 
-    candidates, 
-    wishlistProducts,
     setCurrentView 
   } = useApp();
 
@@ -35,8 +33,8 @@ export const AdaptiveSurveyScreen: React.FC = () => {
     skipQuestion(currentQuestion.dimension);
   };
 
-  const totalPossibleQuestions = 5;
-  const progressPercent = Math.min(100, Math.round((currentQuestion.questionNumber / totalPossibleQuestions) * 100));
+  const totalQuestions = 5;
+  const progressPercent = Math.min(100, Math.round((currentQuestion.questionNumber / totalQuestions) * 100));
 
   return (
     <div className="min-h-screen bg-surface-bright flex flex-col font-sans selection:bg-primary-container selection:text-white">
@@ -60,8 +58,8 @@ export const AdaptiveSurveyScreen: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-secondary hidden sm:inline">
-              Max 5 Questions
+            <span className="text-xs font-bold text-secondary">
+              Question {currentQuestion.questionNumber} of 5
             </span>
           </div>
         </div>
@@ -77,37 +75,20 @@ export const AdaptiveSurveyScreen: React.FC = () => {
 
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col pt-24 pb-32 px-4 md:px-8 max-w-[920px] mx-auto w-full">
-        {/* Step Context & Live Candidate Reduction Counter */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-6 bg-surface-container-low border border-surface-variant/50 rounded-xl p-3.5 shadow-sm">
-          <div className="flex items-center gap-2">
-            <span className="bg-primary/10 text-primary-brand text-xs font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
-              Question {currentQuestion.questionNumber} of 5
-            </span>
-            <span className="text-xs font-medium text-secondary">
-              (Adapts dynamically)
-            </span>
+        {/* Step Indicator & AI Rationale */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-4">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-tertiary-fixed to-primary/10 border border-tertiary-fixed-dim text-on-tertiary-fixed-variant px-3.5 py-1.5 rounded-full text-xs font-semibold shadow-xs">
+            <span className="material-symbols-outlined text-[15px] text-tertiary filled">psychology</span>
+            <span>AI Reasoning: {currentQuestion.aiRationale}</span>
           </div>
 
-          {/* Narrowing Counter */}
-          <div className="flex items-center gap-2 text-xs font-bold text-on-surface-variant">
-            <span className="material-symbols-outlined text-[16px] text-tertiary">tune</span>
-            <span>Narrowing Pool:</span>
-            <span className="text-secondary line-through">{wishlistProducts.length} items</span>
-            <span className="material-symbols-outlined text-[14px] text-secondary">arrow_forward</span>
-            <span className="text-primary font-black bg-white px-2 py-0.5 rounded border border-surface-variant shadow-xs">
-              {candidates.length} active candidates
-            </span>
-          </div>
-        </div>
-
-        {/* AI Rationale Badge */}
-        <div className="mb-4 inline-flex items-center gap-2 bg-gradient-to-r from-tertiary-fixed to-primary/10 border border-tertiary-fixed-dim text-on-tertiary-fixed-variant px-3.5 py-1.5 rounded-full text-xs font-semibold shadow-xs">
-          <span className="material-symbols-outlined text-[15px] text-tertiary filled">psychology</span>
-          <span>AI Logic: {currentQuestion.aiRationale}</span>
+          <span className="text-xs font-bold text-secondary uppercase tracking-widest hidden sm:inline">
+            Step {currentQuestion.questionNumber} / 5
+          </span>
         </div>
 
         {/* Question Title & Subtitle */}
-        <div className="mb-8">
+        <div className="mb-8 mt-2">
           <h1 className="font-display-lg text-2xl md:text-3xl lg:text-4xl font-black text-on-surface tracking-tight mb-2">
             {currentQuestion.title}
           </h1>
@@ -124,7 +105,7 @@ export const AdaptiveSurveyScreen: React.FC = () => {
               <div
                 key={opt.id}
                 onClick={() => handleSelectOption(opt)}
-                className={`group relative rounded-2xl p-5 flex flex-col justify-between cursor-pointer transition-all duration-200 border text-left min-h-[120px] shadow-sm ${
+                className={`group relative rounded-2xl p-5 flex flex-col justify-between cursor-pointer transition-all duration-200 border text-left min-h-[110px] shadow-sm ${
                   isSelected
                     ? 'border-2 border-primary bg-primary/5 shadow-md shadow-primary/10 ring-2 ring-primary/20 scale-[1.01]'
                     : 'border-surface-variant bg-surface-container-lowest hover:border-primary/40 hover:bg-surface-container-low/50 hover:shadow'
@@ -140,12 +121,6 @@ export const AdaptiveSurveyScreen: React.FC = () => {
                       }`}>
                         <span className="material-symbols-outlined text-[20px]">{opt.icon}</span>
                       </div>
-                    )}
-                    
-                    {opt.matchingCount !== undefined && opt.matchingCount > 0 && (
-                      <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-surface-container-low text-secondary border border-surface-variant/40">
-                        {opt.matchingCount} {opt.matchingCount === 1 ? 'item' : 'items'}
-                      </span>
                     )}
                   </div>
 
@@ -174,7 +149,7 @@ export const AdaptiveSurveyScreen: React.FC = () => {
           })}
         </div>
 
-        {/* Previously Answered Dimensions Summary Chips */}
+        {/* Previously Inferred Context Summary */}
         {userPrefs.answeredDimensions && userPrefs.answeredDimensions.length > 0 && (
           <div className="mt-10 pt-6 border-t border-surface-variant/60">
             <h4 className="text-[11px] font-bold text-secondary uppercase tracking-widest mb-2.5 flex items-center gap-1.5">
@@ -228,9 +203,9 @@ export const AdaptiveSurveyScreen: React.FC = () => {
           {currentQuestion.canSkip && (
             <button 
               onClick={handleSkip}
-              className="flex-1 py-3 px-4 rounded-xl border border-surface-variant text-secondary hover:text-on-surface font-bold text-xs md:text-sm hover:bg-surface-container-low transition-colors cursor-pointer text-center"
+              className="flex-1 py-3.5 px-4 rounded-xl border border-surface-variant text-secondary hover:text-on-surface font-bold text-xs md:text-sm hover:bg-surface-container-low transition-colors cursor-pointer text-center"
             >
-              Skip / No Preference
+              Skip Question
             </button>
           )}
           <button 
@@ -242,7 +217,7 @@ export const AdaptiveSurveyScreen: React.FC = () => {
                 : 'bg-surface-variant text-secondary opacity-50 cursor-not-allowed'
             }`}
           >
-            <span>{currentQuestion.questionNumber >= 4 || candidates.length <= 10 ? 'Apply & Generate Top 10' : 'Continue'}</span>
+            <span>{currentQuestion.questionNumber === 5 ? 'Finish & Show Top 10' : 'Continue'}</span>
             <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
           </button>
         </div>
