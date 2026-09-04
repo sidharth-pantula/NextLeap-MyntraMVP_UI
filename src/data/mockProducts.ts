@@ -4,7 +4,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: 'prod-01',
     brand: 'Manyavar Mohey',
-    title: 'Dusty Rose Embroidered Silk Lehenga',
+    title: 'Dusty Rose Embroidered Silk Lehenga Set',
     description: 'A stunning dusty rose silk lehenga set with intricate floral silver and zari embroidery. Paired with a matching embroidered blouse and soft net dupatta.',
     category: 'Women',
     subCategory: 'Ethnic Wear',
@@ -14,8 +14,7 @@ export const MOCK_PRODUCTS: Product[] = [
     rating: 4.8,
     ratingCount: 520,
     images: [
-      'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&auto=format&fit=crop&q=80'
     ],
     sizes: ['S', 'M', 'L', 'XL'],
     inStock: true,
@@ -49,7 +48,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: 'prod-02',
     brand: 'Sera',
-    title: 'Women Crimson Solid Satin Maxi Evening Gown',
+    title: 'Crimson Solid Satin Cowl-Neck Maxi Evening Gown',
     description: 'Deep crimson red evening gown crafted in luxurious satin with a fluid drape, cowl neckline and subtle back crisscross straps.',
     category: 'Women',
     subCategory: 'Western Wear',
@@ -59,8 +58,7 @@ export const MOCK_PRODUCTS: Product[] = [
     rating: 4.3,
     ratingCount: 1240,
     images: [
-      'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=800&auto=format&fit=crop&q=80'
     ],
     sizes: ['S', 'M', 'L', 'XL'],
     inStock: true,
@@ -94,10 +92,10 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: 'prod-03',
     brand: 'Biba',
-    title: 'Emerald Velvet Evening Gown with Zari Borders',
-    description: 'Regal emerald green maxi gown tailored in premium velvet with fine crystal work along the neckline and cuffs.',
+    title: 'Emerald Velvet Flared Evening Gown Kurta Set',
+    description: 'Regal emerald green maxi flared gown tailored in premium velvet with fine crystal work along the neckline and cuffs.',
     category: 'Women',
-    subCategory: 'Fusion',
+    subCategory: 'Ethnic Wear',
     price: 7450,
     originalPrice: 10500,
     discountPercentage: 29,
@@ -112,7 +110,7 @@ export const MOCK_PRODUCTS: Product[] = [
       occasions: ['Wedding', 'Cocktail', 'Party', 'Festive'],
       styles: ['Elegant', 'Classic'],
       look: 'Elegant',
-      productType: 'Fusion',
+      productType: 'Ethnic',
       fabric: 'Velvet',
       fit: 'Regular',
       color: 'Emerald Green',
@@ -123,7 +121,7 @@ export const MOCK_PRODUCTS: Product[] = [
       comfortRating: 4,
       versatilityRating: 3,
       pattern: 'Solid',
-      tags: ['gown', 'velvet', 'emerald', 'wedding', 'reception', 'elegant']
+      tags: ['gown', 'velvet', 'emerald', 'wedding', 'reception', 'ethnic']
     },
     signals: {
       viewsCount: 8,
@@ -180,7 +178,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: 'prod-05',
     brand: 'Ritu Kumar',
-    title: 'Ivory Silk Zari Anarkali Suit Set',
+    title: 'Ivory Silk Zari Anarkali Kurta Suit Set',
     description: 'Classically tailored ivory silk anarkali suit featuring gold zari bootis, a churidar and a contrasting banarasi dupatta.',
     category: 'Women',
     subCategory: 'Ethnic Wear',
@@ -222,7 +220,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: 'prod-06',
     brand: 'MANGO',
-    title: 'Emerald Silk Wrap Maxi Dress',
+    title: 'Emerald Silk Flutter-Sleeve Wrap Maxi Dress',
     description: 'Sophisticated emerald green silk wrap dress with short flutter sleeves, a tie-up waist and an elegant asymmetrical ruffled hem.',
     category: 'Women',
     subCategory: 'Western Wear',
@@ -295,7 +293,7 @@ export const MOCK_PRODUCTS: Product[] = [
       comfortRating: 5,
       versatilityRating: 5,
       pattern: 'Printed',
-      tags: ['cotton', 'casual', 'vacation', 'everyday', 'summer', 'breathable']
+      tags: ['cotton', 'casual', 'vacation', 'everyday', 'summer', 'breathable', 'dress']
     },
     signals: {
       viewsCount: 22,
@@ -310,7 +308,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: 'prod-08',
     brand: 'Zara',
-    title: 'Structured Minimal Double-Breasted Linen Blazer',
+    title: 'Structured Double-Breasted Linen Blazer',
     description: 'Crisp lightweight pure linen tailored blazer with structured shoulders, horn buttons and welt pockets.',
     category: 'Women',
     subCategory: 'Western Wear',
@@ -339,7 +337,7 @@ export const MOCK_PRODUCTS: Product[] = [
       comfortRating: 4,
       versatilityRating: 5,
       pattern: 'Solid',
-      tags: ['blazer', 'linen', 'workwear', 'minimal', 'smart casual', 'office']
+      tags: ['blazer', 'linen', 'workwear', 'minimal', 'smart casual', 'office', 'jacket']
     },
     signals: {
       viewsCount: 11,
@@ -469,7 +467,7 @@ export const MOCK_PRODUCTS: Product[] = [
       comfortRating: 4,
       versatilityRating: 5,
       pattern: 'Solid',
-      tags: ['trousers', 'formal', 'work wear', 'office', 'charcoal', 'men']
+      tags: ['trousers', 'pants', 'formal', 'work wear', 'office', 'charcoal', 'men']
     },
     signals: {
       viewsCount: 9,
@@ -482,7 +480,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: 'prod-12',
     brand: 'W for Woman',
-    title: 'Mustard Georgette Floral Fusion Kurta Set',
+    title: 'Mustard Georgette Floral Flared Kurta Set',
     description: 'Contemporary asymmetrical A-line georgette kurta with palazzos and botanical digital prints.',
     category: 'Women',
     subCategory: 'Ethnic Wear',
@@ -500,7 +498,7 @@ export const MOCK_PRODUCTS: Product[] = [
       occasions: ['Casual', 'Work', 'Festive', 'Everyday'],
       styles: ['Trendy', 'Casual'],
       look: 'Trendy',
-      productType: 'Fusion',
+      productType: 'Ethnic',
       fabric: 'Georgette',
       fit: 'Regular',
       color: 'Mustard Yellow',
@@ -511,7 +509,7 @@ export const MOCK_PRODUCTS: Product[] = [
       comfortRating: 5,
       versatilityRating: 5,
       pattern: 'Floral',
-      tags: ['kurta', 'fusion', 'georgette', 'floral', 'summer', 'daywear']
+      tags: ['kurta', 'fusion', 'georgette', 'floral', 'summer', 'daywear', 'ethnic']
     },
     signals: {
       viewsCount: 14,
@@ -525,88 +523,90 @@ export const MOCK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-13',
-    brand: 'Inc.5',
-    title: 'Metallic Champagne Embellished Block Heels',
-    description: 'Comfortable 2.5-inch block heels featuring cushioned memory foam insole and crystal strap accents.',
+    brand: 'Vero Moda',
+    title: 'Pastel Mint Green Satin Midi Slip Dress',
+    description: 'Effortlessly chic bias-cut satin slip dress with spaghetti straps and fluid drape for evening parties.',
     category: 'Women',
-    subCategory: 'Footwear',
-    price: 1999,
-    originalPrice: 3490,
-    discountPercentage: 43,
+    subCategory: 'Western Wear',
+    price: 2799,
+    originalPrice: 4999,
+    discountPercentage: 44,
     rating: 4.6,
-    ratingCount: 1540,
+    ratingCount: 840,
     images: [
-      'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&auto=format&fit=crop&q=80'
     ],
-    sizes: ['36', '37', '38', '39', '40'],
+    sizes: ['XS', 'S', 'M', 'L'],
     inStock: true,
     attributes: {
-      occasions: ['Wedding', 'Party', 'Cocktail', 'Festive'],
-      styles: ['Elegant', 'Statement'],
-      look: 'Elegant',
-      productType: 'Fusion',
+      occasions: ['Party', 'Cocktail', 'Vacation'],
+      styles: ['Trendy', 'Minimal'],
+      look: 'Trendy',
+      productType: 'Western',
       fabric: 'Satin',
-      fit: 'Regular',
-      color: 'Champagne Gold',
-      colorFamily: 'Metallic',
+      fit: 'Slim',
+      color: 'Mint Green',
+      colorFamily: 'Pastel',
       formality: 'Semi-Formal',
-      isFlashy: true,
+      isFlashy: false,
       durabilityRating: 4,
       comfortRating: 5,
       versatilityRating: 4,
       pattern: 'Solid',
-      tags: ['heels', 'footwear', 'wedding shoes', 'metallic', 'block heels', 'party']
+      tags: ['dress', 'slip dress', 'satin', 'pastel', 'mint', 'party']
     },
     signals: {
       viewsCount: 20,
       addedDaysAgo: 1,
       inCart: true,
-      priceDropAmount: 500,
-      priceDropPercentage: 20,
-      popularityScore: 96,
-      stockCount: 2
+      priceDropAmount: 600,
+      priceDropPercentage: 18,
+      popularityScore: 94,
+      stockCount: 4
     }
   },
   {
     id: 'prod-14',
-    brand: 'Accessorize London',
-    title: 'Handmade Pearl & Zari Potli Bag',
-    description: 'Exquisite ivory velvet potli clutch finished with seed pearl tassel drops and braided drawstring.',
+    brand: 'AND',
+    title: 'Classic Wide-Leg Pleated Tailored Trousers',
+    description: 'High-waisted wide-leg tailored trousers in lightweight crepe fabric with side slant pockets.',
     category: 'Women',
-    subCategory: 'Accessories',
-    price: 1699,
-    originalPrice: 2999,
+    subCategory: 'Western Wear',
+    price: 1999,
+    originalPrice: 3499,
     discountPercentage: 43,
-    rating: 4.7,
-    ratingCount: 420,
+    rating: 4.5,
+    ratingCount: 650,
     images: [
-      'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?w=800&auto=format&fit=crop&q=80'
     ],
-    sizes: ['Free Size'],
+    sizes: ['28', '30', '32', '34'],
     inStock: true,
     attributes: {
-      occasions: ['Wedding', 'Festive', 'Party'],
-      styles: ['Elegant', 'Classic'],
-      look: 'Elegant',
-      productType: 'Ethnic',
-      fabric: 'Velvet',
-      fit: 'Regular',
-      color: 'Ivory Gold',
-      colorFamily: 'Metallic',
-      formality: 'Ultra Formal',
-      isFlashy: true,
-      durabilityRating: 4,
-      comfortRating: 4,
-      versatilityRating: 3,
-      pattern: 'Embroidered',
-      tags: ['potli', 'bag', 'ethnic bag', 'wedding', 'accessories', 'pearls']
+      occasions: ['Work', 'Casual', 'Everyday'],
+      styles: ['Minimal', 'Elegant'],
+      look: 'Minimal',
+      productType: 'Western',
+      fabric: 'Poly Viscose',
+      fit: 'Relaxed',
+      color: 'Beige Camel',
+      colorFamily: 'Neutral',
+      formality: 'Smart Casual',
+      isFlashy: false,
+      durabilityRating: 5,
+      comfortRating: 5,
+      versatilityRating: 5,
+      pattern: 'Solid',
+      tags: ['trousers', 'pants', 'wide leg', 'workwear', 'office', 'beige']
     },
     signals: {
-      viewsCount: 10,
-      addedDaysAgo: 4,
+      viewsCount: 16,
+      addedDaysAgo: 3,
       inCart: false,
-      popularityScore: 88,
-      stockCount: 3
+      priceDropAmount: 500,
+      priceDropPercentage: 20,
+      popularityScore: 90,
+      stockCount: 5
     }
   },
   {
@@ -641,7 +641,7 @@ export const MOCK_PRODUCTS: Product[] = [
       comfortRating: 5,
       versatilityRating: 5,
       pattern: 'Solid',
-      tags: ['jeans', 'denim', 'levis', 'casual', 'everyday', 'stretch', 'durable']
+      tags: ['jeans', 'denim', 'pants', 'levis', 'casual', 'everyday', 'stretch']
     },
     signals: {
       viewsCount: 25,
@@ -656,7 +656,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: 'prod-16',
     brand: 'Rareism',
-    title: 'Minimal Lilac Cotton High-Low Blouse',
+    title: 'Minimal Lilac Cotton High-Low Blouse Top',
     description: 'Modern relaxed silhouette top tailored in 100% fine organic cotton with spread collar and pleated back.',
     category: 'Women',
     subCategory: 'Western Wear',
@@ -685,7 +685,7 @@ export const MOCK_PRODUCTS: Product[] = [
       comfortRating: 5,
       versatilityRating: 5,
       pattern: 'Solid',
-      tags: ['top', 'blouse', 'cotton', 'pastel', 'workwear', 'summer']
+      tags: ['top', 'shirt', 'blouse', 'cotton', 'pastel', 'workwear', 'summer']
     },
     signals: {
       viewsCount: 13,
@@ -744,7 +744,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: 'prod-18',
     brand: 'U.S. Polo Assn.',
-    title: 'Tailored Fit Solid Pique Cotton Polo',
+    title: 'Tailored Fit Solid Pique Cotton Polo Shirt',
     description: 'Signature combed cotton pique polo shirt with ribbed collar, two-button placket and brand embroidery.',
     category: 'Men',
     subCategory: 'Western Wear',
@@ -773,7 +773,7 @@ export const MOCK_PRODUCTS: Product[] = [
       comfortRating: 5,
       versatilityRating: 5,
       pattern: 'Solid',
-      tags: ['polo', 'tshirt', 'cotton', 'casual', 'everyday', 'summer']
+      tags: ['polo', 'tshirt', 'shirt', 'cotton', 'casual', 'everyday', 'summer']
     },
     signals: {
       viewsCount: 17,
@@ -831,46 +831,46 @@ export const MOCK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-20',
-    brand: 'ALDO',
-    title: 'Pointed Toe Embellished Stiletto Pumps',
-    description: 'Sleek 3.5-inch metallic champagne stiletto pumps with cushion flex padding and crystal buckle detail.',
+    brand: 'Forever New',
+    title: 'Champagne Satin Pleated Halter Neck Party Dress',
+    description: 'Glamorous champagne satin pleated cocktail dress with halter neckline, cinched waist, and flowy midi skirt.',
     category: 'Women',
-    subCategory: 'Footwear',
+    subCategory: 'Western Wear',
     price: 4999,
-    originalPrice: 8999,
-    discountPercentage: 44,
-    rating: 4.6,
-    ratingCount: 380,
+    originalPrice: 8499,
+    discountPercentage: 41,
+    rating: 4.7,
+    ratingCount: 520,
     images: [
-      'https://images.unsplash.com/photo-1581101767113-1677fc2beaa8?w=800&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=800&auto=format&fit=crop&q=80'
     ],
-    sizes: ['36', '37', '38', '39'],
+    sizes: ['XS', 'S', 'M', 'L'],
     inStock: true,
     attributes: {
       occasions: ['Party', 'Cocktail', 'Wedding'],
-      styles: ['Statement', 'Trendy'],
+      styles: ['Elegant', 'Statement'],
       look: 'Statement',
       productType: 'Western',
       fabric: 'Satin',
-      fit: 'Slim',
-      color: 'Champagne Metallic',
+      fit: 'Regular',
+      color: 'Champagne Gold',
       colorFamily: 'Metallic',
-      formality: 'Ultra Formal',
+      formality: 'Semi-Formal',
       isFlashy: true,
       durabilityRating: 4,
-      comfortRating: 4,
+      comfortRating: 5,
       versatilityRating: 4,
       pattern: 'Solid',
-      tags: ['heels', 'stilettos', 'party shoes', 'aldo', 'glam']
+      tags: ['dress', 'party dress', 'satin', 'cocktail', 'metallic', 'evening']
     },
     signals: {
-      viewsCount: 15,
+      viewsCount: 19,
       addedDaysAgo: 2,
-      inCart: false,
-      priceDropAmount: 1000,
-      priceDropPercentage: 17,
-      popularityScore: 93,
-      stockCount: 2
+      inCart: true,
+      priceDropAmount: 1100,
+      priceDropPercentage: 18,
+      popularityScore: 95,
+      stockCount: 3
     }
   }
 ];
