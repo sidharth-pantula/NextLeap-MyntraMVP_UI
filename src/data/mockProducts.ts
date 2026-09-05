@@ -872,12 +872,347 @@ export const MOCK_PRODUCTS: Product[] = [
       popularityScore: 95,
       stockCount: 3
     }
+  },
+  {
+    id: 'prod-21',
+    brand: 'Nike',
+    title: 'Air Max SC Lightweight Running & Lifestyle Sneakers',
+    description: 'Iconic sporty silhouette with visible Air cushioning, breathable mesh upper, and durable foam midsole for day-long comfort.',
+    category: 'Men',
+    subCategory: 'Footwear',
+    price: 4499,
+    originalPrice: 5995,
+    discountPercentage: 25,
+    rating: 4.8,
+    ratingCount: 2450,
+    images: [
+      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80'
+    ],
+    sizes: ['7', '8', '9', '10', '11'],
+    inStock: true,
+    attributes: {
+      occasions: ['Casual', 'Everyday', 'Vacation'],
+      styles: ['Trendy', 'Casual'],
+      look: 'Casual',
+      productType: 'Western',
+      fabric: 'Cotton',
+      fit: 'Regular',
+      color: 'Crimson Red & White',
+      colorFamily: 'Bright',
+      formality: 'Casual',
+      isFlashy: true,
+      durabilityRating: 5,
+      comfortRating: 5,
+      versatilityRating: 5,
+      pattern: 'Solid',
+      tags: ['sneakers', 'shoes', 'footwear', 'nike', 'running', 'casual', 'lifestyle']
+    },
+    signals: {
+      viewsCount: 32,
+      addedDaysAgo: 0,
+      inCart: false,
+      popularityScore: 97,
+      stockCount: 8
+    }
+  },
+  {
+    id: 'prod-22',
+    brand: 'Puma',
+    title: 'Unisex Suede Classic XXI Low-Top Sneakers',
+    description: 'Heritage street icon made in plush full suede leather with classic Formstrip and debossed gold metallic foil logos.',
+    category: 'Men',
+    subCategory: 'Footwear',
+    price: 3199,
+    originalPrice: 6999,
+    discountPercentage: 54,
+    rating: 4.6,
+    ratingCount: 1890,
+    images: [
+      'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=800&auto=format&fit=crop&q=80'
+    ],
+    sizes: ['6', '7', '8', '9', '10'],
+    inStock: true,
+    attributes: {
+      occasions: ['Casual', 'Everyday'],
+      styles: ['Casual', 'Classic'],
+      look: 'Casual',
+      productType: 'Western',
+      fabric: 'Cotton',
+      fit: 'Regular',
+      color: 'Navy & White',
+      colorFamily: 'Dark',
+      formality: 'Casual',
+      isFlashy: false,
+      durabilityRating: 5,
+      comfortRating: 4,
+      versatilityRating: 5,
+      pattern: 'Solid',
+      tags: ['sneakers', 'shoes', 'puma', 'suede', 'casual', 'footwear']
+    },
+    signals: {
+      viewsCount: 22,
+      addedDaysAgo: 0,
+      inCart: false,
+      popularityScore: 91,
+      stockCount: 6
+    }
+  },
+  {
+    id: 'prod-23',
+    brand: 'Fossil',
+    title: 'Grant Chronograph Dark Brown Leather Watch',
+    description: 'Vintage-inspired chronograph dial with Roman numeral indexes, stainless steel casing, and genuine dark brown leather strap.',
+    category: 'Men',
+    subCategory: 'Accessories',
+    price: 6995,
+    originalPrice: 13995,
+    discountPercentage: 50,
+    rating: 4.7,
+    ratingCount: 880,
+    images: [
+      'https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=800&auto=format&fit=crop&q=80'
+    ],
+    sizes: ['Free Size'],
+    inStock: true,
+    attributes: {
+      occasions: ['Work', 'Party', 'Wedding', 'Everyday'],
+      styles: ['Classic', 'Elegant'],
+      look: 'Elegant',
+      productType: 'Western',
+      fabric: 'Cotton',
+      fit: 'Regular',
+      color: 'Brown & Rose Gold',
+      colorFamily: 'Neutral',
+      formality: 'Smart Casual',
+      isFlashy: false,
+      durabilityRating: 5,
+      comfortRating: 5,
+      versatilityRating: 5,
+      pattern: 'Solid',
+      tags: ['watch', 'leather', 'chronograph', 'accessories', 'formal', 'fossil']
+    },
+    signals: {
+      viewsCount: 15,
+      addedDaysAgo: 0,
+      inCart: false,
+      popularityScore: 93,
+      stockCount: 4
+    }
+  },
+  {
+    id: 'prod-24',
+    brand: 'Tommy Hilfiger',
+    title: 'Colorblocked Puffer Warm Zip-Up Winter Jacket',
+    description: 'Heavyweight thermal insulated quilted puffer jacket featuring signature red, white, and blue colorblock design with fleece-lined stand collar.',
+    category: 'Men',
+    subCategory: 'Western Wear',
+    price: 5999,
+    originalPrice: 11999,
+    discountPercentage: 50,
+    rating: 4.6,
+    ratingCount: 610,
+    images: [
+      'https://images.unsplash.com/photo-1544441893-675973e31985?w=800&auto=format&fit=crop&q=80'
+    ],
+    sizes: ['M', 'L', 'XL', 'XXL'],
+    inStock: true,
+    attributes: {
+      occasions: ['Casual', 'Vacation', 'Everyday'],
+      styles: ['Trendy', 'Statement'],
+      look: 'Trendy',
+      productType: 'Western',
+      fabric: 'Cotton',
+      fit: 'Relaxed',
+      color: 'Navy & Red Colorblock',
+      colorFamily: 'Bright',
+      formality: 'Casual',
+      isFlashy: true,
+      durabilityRating: 5,
+      comfortRating: 5,
+      versatilityRating: 4,
+      pattern: 'Solid',
+      tags: ['jacket', 'puffer', 'winter', 'outerwear', 'casual', 'warm']
+    },
+    signals: {
+      viewsCount: 26,
+      addedDaysAgo: 0,
+      inCart: false,
+      popularityScore: 90,
+      stockCount: 5
+    }
+  },
+  {
+    id: 'prod-25',
+    brand: 'Ray-Ban',
+    title: 'Aviator Classic Polarized Green Lens Sunglasses',
+    description: 'Timeless pilot frame in polished gold metal with crystal green polarized lenses offering 100% UV protection and glare elimination.',
+    category: 'Women',
+    subCategory: 'Accessories',
+    price: 5590,
+    originalPrice: 9190,
+    discountPercentage: 39,
+    rating: 4.9,
+    ratingCount: 1420,
+    images: [
+      'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800&auto=format&fit=crop&q=80'
+    ],
+    sizes: ['Standard 58mm'],
+    inStock: true,
+    attributes: {
+      occasions: ['Vacation', 'Casual', 'Everyday'],
+      styles: ['Classic', 'Statement'],
+      look: 'Statement',
+      productType: 'Western',
+      fabric: 'Cotton',
+      fit: 'Regular',
+      color: 'Gold & Green',
+      colorFamily: 'Neutral',
+      formality: 'Smart Casual',
+      isFlashy: true,
+      durabilityRating: 5,
+      comfortRating: 5,
+      versatilityRating: 5,
+      pattern: 'Solid',
+      tags: ['sunglasses', 'aviator', 'accessories', 'eyewear', 'summer', 'vacation', 'rayban']
+    },
+    signals: {
+      viewsCount: 19,
+      addedDaysAgo: 0,
+      inCart: false,
+      popularityScore: 96,
+      stockCount: 7
+    }
+  },
+  {
+    id: 'prod-26',
+    brand: 'Aldo',
+    title: 'Quilted Faux Leather Crossbody Chain Bag',
+    description: 'Chic quilted finish flap crossbody bag with polished gold chain strap, twist-lock closure, and dual interior compartments.',
+    category: 'Women',
+    subCategory: 'Accessories',
+    price: 3999,
+    originalPrice: 6999,
+    discountPercentage: 43,
+    rating: 4.7,
+    ratingCount: 530,
+    images: [
+      'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&auto=format&fit=crop&q=80'
+    ],
+    sizes: ['One Size'],
+    inStock: true,
+    attributes: {
+      occasions: ['Party', 'Cocktail', 'Work', 'Everyday'],
+      styles: ['Elegant', 'Trendy'],
+      look: 'Elegant',
+      productType: 'Western',
+      fabric: 'Cotton',
+      fit: 'Regular',
+      color: 'Blush Pink',
+      colorFamily: 'Pastel',
+      formality: 'Semi-Formal',
+      isFlashy: false,
+      durabilityRating: 4,
+      comfortRating: 5,
+      versatilityRating: 5,
+      pattern: 'Solid',
+      tags: ['bag', 'handbag', 'crossbody', 'accessories', 'quilted', 'party']
+    },
+    signals: {
+      viewsCount: 21,
+      addedDaysAgo: 0,
+      inCart: false,
+      popularityScore: 94,
+      stockCount: 4
+    }
+  },
+  {
+    id: 'prod-27',
+    brand: 'Catwalk',
+    title: 'Embellished Ankle-Strap Block Heel Sandals',
+    description: 'Festive block heel sandals detailed with shimmering crystal studs, comfortable cushioned footbed, and adjustable buckle strap.',
+    category: 'Women',
+    subCategory: 'Footwear',
+    price: 1899,
+    originalPrice: 3290,
+    discountPercentage: 42,
+    rating: 4.5,
+    ratingCount: 790,
+    images: [
+      'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&auto=format&fit=crop&q=80'
+    ],
+    sizes: ['36', '37', '38', '39', '40'],
+    inStock: true,
+    attributes: {
+      occasions: ['Wedding', 'Party', 'Festive'],
+      styles: ['Statement', 'Elegant'],
+      look: 'Statement',
+      productType: 'Ethnic',
+      fabric: 'Silk',
+      fit: 'Regular',
+      color: 'Rose Gold Metallic',
+      colorFamily: 'Metallic',
+      formality: 'Ultra Formal',
+      isFlashy: true,
+      durabilityRating: 4,
+      comfortRating: 4,
+      versatilityRating: 4,
+      pattern: 'Solid',
+      tags: ['heels', 'sandals', 'footwear', 'party', 'wedding', 'ethnic']
+    },
+    signals: {
+      viewsCount: 16,
+      addedDaysAgo: 0,
+      inCart: false,
+      popularityScore: 92,
+      stockCount: 5
+    }
+  },
+  {
+    id: 'prod-28',
+    brand: 'H&M',
+    title: 'Relaxed Fit Ribbed Knit Crewneck Sweater',
+    description: 'Cozy soft-spun ribbed knit pullover with drop shoulders, crew neck, and subtle side slits in an easy relaxed fit.',
+    category: 'Women',
+    subCategory: 'Western Wear',
+    price: 1799,
+    originalPrice: 2999,
+    discountPercentage: 40,
+    rating: 4.6,
+    ratingCount: 1140,
+    images: [
+      'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800&auto=format&fit=crop&q=80'
+    ],
+    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    inStock: true,
+    attributes: {
+      occasions: ['Casual', 'Everyday', 'Vacation'],
+      styles: ['Minimal', 'Casual'],
+      look: 'Minimal',
+      productType: 'Western',
+      fabric: 'Cotton',
+      fit: 'Relaxed',
+      color: 'Cream Oatmeal',
+      colorFamily: 'Neutral',
+      formality: 'Casual',
+      isFlashy: false,
+      durabilityRating: 5,
+      comfortRating: 5,
+      versatilityRating: 5,
+      pattern: 'Solid',
+      tags: ['sweater', 'knitwear', 'winter', 'minimal', 'casual', 'cozy']
+    },
+    signals: {
+      viewsCount: 24,
+      addedDaysAgo: 0,
+      inCart: false,
+      popularityScore: 89,
+      stockCount: 7
+    }
   }
 ];
 
 export const INITIAL_WISHLIST_IDS = [
   'prod-01', 'prod-02', 'prod-03', 'prod-04', 'prod-05',
   'prod-06', 'prod-07', 'prod-08', 'prod-09', 'prod-10',
-  'prod-11', 'prod-12', 'prod-13', 'prod-14', 'prod-15',
-  'prod-16', 'prod-17', 'prod-18', 'prod-19', 'prod-20'
+  'prod-12', 'prod-13', 'prod-15', 'prod-17', 'prod-20'
 ];
