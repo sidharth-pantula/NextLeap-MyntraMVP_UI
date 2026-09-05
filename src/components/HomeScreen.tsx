@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useApp } from '../context/AppContext';
+import { INITIAL_WISHLIST_IDS } from '../data/mockProducts';
 
 export const HomeScreen: React.FC = () => {
   const { 
@@ -11,13 +12,27 @@ export const HomeScreen: React.FC = () => {
     addToBag 
   } = useApp();
 
-  // Stable pseudo-random shuffle to blend wishlisted and non-wishlisted items across the explore feed
+  // Interleave non-wishlisted and wishlisted items so they are evenly mixed throughout the feed
   const displayProducts = useMemo(() => {
-    return [...products].sort((a, b) => {
-      const hashA = a.id.split('').reduce((acc, char) => (acc * 31 + char.charCodeAt(0)) % 10007, 0);
-      const hashB = b.id.split('').reduce((acc, char) => (acc * 31 + char.charCodeAt(0)) % 10007, 0);
-      return hashA - hashB;
-    });
+    const wishlisted = products.filter(p => INITIAL_WISHLIST_IDS.includes(p.id));
+    const nonWishlisted = products.filter(p => !INITIAL_WISHLIST_IDS.includes(p.id));
+    
+    const mixed: typeof products = [];
+    let wIdx = 0;
+    let nwIdx = 0;
+
+    while (wIdx < wishlisted.length || nwIdx < nonWishlisted.length) {
+      if (nwIdx < nonWishlisted.length) {
+        mixed.push(nonWishlisted[nwIdx++]);
+      }
+      if (wIdx < wishlisted.length) {
+        mixed.push(wishlisted[wIdx++]);
+      }
+      if (wIdx < wishlisted.length) {
+        mixed.push(wishlisted[wIdx++]);
+      }
+    }
+    return mixed;
   }, [products]);
 
   return (
