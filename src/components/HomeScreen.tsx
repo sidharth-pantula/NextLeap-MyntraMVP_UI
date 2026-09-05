@@ -29,8 +29,7 @@ export const HomeScreen: React.FC = () => {
               BIGGEST FASHION SALE
             </span>
             <h1 className="font-display-lg text-3xl md:text-5xl font-black text-white mb-2 leading-tight tracking-tight">
-              End of Season Sale <br/>
-              <span className="text-[#ff527b] drop-shadow-md">FESTIVE & TREND EDIT</span>
+              End of Season Sale
             </h1>
             <p className="text-white/90 text-sm md:text-base font-medium mb-6 leading-relaxed max-w-md">
               50–80% OFF on Top Trending Brands &amp; Designer Labels
