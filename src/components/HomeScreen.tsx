@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useApp } from '../context/AppContext';
 
 export const HomeScreen: React.FC = () => {
@@ -11,14 +11,14 @@ export const HomeScreen: React.FC = () => {
     addToBag 
   } = useApp();
 
-  // Display non-wishlisted items first in the explore feed
-  const displayProducts = [...products].sort((a, b) => {
-    const aWish = wishlistIds.includes(a.id);
-    const bWish = wishlistIds.includes(b.id);
-    if (!aWish && bWish) return -1;
-    if (aWish && !bWish) return 1;
-    return 0;
-  });
+  // Stable pseudo-random shuffle to blend wishlisted and non-wishlisted items across the explore feed
+  const displayProducts = useMemo(() => {
+    return [...products].sort((a, b) => {
+      const hashA = a.id.split('').reduce((acc, char) => (acc * 31 + char.charCodeAt(0)) % 10007, 0);
+      const hashB = b.id.split('').reduce((acc, char) => (acc * 31 + char.charCodeAt(0)) % 10007, 0);
+      return hashA - hashB;
+    });
+  }, [products]);
 
   return (
     <div className="w-full">
